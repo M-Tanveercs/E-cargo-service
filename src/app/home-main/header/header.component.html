@@ -1,0 +1,61 @@
+
+
+	<nav class="flex items-center justify-between flex-wrap p-4 fixed w-full z-50 top-0  bg-[#ECECEC]">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+			<a class="text-white no-underline hover:text-white hover:no-underline"  routerLink="" >
+				<span class="text-2xl pl-2 " style="color: #30445D; " ><i class="em em-grinning"></i> <span class="text-3xl font-extrabold" style="color: rgb(68, 86, 106);">E Cargo</span> Services <i class="fa fa-shipping-fast " aria-hidden="true"></i></span>
+			</a>
+		</div>
+
+		<div class="block lg:hidden">
+			<button id="nav-toggle"  (click)="toggleNav()" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"  [ngClass]="{'hidden': isNavHidden}" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center list-none font-bold">
+				<li class="mr-3">
+					<a class="inline-block py-2 px-4 no-underline hover:text-gray-400 text-gray-600 hover:underline hover:bg-white" routerLink="">Home</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-600 no-underline hover:text-gray-400 hover:underline py-2 px-4 hover:bg-white" routerLink="pricing-tabel">Pricing</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-gray-600 no-underline hover:text-gray-400 hover:underline py-2 px-4 hover:bg-white" routerLink="aboutUs">About Us</a>
+				</li>
+				<li class="mr-3">
+					<a     
+					class="inline-block text-gray-600 no-underline  hover:bg-white  hover:text-gray-400 hover:underline py-2 px-4 " routerLink="contactUs">Contact Us</a>
+				</li>
+				<li class="mr-3">
+					<a class="inline-block text-white no-underline  hover:text-gray-400 hover:text-underline py-2 px-4" href="#">
+                        <nz-button-group >
+                            <button nz-button class="font-bold"    style="background-color: rgb(68, 86, 106); color: white;" >Login</button>
+                            <button style="background-color: rgb(68, 86, 106); color: white; " nz-button nz-dropdown [nzDropdownMenu]="menu2" nzPlacement="bottomRight">
+                                <span nz-icon nzType="login" nzTheme="outline"></span>
+                            </button>
+                          </nz-button-group>
+                          <nz-dropdown-menu #menu2="nzDropdownMenu">
+                            <ul nz-menu >
+                              <li nz-menu-item routerLink="user/user-login" > <i class="fa fa-solid fa-user mr-1"></i>User Login</li>
+                              <li nz-menu-item routerLink="agency-login"> <i class='fa fas fa-building mr-1' ></i>Agency Login</li>
+                              <li nz-menu-item routerLink="admin-login"> <i class="fa fa-user-plus mr-1" aria-hidden="true"></i> Admin Login</li>
+                            </ul>
+                          </nz-dropdown-menu>
+                    </a>
+                  
+				</li>
+			</ul>
+		</div>
+       
+       
+	</nav>
+
+	<!--Container-->
+	<div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
+
+	</div>
+
+
+

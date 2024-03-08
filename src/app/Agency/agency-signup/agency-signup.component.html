@@ -1,0 +1,119 @@
+<div class="font-mono ">
+  <!-- Container -->
+  <div class="container mx-auto">
+    <div class="flex justify-center items-center h-screen px-6">
+      <!-- Row -->
+      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <!-- Col -->
+        <div
+          class="w-full h-auto bg-slate-300 relative  lg:block lg:w-5/12 bg-cover rounded-l-lg "
+      
+        ><img class="w-11/12 absolute bottom-20" src="../../../assets/imges/20123580_6229467-removebg-preview.png" alt=""></div>
+        <!-- Col -->
+        <div class="w-full lg:w-7/12 bg-slate-100 p-5 rounded-lg lg:rounded-l-none">
+          <h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="px-8 pt-6 pb-8 mb-3  rounded">
+            <!-- First Name -->
+            <div class="w-full flex flex-wrap justify-between">
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="fullname">Full Name</label>
+                <input formControlName="fullname" id="fullname" type="text" placeholder=" Name"
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('fullname')?.invalid && signupForm.get('fullname')?.touched">
+                    Full Name is required
+                </p>
+            </div>
+        
+            <div class="mb-3">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="email">Email</label>
+              <input formControlName="email" id="email" type="email" placeholder="Email"
+                  class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              <p class="text-red-500 text-xs italic " *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+                  Email is required 
+              </p>
+          </div>
+          
+            </div>
+        
+            <!-- Email -->
+            <div class="flex  justify-between w-full ">
+           
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="businessName">Business Name </label>
+                <input formControlName="businessName" id="businessName" type='text' placeholder="Business Name"
+                    class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('businessName')?.invalid && signupForm.get('businessName')?.touched">
+                    business name is required 
+                </p>
+            </div>
+            <div class="mb-3">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="ntn">NTN No</label>
+              <input formControlName="ntn" id="ntn" type='number' placeholder="ntn #"
+                  class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('ntn')?.invalid && signupForm.get('ntn')?.touched">
+                  NTN no is required 
+              </p>
+          </div>
+              </div>
+            <div class="flex  justify-between w-full ">
+           
+            <div class="mb-3">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="mobile">Mobile No</label>
+              <input formControlName="mobile" id="mobile" type='tel' placeholder="mobile"
+                  class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+              <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('mobile')?.invalid && signupForm.get('mobile')?.touched">
+                  mobile no is required 
+              </p>
+          </div>
+          <div class="mb-3">
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="address">Business Address</label>
+            <input formControlName="address" id="address" type='text' placeholder="address"
+                class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+            <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched">
+                address is required 
+            </p>
+        </div>
+            </div>
+        
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="password">Password</label>
+                <input formControlName="password" id="password" type="password" placeholder="******************"
+                    class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+                    Password is required and must be at least 6 characters long
+                </p>
+            </div>
+        
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="confirmPassword">Confirm Password</label>
+                <input formControlName="confirmPassword" id="confirmPassword" type="password" placeholder="******************"
+                    class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+                    Passwords must match
+                </p>
+            </div>
+        
+            <div class="mb-6 text-center">
+                <button type="submit"
+                    class="w-full px-4 py-2 font-bold text-white bg-[#44566A] rounded-full hover:bg-[#30445D] focus:outline-none focus:shadow-outline">
+                    Register Account
+                </button>
+            </div>
+            <hr class="mb-6 border-t" />
+          
+          <div class="text-center">
+            <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" (click)="login()">
+              Already have an account? <span>Login!</span>
+            </a>
+          </div>
+        </form>
+        
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
