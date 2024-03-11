@@ -25,6 +25,9 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./Admin/admin-routing.module').then(m => m.AdminRoutingModule)
   },
+  {
+     path: 'user-dashboard', loadChildren: () => import('./users/components/user-dashboard/user-dashboard-routing.module').then(m => m.UserDashboardRoutingModule) 
+  },
 
 
 

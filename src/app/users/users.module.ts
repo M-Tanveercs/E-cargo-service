@@ -32,6 +32,10 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutUsComponent } from './components/aboutUs/aboutUs.component';
 import { ContactUsComponent } from './components/contactUs/contactUs.component';
 import { PricingTableComponent } from './components/Pricing-table/Pricing-table.component';
+import { SuccessComponent } from './components/success/success.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
 
@@ -52,12 +56,13 @@ import { PricingTableComponent } from './components/Pricing-table/Pricing-table.
     NzDividerModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NzCollapseModule
+    NzCollapseModule,
+ 
   ],
   declarations: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent],
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
   exports: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent]
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,]
 
 })
 export class UsersModule { }

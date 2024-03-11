@@ -1,0 +1,56 @@
+<div class="lg:w-80 h-screen flex z-30 fixed bottom-0 top-0 left-0 transition-all duration-300" [ngClass]="{'w-0': isCollapsed, 'w-80': !isCollapsed}"  >
+  
+ 
+  <ul nz-menu nzMode="inline"  [nzTheme]="theme ? 'dark' : 'light'" [nzInlineCollapsed]="isCollapsed  " class=" h-full  relative  mt-20  pt-5  " >
+
+    <li nz-submenu nzTitle="Home" nzIcon="home" class="mb-5">
+      <ul>
+        <li nz-menu-item  routerLink="/dashboard" ><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 5v2h-4V5zM9 5v6H5V5zm10 8v6h-4v-6zM9 17v2H5v-2zM21 3h-8v6h8zM11 3H3v10h8zm10 8h-8v10h8zm-10 4H3v6h8z"/></svg> Dashboard</li>
+        <li nz-menu-item  routerLink=""><i class="fa fa-plus-square-o" aria-hidden="true"></i>
+          Book New Job</li>
+       <li nz-menu-item routerLink="/manage-reviews"  > <i class="fa fa-commenting-o" aria-hidden="true"></i>
+        Manage Reviews</li>
+        
+      </ul>
+    </li>
+  
+    <li nz-submenu nzTitle="Manage Jobs" nzIcon="appstore-add"  class="mb-5">
+      <ul>
+        <li nz-menu-item routerLink="/booked-job"><i class="fa fa-truck" aria-hidden="true"></i>
+        Booked Jobs</li>
+        <li nz-menu-item routerLink="/completed-job"> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          Completed Jobs</li>
+        <li nz-menu-item routerLink="/payment-history"> <i class="fa fa-credit-card mr-1" aria-hidden="true "></i>Invoices</li>
+        <li nz-menu-item routerLink="track-job"><i class="fa fa-search" aria-hidden="true"></i>
+          Track Job</li>
+      </ul>
+    </li>
+   
+    <li nz-submenu nzTitle="My Account" nzIcon="solution" class="mb-5">
+      <ul>
+        <li nz-menu-item routerLink="edit-profile"><span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit Profile</li>
+        <li nz-menu-item routerLink="setting"> <span nz-icon nzType="setting" nzTheme="outline" class="mr-1"></span>Settings</li>
+        <li nz-menu-item><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
+        
+      </ul>
+    </li>
+
+    <li nz-submenu nzTitle="Others" nzIcon="question-circle">
+      <ul>
+        <li routerLink="/contactUS" nz-menu-item > <i class="fa fa-phone mr-1" aria-hidden="true"></i>Contact Us</li>
+     
+        
+      </ul>
+    </li>
+    <li class="absolute bottom-28 w-full  flex justify-end pr-5 ">
+      <nz-switch [(ngModel)]="theme">
+        <span checked>Dark</span>
+        <span unchecked>Light</span>
+      </nz-switch>
+    </li>
+  </ul>
+
+<div class="">  <button class="ml-2 mt-24" nz-button nzType="primary" (click)="toggleCollapsed()">
+  <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+</button> </div>
+</div>

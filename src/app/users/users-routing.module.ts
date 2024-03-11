@@ -13,11 +13,13 @@ import { BookingComponent } from './components/booking/booking.component';
 import { SuccessComponent } from './components/success/success.component';
 
 
+
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
   },
+  
       { path: 'aboutUs', component: AboutUsComponent },
       { path: 'contactUS', component: ContactUsComponent },
       { path: 'pricing-table', component: PricingTableComponent },
@@ -26,7 +28,8 @@ const routes: Routes = [
       { path: 'vehicles-and-goods-info', component: VehiclesAndGoodsInfoComponent },
       { path: 'pricing', component: PricingComponent },
       {path:'booking',component:BookingComponent},
-      {path:'booking/success',component:SuccessComponent}
+      {path:'booking/success',component:SuccessComponent},
+     
 
 ];
 

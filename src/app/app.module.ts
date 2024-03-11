@@ -22,18 +22,17 @@ import { UsersModule } from './users/users.module';
 import { AgencyModule } from './Agency/agency.module';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { UsersRoutingModule } from './users/users-routing.module';
-import { HeaderComponent } from './users/components/header/header.component';
-import { FooterComponent } from './users/components/footer/footer.component';
+
 import { AgencyRoutingModule } from './Agency/agency-routing.module';
 import { AdminRoutingModule } from './Admin/admin-routing.module';
+import { UserDashboardModule } from './users/components/user-dashboard/user-dashboard.module';
+import { UserDashboardRoutingModule } from './users/components/user-dashboard/user-dashboard-routing.module';
 
 
 @NgModule({
   declarations: [							
     AppComponent,
-      HeaderComponent,
-    
-      FooterComponent
+     
  
    ],
   imports: [
@@ -48,7 +47,9 @@ NzIconModule,
     NzDropDownModule,
 UsersRoutingModule,
 AgencyRoutingModule,
-AdminRoutingModule
+AdminRoutingModule,
+UserDashboardModule,
+UserDashboardRoutingModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
