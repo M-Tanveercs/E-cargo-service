@@ -19,9 +19,13 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { BookedJobComponent } from './booked-job/booked-job.component';
 import { CompletedJobComponent } from './completed-job/completed-job.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { TrackJobComponent } from './track-job/track-job.component';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
 @NgModule({
-  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent ],
+  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent ],
   imports: [
     CommonModule,
     UserDashboardRoutingModule,
@@ -32,8 +36,11 @@ import { FooterComponent } from './footer/footer.component';
     NzCollapseModule,
     NzAvatarModule,
     NzDropDownModule,
-    NzButtonModule
+    NzButtonModule,
+    NzBadgeModule,
+    NzStepsModule,
+    NzInputModule
   ],
-  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent]
+  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent]
 })
 export class UserDashboardModule { }

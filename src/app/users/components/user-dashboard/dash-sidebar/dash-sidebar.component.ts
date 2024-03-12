@@ -13,7 +13,7 @@ export class DashSidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  isCollapsed = true;
+  isCollapsed = false;
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;

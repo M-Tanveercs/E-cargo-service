@@ -8,7 +8,7 @@ import { CompletedJobComponent } from './completed-job/completed-job.component';
 import { InoviceComponent } from './inovice/inovice.component';
 import { TrackJobComponent } from './track-job/track-job.component';
 import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
-import { SettingComponent } from './setting/setting.component';
+
 
 
 
@@ -23,7 +23,7 @@ const routes: Routes = [
     {path:'payment-history',component:InoviceComponent},
     {path:'track-job',component:TrackJobComponent},
     {path:'edit-profile',component:EditProfileComponent},
-    {path:'setting',component:SettingComponent},
+    
   ]
 
 },

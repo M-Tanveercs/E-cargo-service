@@ -1,1 +1,11 @@
 
+
+
+      .head-example {
+        width: 15px;
+        height: 15px;
+        
+        /* background: #eee; */
+        display: inline-block;
+        vertical-align: middle;
+      }
