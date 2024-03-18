@@ -1,1 +1,12 @@
 
+@media (max-width: 459px) {
+    .custom-hide-md {
+        display: none;
+    }
+}
+
+@media (min-width: 460px) {
+    .custom-show-md {
+        display: block;
+    }
+}

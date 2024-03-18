@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/common.service';
+import { UserCommonService } from '../../user-common.service';
 
 
 
@@ -16,10 +17,11 @@ export class HomeComponent implements OnInit {
   searchForm!: FormGroup;
   pickupSuggestedCities$: Observable<any[]> | undefined;
   dropoffSuggestedCities$: Observable<any[]> | undefined;
-
+  
   constructor(
     private fb: FormBuilder,
     private cityService: CommonService,
+    private userCommonService:UserCommonService,
    private route: Router
   ) {}
 
@@ -44,7 +46,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Handle form submission
     const pickupLocation = this.searchForm.value.pickupLocation;
     const dropoffLocation = this.searchForm.value.dropoffLocation;
 
@@ -52,12 +53,13 @@ export class HomeComponent implements OnInit {
       if (pickupCoordinates) {
         this.cityService.getCoordinates(dropoffLocation).subscribe(dropoffCoordinates => {
           if (dropoffCoordinates) {
-            // Calculate distance using Haversine formula
-            const distance = this.calculateDistance(
+            const distance = this.userCommonService.calculateDistance(
               pickupCoordinates.latitude,
               pickupCoordinates.longitude,
               dropoffCoordinates.latitude,
-              dropoffCoordinates.longitude
+              dropoffCoordinates.longitude,
+              pickupLocation,
+              dropoffLocation
             );
 
             console.log('Distance between pickup and drop-off locations:', distance.toFixed(2), 'km');
@@ -72,27 +74,9 @@ export class HomeComponent implements OnInit {
     
     this.route.navigate(['vehicles-and-goods-info'])
   }
- 
 
 
-  calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; // Radius of the Earth in km
-    const dLat = this.degreesToRadians(lat2 - lat1);
-    const dLon = this.degreesToRadians(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.degreesToRadians(lat1)) * Math.cos(this.degreesToRadians(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
-    console.log('distance',d);
-    
-    return d;
-  }
 
-  degreesToRadians(degrees: number): number {
-    return degrees * (Math.PI / 180);
-  }
   // services logic
   currentSetIndex = 0;
   totalSets = 3; // Assuming you have 3 sets of cards

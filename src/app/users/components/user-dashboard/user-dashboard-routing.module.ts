@@ -8,12 +8,13 @@ import { CompletedJobComponent } from './completed-job/completed-job.component';
 import { InoviceComponent } from './inovice/inovice.component';
 import { TrackJobComponent } from './track-job/track-job.component';
 import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
+import { AuthGuard } from '../../UserAuthGuard/user-auth.guard';
 
 
 
 
 const routes: Routes = [
-  {path:'', component: MainDashboardComponent , 
+  {path:'', component: MainDashboardComponent ,  canActivate: [AuthGuard], 
   children:[
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     {path:'dashboard',component:DashboardComponent},

@@ -11,6 +11,7 @@ import { ContactUsComponent } from './components/contactUs/contactUs.component';
 import { PricingTableComponent } from './components/Pricing-table/Pricing-table.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { SuccessComponent } from './components/success/success.component';
+import { AuthGuard } from './UserAuthGuard/user-auth.guard';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
       { path: 'vehicles-and-goods-info', component: VehiclesAndGoodsInfoComponent },
       { path: 'pricing', component: PricingComponent },
       {path:'booking',component:BookingComponent},
-      {path:'booking/success',component:SuccessComponent},
+      {path:'booking/success',component:SuccessComponent, 
+      canActivate: [AuthGuard]},
      
 
 ];

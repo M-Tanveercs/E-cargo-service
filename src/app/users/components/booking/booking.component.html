@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="  bg-[#F3F7F8] pb-20">
-  <div class="w-screen pt-20 pb-5 mt-20 flex justify-center items-center   ">
+  <div class="w-full pt-20 pb-5 mt-20 flex justify-center items-center   ">
     <div class="w-9/12 bg-[#FFFFFF] px-24 py-4 rounded-lg shadow-sm">
       <nz-steps [nzCurrent]="3" nzSize="small">
         <nz-step nzTitle="Location"></nz-step>
@@ -12,7 +12,7 @@
 
   </div>
   <div>
-    <div class=" w-screen h-fit justify-center items-center   ">
+    <div class=" w-full h-fit justify-center items-center pb-10 over   ">
 
       <div class="w-9/12 h-fit  flex gap-5 m-auto   ">
         <div class="w-8/12 h-fit pb-10 bg-[#FFFFFF] rounded-lg shadow-sm">
@@ -28,25 +28,25 @@
             <div class="flex items-center">
               <input type="radio" id="radio2" name="radioGroup" class="form-radio h-4 w-4 text-indigo-600 border-gray-300"
                      [(ngModel)]="selectedPayment" [value]="'Cash on Delivery'">
-              <label for="radio2" class="ml-2 text-slate-500 text-lg font-medium" [class.text-slate-800]="selectedPayment === 'Cash on DeliveryCash on Delivery'">Cash on Delivery</label>
+              <label for="radio2" class="ml-2 text-slate-500 text-lg font-medium" [class.text-slate-800]="selectedPayment === 'Cash on Delivery'">Cash on Delivery</label>
             </div>
           </div>
             <hr class="bg-slate-50 mt-5">
             <div class="mt-14">
              <div class="w-full flex justify-between text-base" > <p>Initial Deposit</p>
-              <p *ngIf="selectedPayment === 'Card Payment'">2003</p>
+              <p *ngIf="selectedPayment === 'Card Payment'">{{initailaPayment}}</p>
               <p *ngIf="selectedPayment === 'Cash on Delivery'">---</p></div>
              <div class="w-full flex justify-between text-base"> <p>Remaining Amount
 
              </p>
-             <p *ngIf="selectedPayment === 'Card Payment'">13,754</p>
+             <p *ngIf="selectedPayment === 'Card Payment'">{{remainPayment}}</p>
              <p *ngIf="selectedPayment === 'Cash on Delivery'">---</p>
             </div>
               <hr class="bg-slate-600 mt-5 h-[1px]">
               <div class="w-full flex justify-between mt-5 text-base font-semibold text-slate-600"> <p>Total Payment
 
               </p>
-               <p  >Rs 16058</p>
+               <p  >Rs {{totalVechialPrice}}</p>
               </div>
                <hr class="bg-slate-600 mt-2 h-[1px]">
             </div>
@@ -60,7 +60,7 @@
                   [(ngModel)]="selectedPayment1" [value]="'Initial Payment'">
                   <label for="initialRadio" class="ml-2 text-slate-500 text-lg font-medium" [class.text-slate-800]="selectedPayment1 === 'Initial Payment'">Initial Payment</label>
                 </div>
-                <p *ngIf="selectedPayment === 'Card Payment'">2003</p>
+                <p *ngIf="selectedPayment === 'Card Payment'">{{initailaPayment}}</p>
                 <p *ngIf="selectedPayment === 'Cash on Delivery'">---</p>
               </div>
               <div class="flex justify-between mt-5">
@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 
-                <p>Rs16058</p>
+                <p>Rs{{totalVechialPrice}}</p>
               </div>
               <p  class="mt-7 text-xs  " [class.invisible]="selectedPayment === 'Cash on Delivery'" ><span class="text-slate-700 font-bold text-sm">Note:</span> Pay the remaining amount to the transporter on the day in cash or via bank transfer</p>
             
@@ -85,8 +85,8 @@
           </div>
           
          <div class="px-5  flex flex-col gap-1 mt-10  cursor-pointer ">
-          <label nz-checkbox [(ngModel)]="checked" class=" mb-0 "><p>I agree to the ECS terms & policies.</p></label> <div routerLink="/booking/success" class=" py-2 w-full flex  shadow-sm justify-between text-white  gap-8 bg-slate-600  rounded-lg px-7 text-lg ">
-          <span>Rs.16058</span><span>Checkout<i class="fa-solid fa-arrow-right ml-2"></i></span>
+          <label nz-checkbox [(ngModel)]="checked" class=" mb-0 "><p>I agree to the ECS terms & policies.</p></label> <div (click)="checkout()" class=" py-2 w-full flex  shadow-sm justify-between text-white  gap-8 bg-slate-600  rounded-lg px-7 text-lg ">
+          <span>Rs.{{totalVechialPrice}}</span><span>Checkout<i class="fa-solid fa-arrow-right ml-2"></i></span>
             
           </div>
           <div class="w-full  flex justify-center "><button routerLink="/pricing" nz-button nzSize="default" nzType="primary"
@@ -97,29 +97,29 @@
 <p class="text-xl text-slate-500">Booking Summary
 </p>
 <div><h4 class="text-slate-700 text-base font-semibold">Pickup Location</h4>
-<p class="text-slate-500">Lahore, Pakistan</p>
+<p class="text-slate-500">{{pickupLocation}}</p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Dropoff Location</h4>
-<p class="text-slate-500">Faisalabad, Pakistan</p>
+<p class="text-slate-500">{{dropoffLocation}}</p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Vehicle Type</h4>
-<p class="text-slate-500">Suzuki Ravi</p>
+<p class="text-slate-500">{{vehicleType}}</p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Goods type</h4>
-<p class="text-slate-500">Automobile</p>
+<p class="text-slate-500">{{goodsTypes}}</p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Helpers</h4>
-<p class="text-slate-500">1 Helper  </p>
+<p class="text-slate-500">{{helpercount}}  </p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Total Distance</h4>
-<p class="text-slate-500">192 KM  </p>
+<p class="text-slate-500">{{totalDistance}} KM  </p>
 </div>
           
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Date</h4>
-<p class="text-slate-500">Mar, 05 Tuesday  </p>
+<p class="text-slate-500">{{date}}  </p>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Time</h4>
-<p class="text-slate-500">06:00 To 08:00 PM </p>
+<p class="text-slate-500">{{time}} </p>
 </div>
          
           

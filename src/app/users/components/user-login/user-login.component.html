@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <div class="font-mono ">
   <!-- Container -->
   <div class="container mx-auto">
@@ -6,7 +6,7 @@
       <!-- Row -->
       <div class="w-full xl:w-3/4 lg:w-11/12 flex">
         <!-- Col -->
-        <div class="w-full h-auto bg-slate-300 relative  lg:block lg:w-5/12 bg-cover rounded-l-lg "><img
+        <div class="md:block hidden w-full h-auto bg-slate-300 relative  lg:block lg:w-5/12 bg-cover rounded-l-lg "><img
             class="w-11/12 absolute bottom-10"
             src="../../../assets/imges/20602920_6325225.svg" alt="">
         </div>
@@ -51,11 +51,15 @@
             <div class="text-center">
               <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="#">Forgot Password?</a>
             </div>
-            <div class="text-center">
-              <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" routerLink="/user-signup">
-                If you don't have an account? <span>Sign Up!</span>
-              </a>
-            </div>
+         <div class="w-full flex justify-between px-5">
+          <a class=" text-sm text-blue-500 align-baseline hover:text-blue-800" routerLink="">
+            Home        </a>
+          <div class="w-11/12 text-center ">
+            <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" routerLink="/user-signup">
+              If you don't have an account? <span>Sign Up!</span>
+            </a>
+          </div>
+         </div>
         </form>
        
         </div>
@@ -64,4 +68,4 @@
   </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

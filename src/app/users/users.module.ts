@@ -36,7 +36,8 @@ import { SuccessComponent } from './components/success/success.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 @NgModule({
 
   imports: [
@@ -57,7 +58,8 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NzCollapseModule,
- 
+    NzFormModule ,
+    NzAvatarModule,
   ],
   declarations: [UserLoginComponent,
     UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],

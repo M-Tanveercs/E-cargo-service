@@ -6,7 +6,7 @@
       <div class="w-full xl:w-3/4 lg:w-11/12 flex">
         <!-- Col -->
         <div
-          class="w-full h-auto bg-slate-300 relative  lg:block lg:w-5/12 bg-cover rounded-l-lg "
+          class="md:block hidden w-full h-auto bg-slate-300 relative  lg:block lg:w-5/12 bg-cover rounded-l-lg "
       
         ><img class="w-11/12 absolute bottom-20" src="../../../assets/imges/20123580_6229467-removebg-preview.png" alt=""></div>
         <!-- Col -->
@@ -14,8 +14,8 @@
           <h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
           <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="px-8 pt-6 pb-8 mb-3  rounded">
             <!-- First Name -->
-            <div class="w-full flex flex-wrap justify-between">
-              <div class="mb-3">
+            <div class="w-full flex xl:flex-row flex-col justify-between gap-5">
+              <div class="mb-3 xl:w-1/2 w-full">
                 <label class="block mb-2 text-sm font-bold text-gray-700" for="fullname">Full Name</label>
                 <input formControlName="fullname" id="fullname" type="text" placeholder=" Name"
                     class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
@@ -24,7 +24,7 @@
                 </p>
             </div>
         
-            <div class="mb-3">
+            <div class="mb-3 xl:w-1/2 w-full">
               <label class="block mb-2 text-sm font-bold text-gray-700" for="email">Email</label>
               <input formControlName="email" id="email" type="email" placeholder="Email"
                   class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
@@ -36,9 +36,9 @@
             </div>
         
             <!-- Email -->
-            <div class="flex  justify-between w-full ">
+            <div class="flex xl:flex-row flex-col  justify-between w-full gap-5 ">
            
-              <div class="mb-3">
+              <div class="mb-3 xl:w-1/2 w-full">
                 <label class="block mb-2 text-sm font-bold text-gray-700" for="businessName">Business Name </label>
                 <input formControlName="businessName" id="businessName" type='text' placeholder="Business Name"
                     class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
@@ -46,7 +46,7 @@
                     business name is required 
                 </p>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 xl:w-1/2 w-full">
               <label class="block mb-2 text-sm font-bold text-gray-700" for="ntn">NTN No</label>
               <input formControlName="ntn" id="ntn" type='number' placeholder="ntn #"
                   class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
@@ -55,9 +55,9 @@
               </p>
           </div>
               </div>
-            <div class="flex  justify-between w-full ">
+            <div class="flex xl:flex-row flex-col  justify-between w-full gap-5 ">
            
-            <div class="mb-3">
+            <div class="mb-3 xl:w-1/2 w-full">
               <label class="block mb-2 text-sm font-bold text-gray-700" for="mobile">Mobile No</label>
               <input formControlName="mobile" id="mobile" type='tel' placeholder="mobile"
                   class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
@@ -65,7 +65,7 @@
                   mobile no is required 
               </p>
           </div>
-          <div class="mb-3">
+          <div class="mb-3 xl:w-1/2 w-full">
             <label class="block mb-2 text-sm font-bold text-gray-700" for="address">Business Address</label>
             <input formControlName="address" id="address" type='text' placeholder="address"
                 class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
