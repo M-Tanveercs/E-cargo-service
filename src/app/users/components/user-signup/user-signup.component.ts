@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
+import { CoreService } from 'src/app/core/core.service';
+
 @Component({
   selector: 'app-user-signup',
   templateUrl: './user-signup.component.html',
@@ -12,7 +14,7 @@ export class UserSignupComponent implements OnInit {
 buttonStatus:boolean=true
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router,private coreservice:CoreService) {
     debugger
     this.signupForm = this.fb.group({
       fullname: ['', Validators.required],
@@ -58,7 +60,7 @@ buttonStatus:boolean=true
         // Push the new user data with the unique ID to the existing array
         const newUser = { id: uniqueId, ...this.signupForm.value };
         existingSignUpData.push(newUser);
-      
+      this.signupRecord(newUser)
            // Store the updated data back to local storage
       localStorage.setItem('SignUp', JSON.stringify(existingSignUpData));
     
@@ -87,7 +89,7 @@ this.buttonStatus=false
     // Form is valid, continue with form submission logic
     // ...
   }
-
+ 
  
   generateUniqueId() {
     // This is a simple example; you may want to use a more robust method
@@ -95,7 +97,13 @@ this.buttonStatus=false
     return '_' + Math.random().toString(36).substr(2, 9);
   }
   
-   
-  
+  signupRecord(userData: any) {
+    // Assuming users data is available and you want to send it to the server
+    this.coreservice.signupUserRecord(userData).subscribe(data=>{
+      console.log(data);
+      
+      
+    })
+  }
 
 }

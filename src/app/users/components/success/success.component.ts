@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCommonService } from '../../user-common.service';
 import { UserAuthService } from '../../userAuth.service';
+import { CoreService } from 'src/app/core/core.service';
 
 @Component({
   selector: 'app-success',
@@ -31,7 +32,7 @@ export class SuccessComponent implements OnInit {
   bookingrecord:any[]=[]
   userbookingdata:any
 
-  constructor(public commonService:UserCommonService,private authservice:UserAuthService) { }
+  constructor(public commonService:UserCommonService,private authservice:UserAuthService, private coreService:CoreService) { }
 
   ngOnInit() {
     const getrecord=localStorage.getItem('UserBookingRecord');
@@ -100,6 +101,7 @@ this.loginuserid=loginuser.id;
         this.users.forEach((userData: any) => {
           userData.userId = this.loginuserid;
           this.userbookingdata=userData
+          this.createUserRecord(userData)
         });
         // Update the users array in local storage
         localStorage.setItem('users', JSON.stringify(this.users));
@@ -109,8 +111,24 @@ this.loginuserid=loginuser.id;
       
         // Store the booking record in local storage
         localStorage.setItem('UserBookingRecord', JSON.stringify(this.bookingrecord));
+       
       }}
+      createUserRecord(userData: any) {
+        // Assuming users data is available and you want to send it to the server
+        this.coreService.createUserBookingReacod(userData).subscribe(data=>{
+          console.log(data);
+          
+          
+        })
+      }
 
+      // addPerson() {
+      //   this.apiService.addPerson(this.person)
+      //     .subscribe(data => {
+      //       console.log(data)
+      //       this.refreshPeople();
+      //     })      
+      // }
  generateRandomNumber(): number {
     // Generate a random number between 100000 and 999999
     return Math.floor(Math.random() * 900000) + 100000;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
+import { CoreService } from '../core/core.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +14,8 @@ export class UserAuthService {
   loginemail: any;
   Athenticate:boolean=false
   returnUrl: string;
-
-constructor(private router:Router,    private route: ActivatedRoute,) {
+  data: any
+constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService) {
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
  }
 isAuthenticated():boolean{
@@ -28,17 +29,39 @@ if(loginUserData  ){
   return false
 }
 }
+getsignupUserRecord(): void {
+  this.coreservice.getsignupUserRecord().subscribe(
+    (response) => {
+      this.data = response;
+      console.log(typeof response);
+      
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+    }
+  );
+}
+
+// getsignupUserRecord() {
+//   // Assuming users data is available and you want to send it to the server
+//   this.coreservice.signupUserRecord().subscribe(data=>{
+//     console.log(data);
+    
+    
+//   })
+// }
 
 login(loginemail:any,password:any) {
   this.loginemail = loginemail;
 this.password = password;
 
-const storedSignUpData = localStorage.getItem('SignUp');
+// const storedSignUpData = localStorage.getItem('SignUp');
+
+this.getsignupUserRecord();
     
-    
-if (storedSignUpData) {
+if (this.data) {
    debugger
-  const signUpData: [] = JSON.parse(storedSignUpData);
+  const signUpData: [] = this.data
 
   const matchingUser = signUpData.find((user: any) => {
     

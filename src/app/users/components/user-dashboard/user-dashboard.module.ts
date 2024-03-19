@@ -24,8 +24,9 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { TrackJobComponent } from './track-job/track-job.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
+import { CancelJobsComponent } from './cancelJobs/cancelJobs.component';
 @NgModule({
-  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent ],
+  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent ],
   imports: [
     CommonModule,
     UserDashboardRoutingModule,
@@ -41,6 +42,6 @@ import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
     NzStepsModule,
     NzInputModule
   ],
-  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent]
+  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent]
 })
 export class UserDashboardModule { }
