@@ -9,8 +9,16 @@
   <div > 
     
          <button nz-button nz-dropdown [nzDropdownMenu]="menu1" nzPlacement="bottomRight" class="border-0 shadow-none pt-0">
-    <nz-avatar nzIcon="user" [nzSize]="45" ></nz-avatar>
+          
+    <nz-avatar nzIcon="user" [nzSize]="45" >
+    </nz-avatar>
+    <nz-badge [nzCount]="bookedcount">
+      <a class="head-example">
+     
+      </a>
+    </nz-badge>
       </button>
+      
 
     <nz-dropdown-menu #menu1="nzDropdownMenu">
       <ul nz-menu class="mt-5 w-64 rounded-md shadow-lg">
@@ -23,5 +31,6 @@
         <li nz-menu-item class="py-2 pl-4 cursor-pointer" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
       </ul>
     </nz-dropdown-menu>
+ 
   </div>
 </div>

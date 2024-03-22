@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching data:', error);
-        alert('Error fetching data');
+       
         this.orderSuccessful = false;
       }
     );

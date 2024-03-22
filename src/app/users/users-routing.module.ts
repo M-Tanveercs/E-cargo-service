@@ -27,6 +27,7 @@ const routes: Routes = [
       { path: 'user-login', component: UserLoginComponent },
       { path: 'user-signup', component: UserSignupComponent },
       { path: 'vehicles-and-goods-info', component: VehiclesAndGoodsInfoComponent },
+      { path: 'vehicles-and-goods-info/edit', component: VehiclesAndGoodsInfoComponent },
       { path: 'pricing', component: PricingComponent },
       {path:'booking',component:BookingComponent},
       {path:'booking/success',component:SuccessComponent, 

@@ -31,6 +31,7 @@ export class SuccessComponent implements OnInit {
   loginuserid: any;
   bookingrecord:any[]=[]
   userbookingdata:any
+  pickupTime: any;
 
   constructor(public commonService:UserCommonService,private authservice:UserAuthService, private coreService:CoreService) { }
 
@@ -50,6 +51,7 @@ export class SuccessComponent implements OnInit {
       this.users = JSON.parse(storedUsers);
       console.log('pricing_usersData:',this.users);
       this.users.forEach((userData: {
+        pickupTime: any;
         totalVechialPrice: any;
         time: any;
         date: any;
@@ -80,7 +82,7 @@ export class SuccessComponent implements OnInit {
       this.receiverPhoneNUmber=userData.phoneNumber
       this.totalVechialPrice=userData.totalVechialPrice 
       this.estimatedWeight=userData.estimatedWeight
-     
+     this.pickupTime=userData.pickupTime
 this.initailaPayment=(this.totalVechialPrice*40)/100
 this.remainPayment=(this.totalVechialPrice-this.initailaPayment)
       });

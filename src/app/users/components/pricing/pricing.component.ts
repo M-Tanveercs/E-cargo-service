@@ -15,7 +15,9 @@ export class PricingComponent implements OnInit {
   totalVechialPrice: any;
   isSubmitDisabled:boolean=true
   bookingForm!: FormGroup;
-
+  nextthreedays:any
+  selectedDay: string | null = null;
+  currentdate: any;
   constructor(private fb: FormBuilder ,private router:Router) { 
     this.bookingForm = this.fb.group({
       pickupTime: ['', Validators.required],
@@ -38,6 +40,7 @@ export class PricingComponent implements OnInit {
       console.log('pricing_usersData:',this.users);
       this.users.forEach((userData: {
         totalVechialPrice: any; userId: any; 
+     
 }) => {
         this.userId=userData.userId;
         this.totalVechialPrice=userData.totalVechialPrice
@@ -46,7 +49,31 @@ export class PricingComponent implements OnInit {
       
     }
   
+    if (this.users.length > 0) {
+      const currentDate = new Date();
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+// Get the day name for the current day
+const currentDayName = dayNames[currentDate.getDay()];
+
+// Get the date for the current day
+const currentDateFormatted = currentDate.toLocaleDateString();
+this.currentdate=currentDateFormatted
+// Get the day names and dates for the next three days
+const nextThreeDays = Array.from({ length: 3 }, (_, index) => {
+
+const nextDay = new Date();
+nextDay.setDate(currentDate.getDate() + index + 1); // Set the date to the next day
+const nextDayName = dayNames[nextDay.getDay()];
+const nextDayDateFormatted = nextDay.toLocaleDateString();
+return { day: nextDayName, date: nextDayDateFormatted };
+});
+
+console.log('Current day:', currentDayName, currentDateFormatted);
+console.log('Next three days:', nextThreeDays);
+this.nextthreedays=nextThreeDays
+      };
+    
   }
 
   selectPeriod(period: string) {
@@ -60,41 +87,40 @@ export class PricingComponent implements OnInit {
     if (this.bookingForm.valid) {
       const currentDate = new Date();
 
-const dateTimeObject = {
-  year: currentDate.getFullYear(),
-  month: currentDate.getMonth() + 1, // Month is zero-based, so add 1
-  day: currentDate.getDate(),
-  hours: currentDate.getHours(),
-  minutes: currentDate.getMinutes(),
-  seconds: currentDate.getSeconds(),
-};
+// const dateTimeObject = {
+//   year: currentDate.getFullYear(),
+//   month: currentDate.getMonth() + 1, // Month is zero-based, so add 1
+//   day: currentDate.getDate(),
+//   hours: currentDate.getHours(),
+//   minutes: currentDate.getMinutes(),
+//   seconds: currentDate.getSeconds(),
+// };
 
-console.log(dateTimeObject);
+// console.log(dateTimeObject);
 
       // Handle form submission logic here
       const formData = this.bookingForm.value;
   
       // Check if the users array is empty or not
       if (this.users.length > 0) {
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        const month = monthNames[currentDate.getMonth()];
-        const day = currentDate.getDate().toString().padStart(2, '0');
-        const hours = currentDate.getHours() > 12 ? (currentDate.getHours() - 12).toString().padStart(2, '0') : (currentDate.getHours()).toString().padStart(2, '0');
-        const minutes = currentDate.getMinutes().toString().padStart(2, '0');
-        const seconds = currentDate.getSeconds().toString().padStart(2, '0');
-        const amPm = currentDate.getHours() >= 12 ? 'PM' : 'AM';
+        // const currentDate = new Date();
+        // const year = currentDate.getFullYear();
+        // const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        // const month = monthNames[currentDate.getMonth()];
+        // const day = currentDate.getDate().toString().padStart(2, '0');
+        // const hours = currentDate.getHours() > 12 ? (currentDate.getHours() - 12).toString().padStart(2, '0') : (currentDate.getHours()).toString().padStart(2, '0');
+        // const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+        // const seconds = currentDate.getSeconds().toString().padStart(2, '0');
+        // const amPm = currentDate.getHours() >= 12 ? 'PM' : 'AM';
       
-        const date = `${month}-${day}-${year}`;
-        const time = `${hours}:${minutes}:${seconds} ${amPm}`;
+        // const date = `${month}-${day}-${year}`;
+        // const time = `${hours}:${minutes}:${seconds} ${amPm}`;
         
         const dateTimeObject = {
-          date: date,
-          time: time
+          date: this.selectedDay ? this.selectedDay : this.currentdate,
         };
-      
-        console.log(dateTimeObject);
+        
+        // console.log(dateTimeObject);
       
         // Update the properties of the existing object
         const existingUserData = this.users[0];
@@ -116,7 +142,11 @@ console.log(dateTimeObject);
     }
   }
   
+  selectDay(date: string) {
+    this.selectedDay = date; 
 
+    // Update the selected day
+  }
 
   
 }

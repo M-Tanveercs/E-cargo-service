@@ -30,6 +30,13 @@ export class CoreService {
   getsignupUserRecord(): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/signup`);
   }
+  getsignupUserRecordById(id:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/signup/${id}`);
+  }
+  updateSignUp(postId: number, updatedData: any) {
+
+    return this.http.put(`http://localhost:3000/signup/${postId}`, updatedData); // Send a PUT request to update the post
+  }
   createUserBookingcancelReacod(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     console.log('create cancel ordertable',this.http.post<any>(`http://localhost:3000/cancelOrder`, data));

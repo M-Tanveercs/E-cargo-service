@@ -102,14 +102,16 @@
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Dropoff Location</h4>
 <p class="text-slate-500">{{dropoffLocation}}</p>
 </div>
-<div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Vehicle Type</h4>
-<p class="text-slate-500">{{vehicleType}}</p>
+<div class="mt-3 flex justify-between"><div><h4 class="text-slate-700 text-base font-semibold">Vehicle Type</h4>
+  <p class="text-slate-500">{{vehicleType}}</p></div><i (click)="updatedata()" class="fa-solid fa-pencil"></i>
 </div>
-<div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Goods type</h4>
+<div class="mt-3 flex justify-between"><div>
+  <h4 class="text-slate-700 text-base font-semibold">Goods type</h4>
 <p class="text-slate-500">{{goodsTypes}}</p>
+</div><i (click)="updatedata()" class="fa-solid fa-pencil"></i>
 </div>
-<div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Helpers</h4>
-<p class="text-slate-500">{{helpercount}}  </p>
+<div class="mt-3 flex justify-between"><div><h4 class="text-slate-700 text-base font-semibold">Helpers</h4>
+  <p class="text-slate-500">{{helpercount}}  </p></div><i (click)="updatedata()" class="fa-solid fa-pencil"></i>
 </div>
 <div class="mt-3"><h4 class="text-slate-700 text-base font-semibold">Total Distance</h4>
 <p class="text-slate-500">{{totalDistance}} KM  </p>

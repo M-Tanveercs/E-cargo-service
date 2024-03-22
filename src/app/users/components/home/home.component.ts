@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/common.service';
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      pickupLocation: [''],
-      dropoffLocation: [''],
+      pickupLocation: ['',Validators.required],
+      dropoffLocation: ['',Validators.required],
     });
   }
 
@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
+    debugger
+   if(this.searchForm.valid){
     const pickupLocation = this.searchForm.value.pickupLocation;
     const dropoffLocation = this.searchForm.value.dropoffLocation;
 
@@ -73,6 +75,7 @@ export class HomeComponent implements OnInit {
     });
     
     this.route.navigate(['vehicles-and-goods-info'])
+   }
   }
 
 

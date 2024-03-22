@@ -18,7 +18,7 @@
       <ul>
         <li nz-menu-item routerLink="/booked-job"><i class="fa fa-truck" aria-hidden="true"></i>
           Booked Jobs
-        <nz-badge [nzCount]="1">
+        <nz-badge [nzCount]="bookedcount">
           <a class="head-example">
          
           </a>
@@ -35,7 +35,7 @@
         </li>
         <li nz-menu-item routerLink="/canceled-jobs"> <i class="fa-regular fa-rectangle-xmark"></i>
           Canceled Jobs
-          <nz-badge [nzCount]="0" nzShowZero>
+          <nz-badge [nzCount]="canceljobcount" nzShowZero>
             <a class="head-example">
            
             </a>
@@ -51,7 +51,7 @@
       <ul>
         <li nz-menu-item routerLink="edit-profile"><span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit Profile</li>
        
-        <li nz-menu-item><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
+        <li (click)="logout()" nz-menu-item><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
         
       </ul>
     </li>

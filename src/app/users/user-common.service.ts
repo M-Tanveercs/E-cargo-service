@@ -18,6 +18,7 @@ distance:any
   dropoffLocation: any;
   orderSuccessful: boolean=false
   rafranceId:number=0
+  url='';
 constructor(private router:Router) {
   const storedUsers = localStorage.getItem('users');
   if (storedUsers) {
@@ -102,24 +103,58 @@ calculatePrice(distance: number): number {
   const helperCharge = helperCharges[this.selectedHelper] || 0;
 
   // Calculate the total price
-  const totalPrice = (basePrice * distance) + helperCharge;
-this.totalVechialPrice = totalPrice
-  // Check if any previous user exists in local storage
-  localStorage.setItem('users','');
-  this.users.splice(0)
-  // Store the user ID and distance in the array
-  this.users.push({userId: this.randomUserId, distance: this.distance,SelectedVehicle:this.selectedVehicle,selectedVehicleImg:this.selectedVehicleImg,estimatedWeight:this.estimatedWeight,selectedGoodsType:this.selectedGoodsType,selectedHelper:this.selectedHelper,totalVechialPrice:this.totalVechialPrice,pickupLocation:this.pickupLocation,dropoffLocation:this.dropoffLocation});
+ 
+if (this.url === 'edit') {
+  // Retrieve the edit detail from local storage
+  const editDetail = JSON.parse(localStorage.getItem('editdetail') || '{}');
+  const totalPrice = (basePrice * editDetail.distance) + helperCharge;
+  this.totalVechialPrice = totalPrice
+  // Retrieve the users from local storage
+  const usersData = JSON.parse(localStorage.getItem('users') || '[]');
 
-  // Save the updated user array to local storage
-  localStorage.setItem('users', JSON.stringify(this.users));
+  // Find the user to be edited in the users array
+  const editedUserIndex = usersData.findIndex((user: any) => user.userId === editDetail.userId);
 
+  if (editedUserIndex !== -1) {
+    // Update only the fields that need to be changed
+    usersData[editedUserIndex] = {
+      ...usersData[editedUserIndex], // Keep the previous data unchanged
+      SelectedVehicle: this.selectedVehicle,
+      selectedVehicleImg: this.selectedVehicleImg,
+      estimatedWeight: this.estimatedWeight,
+      selectedGoodsType: this.selectedGoodsType,
+      selectedHelper: this.selectedHelper,
+      totalVechialPrice:this.totalVechialPrice, // Update the total vehicle price
+    };
+
+    // Save the updated user data back to local storage
+    localStorage.setItem('users', JSON.stringify(usersData));
+    this.router.navigate(['/booking'])
+  }
   return totalPrice;
-}
-calculatePriceAndDisplay(): void {
+ 
+ }else{
   
+  const totalPrice = (basePrice * distance) + helperCharge;
+  this.totalVechialPrice = totalPrice
+   // Check if any previous user exists in local storage
+   localStorage.setItem('users','');
+   this.users.splice(0)
+   // Store the user ID and distance in the array
+   this.users.push({userId: this.randomUserId, distance: this.distance,SelectedVehicle:this.selectedVehicle,selectedVehicleImg:this.selectedVehicleImg,estimatedWeight:this.estimatedWeight,selectedGoodsType:this.selectedGoodsType,selectedHelper:this.selectedHelper,totalVechialPrice:this.totalVechialPrice,pickupLocation:this.pickupLocation,dropoffLocation:this.dropoffLocation});
+ 
+   // Save the updated user array to local storage
+   localStorage.setItem('users', JSON.stringify(this.users));
+   this.router.navigate(['/pricing'])
+   return totalPrice;
+ }
+
+}
+calculatePriceAndDisplay(url:any): void {
+  this.url=url
   const totalPrice = this.calculatePrice(this.distance);
   console.log('Total Price:', totalPrice);
-  this.router.navigate(['/pricing'])
+ 
 }
 
 }

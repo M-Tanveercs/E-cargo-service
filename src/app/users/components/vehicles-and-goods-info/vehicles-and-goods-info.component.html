@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="h-screen bg-[#F3F7F8]">
-  <div class="w-screen pt-20 pb-5 mt-20 flex justify-center items-center   ">
+  <div class="w-full pt-20 pb-5 mt-20 flex justify-center items-center   ">
     <div class="w-9/12 bg-[#FFFFFF] px-24 py-4 rounded-lg shadow-sm">
       <nz-steps [nzCurrent]="1" nzSize="small">
         <nz-step nzTitle="Location"></nz-step>
@@ -13,7 +13,7 @@
   </div>
   <div>
     <form action="" [formGroup]="vehicleGoodsForm" >
-    <div class=" w-screen h-[55vh] justify-center items-center  ">
+    <div class=" w-full h-[55vh] justify-center items-center  ">
 
       <div class="w-9/12 h-full  flex gap-5 m-auto   ">
         <div class="w-8/12 h-full  bg-[#FFFFFF] rounded-lg shadow-sm">
@@ -144,7 +144,7 @@
               <div class="w-full flex flex-col mt-20">
                 <label for="">Estimated Weight <span class="text-slate-500 font-semibold" *ngIf="allowedWeight">(Allowed Weight:{{allowedWeight}} TON)</span></label>
                 <nz-form-control>
-                  <input nz-input placeholder="Estimated Weight" nzSize="large" formControlName="estimatedWeight" />
+                  <input nz-input placeholder="Estimated Weight" nzSize="large" formControlName="estimatedWeight"  />
                   <div *ngIf="vehicleGoodsForm.get('estimatedWeight')?.hasError('required')" class="text-red-500 mt-1">Estimated Weight is required</div>
                   <div *ngIf="vehicleGoodsForm.get('estimatedWeight')?.hasError('maxWeightExceeded')" class="text-red-500 mt-1">Estimated Weight cannot exceed allowed weight</div>
                 </nz-form-control>

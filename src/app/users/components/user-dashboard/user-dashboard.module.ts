@@ -8,7 +8,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { DashSidebarComponent } from './dash-sidebar/dash-sidebar.component';
 import { DashHeaderComponent } from './dash-header/dash-header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -25,6 +25,8 @@ import { TrackJobComponent } from './track-job/track-job.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
 import { CancelJobsComponent } from './cancelJobs/cancelJobs.component';
+import { DashCommonService } from './dash-common.service';
+import { UserAuthService } from '../../userAuth.service';
 @NgModule({
   declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent ],
   imports: [
@@ -40,8 +42,10 @@ import { CancelJobsComponent } from './cancelJobs/cancelJobs.component';
     NzButtonModule,
     NzBadgeModule,
     NzStepsModule,
-    NzInputModule
+    NzInputModule,
+    ReactiveFormsModule
   ],
-  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent]
+  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent],
+  providers: [DashCommonService,UserAuthService]
 })
 export class UserDashboardModule { }

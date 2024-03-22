@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCommonService } from '../../user-common.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles-and-goods-info',
@@ -43,9 +44,10 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
   isSubmitDisabled = true;
   // Define form group
   vehicleGoodsForm: FormGroup = new FormGroup({});
+  url: any;
 
-  constructor(private userCommonService: UserCommonService, private fb: FormBuilder) { 
-debugger
+  constructor(private route: ActivatedRoute,private userCommonService: UserCommonService, private fb: FormBuilder) { 
+
     // Initialize form group and set up form controls
     this.vehicleGoodsForm = this.fb.group({
    
@@ -58,6 +60,7 @@ debugger
       this.validateEstimatedWeight();
     });
   }
+
   validateEstimatedWeight(): void {
     debugger
     const estimatedWeightControl:any = this.vehicleGoodsForm.get('estimatedWeight');
@@ -75,8 +78,27 @@ debugger
     this.isSubmitDisabled = this.vehicleGoodsForm.invalid;
   }
   ngOnInit() {
-   
+    debugger
+    this.route.url.subscribe(url => {
+      if (url[url.length - 1].path === 'edit') {
+        console.log(url[1].path);
+        this.url=url[1].path
+        if (this.url === 'edit') {
+          const editDetail = JSON.parse(localStorage.getItem('editdetail') || '{}');
+          this.selectOption(editDetail.vehicleType,editDetail.selectedVehicleImg
+            )
+            this.toggleDropdown()
+          this.vehicleGoodsForm.patchValue({
+            estimatedWeight: editDetail.EstimatedWeight,
+            selectedGoodsType: editDetail.goodsTypes,
+            selectedHelper: editDetail.helpercount
+          });
+        }}
+    });
+  
+  
   }
+
 
   toggleDropdown() {
     this.open = !this.open;
@@ -122,7 +144,7 @@ debugger
       this.userCommonService.selectedHelper= selectedHelper
       this.userCommonService.getFormData()
   
-  this.userCommonService.calculatePriceAndDisplay()
+  this.userCommonService.calculatePriceAndDisplay(this.url)
       // Proceed with further operations or calculations
     } else {
       // Form is invalid, handle accordingly (e.g., display error message)

@@ -19,6 +19,11 @@ export class BookingComponent implements OnInit {
   totalVechialPrice: any;
   initailaPayment: any;
   remainPayment: any;
+  EstimatedWeight: any;
+  editdata!: {};
+  userId: any;
+  distance: any;
+  vehicleImg: any;
 
   constructor( private router:Router) { }
 
@@ -36,7 +41,8 @@ export class BookingComponent implements OnInit {
         selectedGoodsType: any;
         SelectedVehicle: any;
         pickupLocation:any,
-        dropoffLocation:any
+        dropoffLocation:any,
+        pickupTime:any
 
 }) => {
     this.pickupLocation=userData.pickupLocation;
@@ -46,7 +52,8 @@ export class BookingComponent implements OnInit {
     this.helpercount=userData.selectedHelper;
     this.totalDistance=userData.distance;
       this.date=userData.date;
-      this.time=userData.time;
+      // alert(this.date)
+      this.time=userData.pickupTime;
       this.totalVechialPrice=userData.totalVechialPrice  
 this.initailaPayment=(this.totalVechialPrice*40)/100
 this.remainPayment=(this.totalVechialPrice-this.initailaPayment)
@@ -70,6 +77,41 @@ this.router.navigate(['/booking/success'])
     
   }
 
+  updatedata(){
+    debugger
+    this.users.forEach((userData: {
+      selectedVehicleImg: any;
+      distance: any;
+      userId: any;
+      
+      
+      selectedHelper: any;
+      selectedGoodsType: any;
+      SelectedVehicle: any;
+      estimatedWeight:any
+  })=>{
+    debugger
+    this.distance=userData.distance
+    this.userId=userData.userId
+    this.vehicleType=userData.SelectedVehicle;
+    this.goodsTypes=userData.selectedGoodsType;
+    this.helpercount=userData.selectedHelper;
+    this.EstimatedWeight=userData.estimatedWeight;
+    this.vehicleImg=userData.selectedVehicleImg
 
+  })
+ 
+  this.editdata={
+    distance:this.distance,
+    userId:this.userId,
+    vehicleType:this.vehicleType,
+    goodsTypes:this.goodsTypes,
+    helpercount:this.helpercount,
+    EstimatedWeight:this.EstimatedWeight,
+    selectedVehicleImg:this.vehicleImg
+  }
+  localStorage.setItem('editdetail', JSON.stringify(this.editdata));
+  this.router.navigate(['vehicles-and-goods-info/edit'])
+}
 
 }

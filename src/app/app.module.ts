@@ -27,6 +27,7 @@ import { AgencyRoutingModule } from './Agency/agency-routing.module';
 import { AdminRoutingModule } from './Admin/admin-routing.module';
 import { UserDashboardModule } from './users/components/user-dashboard/user-dashboard.module';
 import { UserDashboardRoutingModule } from './users/components/user-dashboard/user-dashboard-routing.module';
+import { CommonService } from './common.service';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ UserDashboardModule,
 UserDashboardRoutingModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    CommonService
   ],
   bootstrap: [AppComponent]
 })

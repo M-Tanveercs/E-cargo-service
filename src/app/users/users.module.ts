@@ -38,6 +38,9 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { UserAuthService } from './userAuth.service';
+import { UserCommonService } from './user-common.service';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 @NgModule({
 
   imports: [
@@ -60,11 +63,16 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
     NzCollapseModule,
     NzFormModule ,
     NzAvatarModule,
+    NzMessageModule,
+
+
   ],
   declarations: [UserLoginComponent,
     UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
   exports: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,]
-
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
+providers: [
+  UserAuthService,UserCommonService
+]
 })
 export class UsersModule { }

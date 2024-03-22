@@ -32,14 +32,7 @@
                 </p>
             </div>
         
-            <div class="mb-4" *ngIf="form.get('confirmPassword')">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="confirmPassword">Confirm Password</label>
-                <input formControlName="confirmPassword" id="confirmPassword" type="password" placeholder="******************"
-                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                <p class="text-red-500 text-xs italic" *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">
-                    Passwords must match
-                </p>
-            </div>
+          
         
             <div class="mb-6 text-center">
                 <button type="submit"

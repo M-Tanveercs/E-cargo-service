@@ -10,74 +10,81 @@
 
             My Account </h3>
         </div>
-        <div class="w-full  px-10 py-5 ">
-
-          <div class="w-full "> <label for="" class=" text-slate-600">Full Name</label>
-            <nz-input-group nzSearch nzSize="large" class="mt-2">
-              <input type="text" nz-input placeholder="Enter Full Name" />
-            </nz-input-group>
-          </div>
-
-          <div class="w-full flex lg:flex-row flex-col gap-6 mt-5 ">
-            <div class="lg:w-1/2 w-full"><label for="" class=" text-slate-600">Full Email</label>
-              <nz-input-group nzSearch nzSize="large" class="mt-2">
-                <input type="email" nz-input placeholder="Enter Email" />
-              </nz-input-group>
-            </div>
-         
-              <div class="lg:w-1/2 w-full"><label for="" class=" text-slate-600">Phone Number</label>
+        <form [formGroup]="form1" (ngSubmit)="submitForm1()">
+          <div class="w-full px-10 py-5">
+          
+            <div class="w-full flex lg:flex-row flex-col gap-6 mt-5">
+              <div class="lg:w-1/2 w-full">
+                <label for="fullName" class="text-slate-600">Full Name</label>
                 <nz-input-group nzSearch nzSize="large" class="mt-2">
-                  <input type="number" nz-input placeholder="Enter Phone Number" />
+                  <input type="text" nz-input formControlName="fullName" placeholder="Enter Full Name" />
                 </nz-input-group>
               </div>
-
+              <div class="lg:w-1/2 w-full">
+                <label for="address" class="text-slate-600">Address</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="text" nz-input formControlName="address" placeholder="Enter Address" />
+                </nz-input-group>
+              </div>
+            </div>
+            <div class="w-full flex lg:flex-row flex-col gap-6 mt-5">
+              <div class="lg:w-1/2 w-full">
+                <label for="email" class="text-slate-600">Email</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="email" nz-input formControlName="email" placeholder="Enter Email" />
+                </nz-input-group>
+              </div>
+              <div class="lg:w-1/2 w-full">
+                <label for="phoneNumber" class="text-slate-600">Phone Number</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="tel" nz-input formControlName="phoneNumber" placeholder="Enter Phone Number" />
+                </nz-input-group>
+              </div>
             </div>
             <button nz-button nzType="primary" class="mt-7 rounded-lg">UPDATE</button>
-
-        </div>
+          </div>
+        </form>
+        
       </div>
     </div>
   </div>
   <div class="w-full  flex flex-col items-center justify-center ml-10   ">
 
-    <div class="w-8/12 h-fit ">
-      
-      <div class="w-full  shadow-md rounded-md bg-white  h-full ">
-        <div class="w-full h-16 bg-white  pt-5   px-7 " style="border-bottom: 1px solid  rgb(196, 196, 196);">
-          <h3 class="text-slate-700">
-            <i class="fa fa-lock  text-slate-500" aria-hidden="true"></i>
-
-            Password & Security </h3>
-        </div>
-        <div class="w-full  px-10 py-5  ">
-
-        
-
-         
-           <div class="w-full flex lg:flex-row flex-col gap-5 "> <div class="lg:w-1/3 w-full"><label for="" class=" text-slate-600">Current Password
-          </label>
-            <nz-input-group nzSearch nzSize="large" class="mt-2">
-              <input type="password" nz-input placeholder="Enter Password" />
-            </nz-input-group>
+    <div class="w-8/12 h-fit">
+        <form [formGroup]="form2" (ngSubmit)="submitForm2()">
+        <div class="w-full shadow-md rounded-md bg-white h-full">
+          <div class="w-full h-16 bg-white pt-5 px-7" style="border-bottom: 1px solid rgb(196, 196, 196);">
+            <h3 class="text-slate-700">
+              <i class="fa fa-lock text-slate-500" aria-hidden="true"></i>
+              Password & Security
+            </h3>
           </div>
-       
-            <div class="lg:w-1/3 w-full"><label for="" class=" text-slate-600">New Password
-            </label>
-              <nz-input-group nzSearch nzSize="large" class="mt-2">
-                <input type="password" nz-input placeholder="Enter New Number" />
-              </nz-input-group>
+          <div class="w-full px-10 py-5">
+            <div class="w-full flex lg:flex-row flex-col gap-5">
+              <div class="lg:w-1/3 w-full">
+                <label for="currentPassword" class="text-slate-600">Current Password</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="text" nz-input formControlName="currentPassword" placeholder="Enter Password" />
+                </nz-input-group>
+              </div>
+              <div class="lg:w-1/3 w-full">
+                <label for="newPassword" class="text-slate-600">New Password</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="text" nz-input formControlName="newPassword" placeholder="Enter New Number" />
+                </nz-input-group>
+              </div>
+              <div class="lg:w-1/3 w-full">
+                <label for="repeatNewPassword" class="text-slate-600">Repeat New Password</label>
+                <nz-input-group nzSearch nzSize="large" class="mt-2">
+                  <input type="text" nz-input formControlName="repeatNewPassword" placeholder="Enter New Number Again" />
+                </nz-input-group>
+              </div>
             </div>
-            <div class="lg:w-1/3 w-full"><label for="" class=" text-slate-600">Repeat New Password</label>
-              <nz-input-group nzSearch nzSize="large" class="mt-2">
-                <input type="password" nz-input placeholder="Enter New Number Again" />
-              </nz-input-group>
-            </div></div>
-
-         
             <button nz-button nzType="primary" class="mt-7 rounded-lg">UPDATE PASSWORD</button>
-
+          </div>
         </div>
+      </form>
       </div>
-    </div>
+    
   </div>
   </div>
