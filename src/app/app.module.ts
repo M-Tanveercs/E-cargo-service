@@ -28,6 +28,7 @@ import { AdminRoutingModule } from './Admin/admin-routing.module';
 import { UserDashboardModule } from './users/components/user-dashboard/user-dashboard.module';
 import { UserDashboardRoutingModule } from './users/components/user-dashboard/user-dashboard-routing.module';
 import { CommonService } from './common.service';
+import { CoreService } from './core/core.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ UserDashboardRoutingModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    CommonService
+    CommonService,CoreService
   ],
   bootstrap: [AppComponent]
 })

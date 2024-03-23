@@ -27,6 +27,7 @@ import { EditProfileComponent } from './Edit-profile/Edit-profile.component';
 import { CancelJobsComponent } from './cancelJobs/cancelJobs.component';
 import { DashCommonService } from './dash-common.service';
 import { UserAuthService } from '../../userAuth.service';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 @NgModule({
   declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent ],
   imports: [
@@ -43,7 +44,8 @@ import { UserAuthService } from '../../userAuth.service';
     NzBadgeModule,
     NzStepsModule,
     NzInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzSelectModule
   ],
   exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent],
   providers: [DashCommonService,UserAuthService]

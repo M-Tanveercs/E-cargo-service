@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserCommonService } from '../../user-common.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CoreService } from 'src/app/core/core.service';
 
 @Component({
   selector: 'app-vehicles-and-goods-info',
@@ -45,8 +46,12 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
   // Define form group
   vehicleGoodsForm: FormGroup = new FormGroup({});
   url: any;
+ 
+  vehicleTypesdata: any;
+  goodsTypesdata: any;
+  helperCount: any;
 
-  constructor(private route: ActivatedRoute,private userCommonService: UserCommonService, private fb: FormBuilder) { 
+  constructor(private route: ActivatedRoute,private userCommonService: UserCommonService, private fb: FormBuilder,private coreService:CoreService) { 
 
     // Initialize form group and set up form controls
     this.vehicleGoodsForm = this.fb.group({
@@ -78,7 +83,7 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
     this.isSubmitDisabled = this.vehicleGoodsForm.invalid;
   }
   ngOnInit() {
-    debugger
+   
     this.route.url.subscribe(url => {
       if (url[url.length - 1].path === 'edit') {
         console.log(url[1].path);
@@ -95,8 +100,31 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
           });
         }}
     });
-  
-  
+
+  this.coreService.getVehicleTypesRecord().subscribe(
+    (response) => {
+
+        this.vehicleTypesdata = response;
+   console.log(this.vehicleTypesdata);
+    },
+   
+  );
+  this.coreService.getGoodsTypesRecord().subscribe(
+    (response) => {
+
+        this.goodsTypesdata = response;
+   console.log(this.goodsTypesdata);
+    },
+   
+  );
+  this.coreService.getHelperCountRecord().subscribe(
+    (response) => {
+
+        this.helperCount = response;
+   console.log(this.helperCount);
+    },
+   
+  );
   }
 
 
@@ -111,11 +139,12 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
   }
   
   selectOption(option: string, image: string) {
-    debugger;
+
     // Remove &quot; from the option string
     this.selectedOption = option.replace(/&quot;/g, '');
     this.selectedImage = image;
     this.toggleDropdown();
+  console.log(typeof this.selectedOption);
   
     // Get the weight from the mapping
     this.allowedWeight = this.extractNumericPart(this.vehicleWeightMap[this.selectedOption]);

@@ -66,5 +66,17 @@ export class CoreService {
     
     return this.http.delete<any>(`http://localhost:3000/cancelOrder/${id}`);
   }
+  getVehicleTypesRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/vehicle_Types`);
+  }
+  getGoodsTypesRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/goodsTypes`);
+  }
+  getHelperCountRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/helper`);
+  }
+  getPickUpTimeRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/pickupTime`);
+  }
 
 }

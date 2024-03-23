@@ -1,9 +1,9 @@
 <app-header></app-header>
-<div class="h-screen bg-[#F3F7F8]">
+<div class="h-fit bg-[#F3F7F8] pb-20">
   <div class="w-full pt-20 pb-5 mt-20 flex justify-center items-center   ">
-    <div class="w-9/12 bg-[#FFFFFF] px-24 py-4 rounded-lg shadow-sm">
-      <nz-steps [nzCurrent]="1" nzSize="small">
-        <nz-step nzTitle="Location"></nz-step>
+    <div class="w-9/12 bg-[#FFFFFF] lg:px-24  px-5 md:px-10  py-4 rounded-lg shadow-sm">
+      <nz-steps [nzCurrent]="1" nzSize="small" >
+        <nz-step nzTitle="Location" ></nz-step>
         <nz-step nzTitle="Vehicle & Goods Info"></nz-step>
         <nz-step nzTitle="Price & Booking"></nz-step>
         <nz-step nzTitle="Checkout"></nz-step>
@@ -13,14 +13,14 @@
   </div>
   <div>
     <form action="" [formGroup]="vehicleGoodsForm" >
-    <div class=" w-full h-[55vh] justify-center items-center  ">
+    <div class=" w-full h-fit  justify-center items-center  ">
 
-      <div class="w-9/12 h-full  flex gap-5 m-auto   ">
-        <div class="w-8/12 h-full  bg-[#FFFFFF] rounded-lg shadow-sm">
+      <div class="lg:w-9/12 w-full h-fit  flex lg:flex-row md:flex-col flex-col-reverse gap-5 m-auto  justify-center items-center  ">
+        <div class="lg:w-8/12 sm:h-[55vh] h-fit w-9/12  bg-[#FFFFFF] rounded-lg shadow-sm">
           <p class=" px-5 pt-8 pb-3 text-lg text-slate-700">Select Vehicle and Goods Info</p>
       
-        <div class=" flex  w-full    ">
-          <div class="w-6/12  flex flex-col gap-5 px-3 mt-8">
+        <div class=" flex sm:flex-row flex-col  w-full  pb-10   ">
+          <div class="sm:w-6/12 w-full  flex sm:flex-col flex-row gap-5 px-3 mt-5 sm:mt-8">
 
 
             <div class="w-full flex flex-col relative">
@@ -37,111 +37,18 @@
                 </button>
                 <div class="absolute top-full w-full z-20" *ngIf="open"> <!-- Add z-20 class -->
                   <ul class=" pb-2 list-none bg-white shadow-lg px-0 w-full h-[200px] overflow-y-scroll"> <!-- Adjust padding -->
-                   
-                      <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Loader Rickshaw ( Upto 1 TON )', '../../../../assets/imges/van-images/loader-rickshaw.png')">
-                        <img class="w-7 mr-2" src="../../../../assets/imges/van-images/loader-rickshaw.png" alt="" value="1">
-                        <span>Loader Rickshaw &nbsp;&nbsp; ( Upto 1 TON )</span>
-                      </li>
-                  
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Suzuki Ravi ( Upto 1.2 TON )', '../../../../assets/imges/van-images/suzuki-ravi.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/suzuki-ravi.png" alt="" value="2">
-                      <span>Suzuki Ravi &nbsp;&nbsp; ( Upto 1.2 TON )</span>
+                   <ng-container  *ngFor="let item of vehicleTypesdata">
+                     <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption(item.name, item.src)">
+                      <img class="w-7 mr-2" [src]="item.src" alt="" value="1">
+                      <span>{{item.name}}</span>
                     </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Hyundai Shehzore ( Upto 2.5 TON )', '../../../../assets/imges/van-images/hyundai-shehzore.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/hyundai-shehzore.png" alt="" value="2">
-                      <span>Hyundai Shehzore  &nbsp;&nbsp;  ( Upto 2.5 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Master Shehzore ( Upto 3 TON )', '../../../../assets/imges/van-images/hyundai-shehzore.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/hyundai-shehzore.png" alt="" value="2">
-                      <span>Master Shehzore  &nbsp;&nbsp; ( Upto 3 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 12&quot; (Upto 3.5 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 12" &nbsp;&nbsp;  ( Upto 3.5 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 14&quot; (Upto 4 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 14" &nbsp;&nbsp;  ( Upto 4 TON )</span>
-                    </li>
-                    
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 16&quot; (Upto 10 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 16" &nbsp;&nbsp;    ( Upto 10 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 18&quot; (Upto 10 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 18" &nbsp;&nbsp;    ( Upto 10 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 20&quot; (Upto 7 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 20" &nbsp;&nbsp;    ( Upto 7 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Open 22&quot; (Upto 6 TON)', '../../../../assets/imges/van-images/mazda-truck.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-truck.png" alt="" value="2">
-                      <span>Mazda Open 22" &nbsp;&nbsp;    ( Upto 6 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Container 17&quot; (Upto 7 TON)', '../../../../assets/imges/van-images/mazda-container.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-container.png" alt="" value="2">
-                      <span>Mazda Container 17" &nbsp;&nbsp;    ( Upto 7 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Container 20&quot; (Upto 7 TON)', '../../../../assets/imges/van-images/mazda-container.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-container.png" alt="" value="2">
-                      <span>Mazda Container 20" &nbsp;&nbsp;    ( Upto 7 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Container 22&quot; (Upto 5 TON)', '../../../../assets/imges/van-images/mazda-container.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-container.png" alt="" value="2">
-                      <span>Mazda Container 22" &nbsp;&nbsp;    ( Upto 5 TON )</span>
-                    </li>
-                    <li class="py-2  hover:bg-slate-200 px-2" (click)="selectOption('Mazda Container 24&quot; (Upto 5 TON)', '../../../../assets/imges/van-images/mazda-container.png')">
-                      <img class="w-7 mr-2 " src="../../../../assets/imges/van-images/mazda-container.png" alt="" value="2">
-                      <span>Mazda Container 24" &nbsp;&nbsp;    ( Upto 5 TON )</span>
-                    </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('Mazda Container 26&quot; (Upto 5 TON)', 'assets/imges/van-images/mazda-container.png')">
-                      <img class="w-7 mr-2" src="assets/imges/van-images/mazda-container.png" alt="" value="2">
-                      <span>Mazda Container 26" &nbsp;&nbsp; (Upto 5 TON)</span>
-                  </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('40&quot; Container 14 Wheeler (Upto 15 TON)', '../../../../assets/imges/van-images/container-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/container-truck.png" alt="" value="2">
-                      <span>40" Container 14 Wheeler  &nbsp;&nbsp; (Upto 15 TON)</span>
-                  </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('40&quot; Container 18 Wheeler (Upto 25 TON)', '../../../../assets/imges/van-images/container-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/container-truck.png" alt="" value="2">
-                      <span>40" Container 18 Wheeler  &nbsp;&nbsp; (Upto 25 TON)</span>
-                  </li>
-                  
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('40&quot; Container 22 Wheeler (Upto 40 TON)', '../../../../assets/imges/van-images/container-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/container-truck.png" alt="" value="2">
-                      <span>40" Container 22 Wheeler  &nbsp;&nbsp; (Upto 40 TON)</span>
-                  </li>
-                  
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('40&quot;  Flat Bed 18 Wheeler (Upto 25 TON)', '../../../../assets/imges/van-images/container-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/container-truck.png" alt="" value="2">
-                      <span>40" Flat Bed 18 Wheeler &nbsp;&nbsp; (Upto 25 TON)</span>
-                  </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('40&quot;  Flat Bed 22 Wheeler (Upto 40 TON)', '../../../../assets/imges/van-images/container-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/container-truck.png" alt="" value="2">
-                      <span>40" Flat Bed 22 Wheeler &nbsp;&nbsp; (Upto 40 TON)</span>
-                  </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('Bedford Truck (Upto 20 TON)', '../../../../assets/imges/van-images/bedford-truck.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/bedford-truck.png" alt="" value="2">
-                      <span>Bedford Truck  &nbsp;&nbsp; (Upto 20 TON)</span>
-                  </li>
-                    <li class="py-2 hover:bg-slate-200 px-2" (click)="selectOption('10 Wheeler  (Upto 35 TON)', '../../../../assets/imges/van-images/10-wheeler.png')">
-                      <img class="w-7 mr-2" src="../../../../assets/imges/van-images/10-wheeler.png" alt="" value="2">
-                      <span>10 Wheeler   &nbsp;&nbsp; (Upto 35 TON)</span>
-                  </li>
-                  
-
-                  
-                  
-                  
-                    
+                  </ng-container>
                  
                   </ul>
                 </div>
               </div>
             
-              <div class="w-full flex flex-col mt-20">
+              <div class="w-full flex flex-col mt-8 sm:mt-20">
                 <label for="">Estimated Weight <span class="text-slate-500 font-semibold" *ngIf="allowedWeight">(Allowed Weight:{{allowedWeight}} TON)</span></label>
                 <nz-form-control>
                   <input nz-input placeholder="Estimated Weight" nzSize="large" formControlName="estimatedWeight"  />
@@ -155,31 +62,17 @@
 
 
           </div>
-          <div class="w-6/12   flex flex-col gap-5 px-5 mt-8 ">
+          <div class="sm:w-6/12 w-full  flex flex-col sm:gap-5 px-3 mt-5 sm:mt-8">
 
 
-            <div class="w-full flex flex-col">
+            <div class="w-full flex flex-col ">
               <label for="">Goods Type</label>
             
-              <nz-select  formControlName="selectedGoodsType" nzAllowClear nzPlaceHolder="Select a person" nzSize="large" class="w-full rounded-lg max-h-[150px] overflow-y-auto" >
-                <nz-option nzLabel="Agriculture" nzValue="agriculture"></nz-option>
-                <nz-option nzLabel="Animals" nzValue="animals"></nz-option>
-                <nz-option nzLabel="Automobile" nzValue="automobile"></nz-option>
-                <nz-option nzLabel="Coal" nzValue="coal"></nz-option>
-                <nz-option nzLabel="Construction" nzValue="construction"></nz-option>
-                <nz-option nzLabel="Food Industry" nzValue="foodIndustry"></nz-option>
-                <nz-option nzLabel="Fragile Items" nzValue="fragileItems"></nz-option>
-                <nz-option nzLabel="Furniture" nzValue="furniture"></nz-option>
-                <nz-option nzLabel="Health & Medical" nzValue="healthMedical"></nz-option>
-                <nz-option nzLabel="Machinery & Parts" nzValue="machineryParts"></nz-option>
-                <nz-option nzLabel="Oil & Gas" nzValue="OilGas"></nz-option>
-                <nz-option nzLabel="Packed Boxes" nzValue="packedBoxes"></nz-option>
-                <nz-option nzLabel="Paper" nzValue="paper"></nz-option>
-                <nz-option nzLabel="Power Sector" nzValue="powerSector"></nz-option>
-                <nz-option nzLabel="Sports" nzValue="sports"></nz-option>
-                <nz-option nzLabel="Steel" nzValue="steel"></nz-option>
-                <nz-option nzLabel="Textile" nzValue="textile"></nz-option>
-                <nz-option nzLabel="Other" nzValue="other"></nz-option>
+              <nz-select  formControlName="selectedGoodsType" nzAllowClear nzPlaceHolder="Select a person" nzSize="large" class="w-full rounded-lg  overflow-y-auto" >
+                <ng-container *ngFor="let item of goodsTypesdata" >
+                  <nz-option [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+               
+                </ng-container>
               </nz-select>
               <nz-form-control nzErrorTip="Please select goods type">
                 <div nz-form-explain class="text-red-500 mt-1" *ngIf="vehicleGoodsForm.get('selectedGoodsType')?.hasError('required') && vehicleGoodsForm.get('selectedGoodsType')?.touched">
@@ -188,14 +81,14 @@
               </nz-form-control>
             </div>
             
-            <div class=" w-full flex flex-col mt-8">
+            <div class=" w-full flex flex-col sm:mt-8 ">
               <label for="">Select according to your need.</label>
               <nz-select formControlName="selectedHelper" nzAllowClear nzPlaceHolder="Select Helper Option" nzSize="large" class=" w-full  rounded-lg">
                 <nz-option nzLabel="None" nzValue="none"></nz-option>
-                <nz-option nzLabel="1 Helper" nzValue="1"></nz-option>
-                <nz-option nzLabel="2 Helper" nzValue="2"></nz-option>
-                <nz-option nzLabel="3 Helper" nzValue="3"></nz-option>
-                <nz-option nzLabel="4 Helper" nzValue="4"></nz-option>
+                <ng-container *ngFor="let item of helperCount">
+                  <nz-option nzLabel="{{item.name}}Helper" [nzValue]="item.name"></nz-option>
+                
+                </ng-container>
               </nz-select>
             </div>
 
@@ -208,12 +101,12 @@
 
      
         </div>
-        <div class="w-4/12 h-full bg-[#FFFFFF] relative rounded-lg shadow-lg ">
-          <img class=" absolute  w-full bottom-24" src="../../../../assets/imges/10067101_4342804-removebg-preview.png"
+        <div class="lg:w-4/12 flex lg:flex-col lg:justify-end lg:gap-5 justify-evenly  lg:pb-10 items-center  w-9/12 lg:h-[55vh] md:h-[40vh] h-[30vh] bg-[#FFFFFF]  rounded-lg shadow-lg ">
+          <img class="   lg:w-9/12 bottom-24 w-6/12 " src="../../../../assets/imges/10067101_4342804-removebg-preview.png"
             alt="">
-          <div class="flex absolute bottom-16 w-full gap-5 justify-center items-center">
-            <img class="w-5/12" src="../../../../assets/imges/app-store.png" alt="">
-            <img class="w-5/12" src="../../../../assets/imges/google-play.png" alt="">
+          <div   class="flex  w-4/12 bottom-16 lg:w-full gap-5 justify-center items-center ">
+            <img class="lg:w-4/12 w-6/12" src="../../../../assets/imges/app-store.png" alt="">
+            <img class="lg:w-4/12 w-6/12" src="../../../../assets/imges/google-play.png" alt="">
           </div>
         </div>
       </div>

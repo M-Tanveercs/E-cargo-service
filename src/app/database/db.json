@@ -1,301 +1,55 @@
 {
   "usersBookingRecord": [
+    {},
     {
-      "id": "f09d"
-    },
-    {
-      "id": "7d57",
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "construction",
-      "selectedHelper": "3",
-      "totalVechialPrice": null,
-      "pickupTime": "6:00 To 8:00 AM",
-      "fullName": "hdhh",
-      "phoneNumber": 35,
-      "receiverName": "dgdf",
-      "receiverPhoneNumber": 353,
-      "senderAddress": "dgd",
-      "receiverAddress": "dgdfg",
-      "itemDetails": "dgfg",
-      "date": "March-19-2024",
-      "time": "10:42:15 AM",
-      "userId": "_hodtt3mjq"
-    },
-    {
-      "id": "952f",
-      "userId": "_9dt7eqsta",
-      "distance": 104,
+      "id": "0f51",
+      "userId": "_y47xtg49k",
+      "distance": 989,
       "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
       "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
       "estimatedWeight": "2",
-      "selectedGoodsType": "construction",
-      "selectedHelper": "3",
-      "totalVechialPrice": 5080,
-      "pickupLocation": "Pakistan Shopping Solutions, Faisalabad–Jaranwala Road, Naimat Colony #1, Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, 38000, Pakistan",
-      "dropoffLocation": "Lahore Canal Bank Co-Operative Housing Society Phase 1 (Gulbahar Park), Lahore District, Lahore Division, Punjab, Pakistan",
-      "pickupTime": "6:00 To 8:00 AM",
-      "fullName": "sdfdsf",
-      "phoneNumber": 423423,
-      "receiverName": "asdfsdf",
-      "receiverPhoneNumber": 2423,
-      "senderAddress": "sfsd",
-      "receiverAddress": "fsdfsd",
-      "itemDetails": "sdfsdf",
-      "date": "March-19-2024",
-      "time": "10:46:28 AM"
-    },
-    {
-      "id": "48aa",
-      "userId": "_n2wsr4a6r",
-      "distance": 102,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
-      "estimatedWeight": "2",
-      "selectedGoodsType": "automobile",
-      "selectedHelper": "3",
-      "totalVechialPrice": 5040,
-      "pickupLocation": "Pakistan State Oil, Faisalabad–Jaranwala Road, Faisalabad City Tehsil, Faisalabad Saddar Tehsil, Faisalabad District, Faisalabad Division, Punjab, 38000, Pakistan",
-      "dropoffLocation": "Lahore Canal Bank Co-Operative Housing Society Phase 1 (Gulbahar Park), Lahore District, Lahore Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "sdfasd",
-      "phoneNumber": 43423,
-      "receiverName": "sff",
-      "receiverPhoneNumber": 4234,
-      "senderAddress": "fsdf",
-      "receiverAddress": "234234",
-      "itemDetails": "dfgdg",
-      "date": "March-20-2024",
-      "time": "11:40:15 AM"
-    },
-    {
-      "id": "e16d",
-      "userId": "_n2wsr4a6r",
-      "distance": 107,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
-      "estimatedWeight": "2",
-      "selectedGoodsType": "foodIndustry",
-      "selectedHelper": "4",
-      "totalVechialPrice": 6140,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
-      "dropoffLocation": "Lahore Canal Bank Co-Operative Housing Society Phase 1 (Gulbahar Park), Lahore City Tehsil, Lahore District, Lahore Division, Punjab, Pakistan",
+      "selectedGoodsType": "Animals",
+      "selectedHelper": "1 ",
+      "totalVechialPrice": 19780,
+      "pickupLocation": "Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54500, Pakistan",
+      "dropoffLocation": "DHA City, Karachi Division, Sindh, Pakistan",
       "pickupTime": "8:00 To 10:00 AM",
-      "fullName": "hfgh",
-      "phoneNumber": 53454,
-      "receiverName": "gdfg",
-      "receiverPhoneNumber": 43453,
-      "senderAddress": "gdfg",
-      "receiverAddress": "5345",
-      "itemDetails": "dgdfg",
-      "date": "March-20-2024",
-      "time": "12:16:51 PM"
-    },
-    {
-      "id": "3ac8",
-      "userId": "_y47xtg49k",
-      "distance": 127,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
-      "estimatedWeight": "2",
-      "selectedGoodsType": "coal",
-      "selectedHelper": "1",
-      "totalVechialPrice": 3540,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
-      "dropoffLocation": "DHA Phase 8 Main Boulevard, Malakpur, Lahore District, Lahore Division, Punjab, 53200, Pakistan",
-      "pickupTime": "10:00 To 12:00 AM",
-      "fullName": "sdfds",
-      "phoneNumber": 242,
-      "receiverName": "fsdf",
-      "receiverPhoneNumber": 23423,
-      "senderAddress": "fsd",
-      "receiverAddress": "24",
-      "itemDetails": "sdfs",
-      "date": "March-20-2024",
-      "time": "02:43:28 PM"
-    },
-    {
-      "id": "5419",
-      "userId": "_y47xtg49k",
-      "distance": 127,
-      "SelectedVehicle": "Mazda Open 12\" (Upto 3.5 TON)",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/mazda-truck.png",
-      "estimatedWeight": "3",
-      "selectedGoodsType": "animals",
-      "selectedHelper": "3",
-      "totalVechialPrice": 7445,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
-      "dropoffLocation": "DHA Phase 8 Main Boulevard, Malakpur, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53200, Pakistan",
-      "pickupTime": "8:00 To 10:00 AM",
-      "fullName": "vxcv",
-      "phoneNumber": 4234,
-      "receiverName": "fdsfd",
-      "receiverPhoneNumber": 2423,
-      "senderAddress": "sdfsd",
-      "receiverAddress": "sdfsd",
-      "itemDetails": "sdfds",
-      "date": "3/22/2024"
-    },
-    {
-      "id": "a39e",
-      "userId": "_y47xtg49k",
-      "distance": 117,
-      "SelectedVehicle": "40\"  Flat Bed 18 Wheeler (Upto 25 TON)",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/container-truck.png",
-      "estimatedWeight": "20",
-      "selectedGoodsType": "foodIndustry",
-      "selectedHelper": "3",
-      "totalVechialPrice": 14700,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Punjab, Pakistan",
-      "dropoffLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "pickupTime": "6:00 To 8:00 PM",
-      "fullName": "sdfsd",
-      "phoneNumber": 4234234,
-      "receiverName": "fsdf",
-      "receiverPhoneNumber": 4234423,
-      "senderAddress": "sfsd",
-      "receiverAddress": "2423423",
-      "itemDetails": "fsdfsdf",
-      "date": "3/23/2024"
-    },
-    {
-      "id": "da48",
-      "userId": "_y47xtg49k",
-      "distance": 115,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
-      "estimatedWeight": "2",
-      "selectedGoodsType": "construction",
-      "selectedHelper": "2",
-      "totalVechialPrice": 4300,
-      "pickupLocation": "Abdullah Pur, Faisalabad District, Punjab, Pakistan",
-      "dropoffLocation": "Lahore, Lahore District, Lahore Division, Punjab, 54500, Pakistan",
-      "pickupTime": "6:00 To 8:00 PM",
-      "fullName": "ffsdf",
-      "phoneNumber": 424,
-      "receiverName": "sdfsdf",
-      "receiverPhoneNumber": 224,
-      "senderAddress": "afsdf",
-      "receiverAddress": "sdfsd",
-      "itemDetails": "asfasf",
-      "date": "3/23/2024"
-    },
-    {
-      "id": "754f",
-      "userId": "_y47xtg49k",
-      "distance": 1028,
-      "SelectedVehicle": "40\" Container 18 Wheeler (Upto 25 TON)",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/container-truck.png",
-      "estimatedWeight": "15",
-      "selectedGoodsType": "sports",
-      "selectedHelper": "1",
-      "totalVechialPrice": 88380,
-      "pickupLocation": "People'S Colony Jamshed Town, Nishtar Road, Martin Quarters West, Jamshed Town, Karachi East District, Karachi Division, Sindh, 74550, Pakistan",
-      "dropoffLocation": "Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54500, Pakistan",
-      "pickupTime": "4:00 To 6:00 AM",
-      "fullName": "ffasf",
-      "phoneNumber": 24,
-      "receiverName": "sf",
-      "receiverPhoneNumber": 234,
-      "senderAddress": "sfsdf",
-      "receiverAddress": "sfs234",
-      "itemDetails": "sdf",
-      "date": "3/22/2024"
+      "fullName": "Brooke Lott",
+      "phoneNumber": 9,
+      "receiverName": "Kay Shields",
+      "receiverPhoneNumber": 222,
+      "senderAddress": "Isadora Odonnell",
+      "receiverAddress": "Colleen Washington",
+      "itemDetails": "Consequat Accusamus",
+      "date": "3/24/2024",
+      "JobBookedDate": "3/23/2024",
+      "JobBookedTime": "01:23:22 PM"
     }
   ],
   "cancelOrder": [
     {
-      "id": "d155",
-      "userId": "_d1bxcllmr",
-      "distance": 127,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "automobile",
-      "selectedHelper": "3",
-      "totalVechialPrice": 4270,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
-      "dropoffLocation": "DHA Phase 8 Main Boulevard, Malakpur, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53200, Pakistan",
-      "pickupTime": "2:00 To 4:00 AM",
-      "fullName": "fdf",
-      "phoneNumber": 4234,
-      "receiverName": "sfsdfs",
-      "receiverPhoneNumber": 4234,
-      "senderAddress": "fsdf",
-      "receiverAddress": "sfsd",
-      "itemDetails": "fsdfsd",
-      "date": "March-19-2024",
-      "time": "03:05:10 PM"
-    },
-    {
-      "id": "948c",
-      "userId": "_d1bxcllmr",
-      "distance": 127,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "automobile",
-      "selectedHelper": "3",
-      "totalVechialPrice": 4270,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
-      "dropoffLocation": "DHA Phase 8 Main Boulevard, Malakpur, Lahore Cantonment Tehsil, Lahore District, Lahore Division, Punjab, 53200, Pakistan",
-      "pickupTime": "2:00 To 4:00 AM",
-      "fullName": "fdf",
-      "phoneNumber": 4234,
-      "receiverName": "sfsdfs",
-      "receiverPhoneNumber": 4234,
-      "senderAddress": "fsdf",
-      "receiverAddress": "sfsd",
-      "itemDetails": "fsdfsd",
-      "date": "March-19-2024",
-      "time": "03:05:10 PM"
-    },
-    {
-      "id": "a558",
-      "userId": "_n2wsr4a6r",
-      "distance": 122,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
-      "estimatedWeight": "2",
-      "selectedGoodsType": "foodIndustry",
-      "selectedHelper": "3",
-      "totalVechialPrice": 5440,
-      "pickupLocation": "Pakistan State Oil, Faisalabad–Jaranwala Road, Faisalabad City Tehsil, Faisalabad Saddar Tehsil, Faisalabad District, Faisalabad Division, Punjab, 38000, Pakistan",
-      "dropoffLocation": "DHA Phase 8 Main Boulevard, Malakpur, Lahore District, Lahore Division, Punjab, 53200, Pakistan",
-      "pickupTime": "4:00 To 6:00 AM",
-      "fullName": "dasdas",
-      "phoneNumber": 4234,
-      "receiverName": "fsdf",
-      "receiverPhoneNumber": 23423,
-      "senderAddress": "sfsd",
-      "receiverAddress": "f4234",
-      "itemDetails": "sdfsd",
-      "date": "March-20-2024",
-      "time": "11:25:19 AM"
-    },
-    {
-      "id": "3c42",
+      "id": "573b",
       "userId": "_y47xtg49k",
-      "distance": 116,
-      "SelectedVehicle": "Hyundai Shehzore ( Upto 2.5 TON )",
+      "distance": 938,
+      "SelectedVehicle": "Master Shehzore ( Upto 3 TON )",
       "selectedVehicleImg": "../../../../assets/imges/van-images/hyundai-shehzore.png",
       "estimatedWeight": "2",
-      "selectedGoodsType": "coal",
-      "selectedHelper": "2",
-      "totalVechialPrice": 4320,
-      "pickupLocation": "Faisalabad City Tehsil, Faisalabad District, Punjab, Pakistan",
-      "dropoffLocation": "Lahore, Lahore City Tehsil, Lahore District, Lahore Division, Punjab, 54500, Pakistan",
-      "pickupTime": "4:00 To 6:00 PM",
-      "fullName": "sdf",
-      "phoneNumber": 535,
-      "receiverName": "gdgfg",
-      "receiverPhoneNumber": 353,
-      "senderAddress": "dfgdfg",
-      "receiverAddress": "dfgd",
-      "itemDetails": "dfg",
-      "date": "March-20-2024",
-      "time": "02:42:05 PM"
+      "selectedGoodsType": "Construction",
+      "selectedHelper": "2 ",
+      "totalVechialPrice": 28140,
+      "pickupLocation": "Jama Masjid Ibrahim Khalil-ul-Lah, Landhi Road, Korangi, Korangi District, Karachi Division, Sindh, 74900, Pakistan",
+      "dropoffLocation": "Faisalabad City Tehsil, Faisalabad District, Faisalabad Division, Punjab, Pakistan",
+      "pickupTime": "2:00 To 4:00 AM",
+      "fullName": "Justin Frost",
+      "phoneNumber": 633,
+      "receiverName": "Lara Booker",
+      "receiverPhoneNumber": 852,
+      "senderAddress": "Halla Leonard",
+      "receiverAddress": "Adele Foster",
+      "itemDetails": "Nulla ut non blandit",
+      "date": "3/25/2024",
+      "JobBookedDate": "3/23/2024",
+      "JobBookedTime": "01:23:51 PM"
     }
   ],
   "signup": [
@@ -325,6 +79,236 @@
       "mobile": 31234,
       "password": "123456",
       "confirmPassword": "123456"
+    }
+  ],
+  "vehicle_Types": [
+    {
+      "id": "1",
+      "name": "Loader Rickshaw ( Upto 1 TON )",
+      "src": "../../../../assets/imges/van-images/loader-rickshaw.png"
+    },
+    {
+      "id": "2",
+      "name": "Suzuki Ravi ( Upto 1.2 TON )",
+      "src": "../../../../assets/imges/van-images/suzuki-ravi.png"
+    },
+    {
+      "id": "3",
+      "name": "Hyundai Shehzore ( Upto 2.5 TON )",
+      "src": "../../../../assets/imges/van-images/hyundai-shehzore.png"
+    },
+    {
+      "id": "4",
+      "name": "Master Shehzore ( Upto 3 TON )",
+      "src": "../../../../assets/imges/van-images/hyundai-shehzore.png"
+    },
+    {
+      "id": "5",
+      "name": "Mazda Open 12\" (Upto 3.5 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "6",
+      "name": "Mazda Open 14\" (Upto 4 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "7",
+      "name": "Mazda Open 16\" (Upto 10 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "8",
+      "name": "Mazda Open 18\" (Upto 10 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "9",
+      "name": "Mazda Open 20\" (Upto 7 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "10",
+      "name": "Mazda Open 22\" (Upto 6 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-truck.png"
+    },
+    {
+      "id": "11",
+      "name": "Mazda Container 17\" (Upto 7 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-container.png"
+    },
+    {
+      "id": "12",
+      "name": "Mazda Container 20\" (Upto 7 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-container.png"
+    },
+    {
+      "id": "13",
+      "name": "Mazda Container 22\" (Upto 5 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-container.png"
+    },
+    {
+      "id": "14",
+      "name": "Mazda Container 24\" (Upto 5 TON)",
+      "src": "../../../../assets/imges/van-images/mazda-container.png"
+    },
+    {
+      "id": "15",
+      "name": "Mazda Container 26\" (Upto 5 TON)",
+      "src": "assets/imges/van-images/mazda-container.png"
+    },
+    {
+      "id": "16",
+      "name": "40\" Container 14 Wheeler (Upto 15 TON)",
+      "src": "../../../../assets/imges/van-images/container-truck.png"
+    },
+    {
+      "id": "17",
+      "name": "40\" Container 18 Wheeler (Upto 25 TON)",
+      "src": "../../../../assets/imges/van-images/container-truck.png"
+    },
+    {
+      "id": "18",
+      "name": "40\" Container 22 Wheeler (Upto 40 TON)",
+      "src": "../../../../assets/imges/van-images/container-truck.png"
+    },
+    {
+      "id": "19",
+      "name": "40\" Flat Bed 18 Wheeler (Upto 25 TON)",
+      "src": "../../../../assets/imges/van-images/container-truck.png"
+    },
+    {
+      "id": "20",
+      "name": "40\" Flat Bed 22 Wheeler (Upto 40 TON)",
+      "src": "../../../../assets/imges/van-images/container-truck.png"
+    },
+    {
+      "id": "21",
+      "name": "Bedford Truck (Upto 20 TON)",
+      "src": "../../../../assets/imges/van-images/bedford-truck.png"
+    },
+    {
+      "id": "22",
+      "name": "10 Wheeler  (Upto 35 TON)",
+      "src": "../../../../assets/imges/van-images/10-wheeler.png"
+    }
+  ],
+  "goodsTypes": [
+    {
+      "id": "1",
+      "name": "Agriculture"
+    },
+    {
+      "id": "2",
+      "name": "Animals"
+    },
+    {
+      "id": "3",
+      "name": "Automobile"
+    },
+    {
+      "id": "4",
+      "name": "Coal"
+    },
+    {
+      "id": "5",
+      "name": "Construction"
+    },
+    {
+      "id": "6",
+      "name": "Food Industry"
+    },
+    {
+      "id": "7",
+      "name": "Fragile Items"
+    },
+    {
+      "id": "8",
+      "name": "Furniture"
+    },
+    {
+      "id": "9",
+      "name": "Health & Medical"
+    },
+    {
+      "id": "10",
+      "name": "Machinery & Parts"
+    },
+    {
+      "id": "11",
+      "name": "Oil & Gas"
+    },
+    {
+      "id": "12",
+      "name": "Packed Boxes"
+    },
+    {
+      "id": "13",
+      "name": "Paper"
+    },
+    {
+      "id": "14",
+      "name": "Power Sector"
+    },
+    {
+      "id": "15",
+      "name": "Sports"
+    },
+    {
+      "id": "16",
+      "name": "Steel"
+    },
+    {
+      "id": "17",
+      "name": "Textile"
+    },
+    {
+      "id": "18",
+      "name": "Other"
+    }
+  ],
+  "helper": [
+    {
+      "id": "1",
+      "name": "1 "
+    },
+    {
+      "id": "2",
+      "name": "2 "
+    },
+    {
+      "id": "3",
+      "name": "3 "
+    },
+    {
+      "id": "4",
+      "name": "4 "
+    }
+  ],
+  "pickupTime": [
+    {
+      "id": "1",
+      "name": "12:00 To 2:00"
+    },
+    {
+      "id": "2",
+      "name": "2:00 To 4:00"
+    },
+    {
+      "id": "3",
+      "name": "4:00 To 6:00"
+    },
+    {
+      "id": "4",
+      "name": "6:00 To 8:00"
+    },
+    {
+      "id": "5",
+      "name": "8:00 To 10:00"
+    },
+    {
+      "id": "6",
+      "name": "10:00 To 12:00"
     }
   ]
 }

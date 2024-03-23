@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CoreService } from 'src/app/core/core.service';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -18,7 +19,9 @@ export class PricingComponent implements OnInit {
   nextthreedays:any
   selectedDay: string | null = null;
   currentdate: any;
-  constructor(private fb: FormBuilder ,private router:Router) { 
+  pickUptime: any;
+  time: any;
+  constructor(private fb: FormBuilder ,private router:Router ,private coreService:CoreService) { 
     this.bookingForm = this.fb.group({
       pickupTime: ['', Validators.required],
       fullName: ['', Validators.required],
@@ -52,8 +55,11 @@ export class PricingComponent implements OnInit {
     if (this.users.length > 0) {
       const currentDate = new Date();
 const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-// Get the day name for the current day
+const hours = currentDate.getHours() > 12 ? (currentDate.getHours() - 12).toString().padStart(2, '0') : (currentDate.getHours()).toString().padStart(2, '0');
+        const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+        const seconds = currentDate.getSeconds().toString().padStart(2, '0');
+        const amPm = currentDate.getHours() >= 12 ? 'PM' : 'AM';
+ this.time = `${hours}:${minutes}:${seconds} ${amPm}`;
 const currentDayName = dayNames[currentDate.getDay()];
 
 // Get the date for the current day
@@ -74,6 +80,14 @@ console.log('Next three days:', nextThreeDays);
 this.nextthreedays=nextThreeDays
       };
     
+      this.coreService.getPickUpTimeRecord().subscribe(
+        (response) => {
+    
+            this.pickUptime = response;
+       console.log(this.pickUptime);
+        },
+       
+      );
   }
 
   selectPeriod(period: string) {
@@ -118,6 +132,9 @@ this.nextthreedays=nextThreeDays
         
         const dateTimeObject = {
           date: this.selectedDay ? this.selectedDay : this.currentdate,
+          JobBookedDate:this.currentdate,
+          JobBookedTime:this.time,
+         
         };
         
         // console.log(dateTimeObject);
