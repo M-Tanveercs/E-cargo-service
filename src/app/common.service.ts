@@ -1,15 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-
+  private modeSubject = new BehaviorSubject<boolean>(true);
+  darkMode$ = this.modeSubject.asObservable();
   constructor(private http: HttpClient) {}
-
+  toggleDarkMode(): void {
+    const newDarkModeValue = !this.modeSubject.value;
+    this.modeSubject.next(newDarkModeValue);
+    // window.localStorage.setItem('darkMode', JSON.stringify(newDarkModeValue));
+  }
   getSuggestedCities(searchTerm: string): Observable<any[]> {
     return this.http.get<any[]>(`https://nominatim.openstreetmap.org/search?format=json&q=${searchTerm}&countrycodes=PK&limit=10`)
       .pipe(

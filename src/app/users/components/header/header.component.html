@@ -1,20 +1,20 @@
 
 
-	<nav class="flex items-center justify-between flex-wrap p-4 fixed w-full z-50 top-0  bg-[#ECECEC]">
-		<div class="flex items-center flex-shrink-0 text-white mr-6">
+	<nav class="flex items-center justify-between flex-wrap py-4 fixed w-full z-50 top-0  bg-[#ECECEC] ">
+		<div class="flex items-center flex-shrink-0 text-white mr-0 sm:mr-6 ">
 			<a class="text-white no-underline hover:text-white hover:no-underline"  routerLink="" >
-				<span class="text-2xl pl-2 " style="color: #30445D; " ><i class="em em-grinning"></i> <span class="text-3xl font-extrabold" style="color: rgb(68, 86, 106);">E Cargo</span> Services <i class="fa fa-shipping-fast " aria-hidden="true"></i></span>
+				<span class="text-2xl pl-2 " style="color: #30445D; " ><i class="em em-grinning"></i> <span class="sm:text-3xl  text-2xl font-extrabold" style="color: rgb(68, 86, 106);">E Cargo</span> Services <i class="fa fa-shipping-fast " aria-hidden="true"></i></span>
 			</a>
 		</div>
 
-		<div class="block lg:hidden">
+		<div class="block lg:hidden bg-blue-600">
 			<button id="nav-toggle"  (click)="toggleNav()" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
 				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
 			</button>
 		</div>
 
 		<div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"  [ngClass]="{'hidden': isNavHidden}" id="nav-content">
-			<ul class="list-reset lg:flex justify-end flex-1 items-center list-none font-bold md:gap-5    ">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center list-none font-bold md:gap-5     ">
 				<li class="mr-3">
 					<a class="inline-block py-2 px-4 no-underline  hover:text-gray-400 text-gray-600 hover:underline hover:bg-white" routerLink="">Home</a>
 				</li>
@@ -60,6 +60,9 @@
 			
 						 
 							<li nz-menu-item class="py-2 pl-4 cursor-pointer" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
+						<!-- header.component.html -->
+
+
 						  </ul>
 						</nz-dropdown-menu>
 				</li>
@@ -68,7 +71,10 @@
        
        
 	</nav>
-
+	<div class=" z-50 fixed top-1/2  right-2 ">
+		<img class="w-7" src="../../../../assets/imges/output-onlinegiftools (1).gif" alt="">
+		<nz-switch  nzSize="small" [(ngModel)]="switchValue" (ngModelChange)="toggleDarkMode()"></nz-switch>
+	</div>
 	<!--Container-->
 	<div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
 

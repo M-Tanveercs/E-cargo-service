@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './compnents/home/home.component';
+
 import { AgencyLoginComponent } from './compnents/agency-login/agency-login.component';
 import { AgencySignupComponent } from './compnents/agency-signup/agency-signup.component';
+import { HomeComponent } from './compnents/home/home.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},

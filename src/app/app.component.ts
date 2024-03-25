@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from './common.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'E-Cargo-Services';
+  constructor(private commonService:CommonService){}
+  darkMode$ = this.commonService.darkMode$;
 }

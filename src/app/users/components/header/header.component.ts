@@ -3,6 +3,7 @@ import { UserAuthService } from '../../userAuth.service';
 import { Router } from '@angular/router';
 import { UserCommonService } from '../../user-common.service';
 import { CoreService } from 'src/app/core/core.service';
+import { CommonService } from 'src/app/common.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
   username: any;
   data: any;
   orderSuccessful:boolean=false
-  constructor(public userAuthService:UserAuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService) { }
+  switchValue = false
+  darkMode: boolean = false;
+  constructor(public userAuthService:UserAuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService, private mainCommonService:CommonService) { }
   getuserrecord(userId: any): void {
     this.coreservice.getUserBookingReacod(userId).subscribe(
       (response) => {
@@ -48,9 +51,22 @@ export class HeaderComponent implements OnInit {
     console.log(this.username);
     
     }
-  
+   
   }
   
+  toggleDarkMode(): void {
+    this.mainCommonService.toggleDarkMode();
+  }
+
+  setDarkModeClass() {
+    if (this.darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }
+
+
   isNavHidden = false;
 
   toggleNav(): void {

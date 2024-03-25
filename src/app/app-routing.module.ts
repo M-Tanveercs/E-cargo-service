@@ -18,11 +18,11 @@ const routes: Routes = [
     loadChildren: () => import('./users/users-routing.module').then(m => m.UsersRoutingModule)
   },
   {
-    path: '',
+    path: 'agency',
     loadChildren: () => import('./Agency/agency-routing.module').then(m => m.AgencyRoutingModule)
   },
   {
-    path: '',
+    path: 'admin',
     loadChildren: () => import('./Admin/admin-routing.module').then(m => m.AdminRoutingModule)
   },
   {

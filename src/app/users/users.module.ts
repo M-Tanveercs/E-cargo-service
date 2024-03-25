@@ -41,6 +41,9 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { UserAuthService } from './userAuth.service';
 import { UserCommonService } from './user-common.service';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { CommonService } from '../common.service';
+
 @NgModule({
 
   imports: [
@@ -64,7 +67,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzFormModule ,
     NzAvatarModule,
     NzMessageModule,
-
+    NzSwitchModule
 
   ],
   declarations: [UserLoginComponent,
@@ -72,7 +75,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
   exports: [UserLoginComponent,
     UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
 providers: [
-  UserAuthService,UserCommonService
+  UserAuthService,UserCommonService,CommonService
 ]
 })
 export class UsersModule { }
