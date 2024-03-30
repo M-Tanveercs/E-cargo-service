@@ -1,6 +1,6 @@
 
 
-<div class="w-full h-fit pt-20 pb-10">
+<div class="w-full h-fit pt-20 pb-10 bg-slate-200">
   <div class="w-full flex justify-between px-20 mb-10">
   <div>
     <a nz-dropdown nzTrigger="click" nz-button  [nzDropdownMenu]="menu">
@@ -43,7 +43,7 @@
   
   </div>
     <div class="w-64"> <nz-input-group [nzPrefix]="prefixTemplateUser">
-      <input type="text" nz-input placeholder="Search job by Vechial Type"  [(ngModel)]="searchText" name="searchText" (keyup)="searchVehical(searchText)"/>
+      <input type="text" nz-input placeholder="Search job by Vechial Type"  [(ngModel)]="searchText" name="searchText"/>
     </nz-input-group>
     
     <ng-template #prefixTemplateUser><span nz-icon nzType="search"></span></ng-template>
@@ -52,14 +52,14 @@
   </div>
 <div class="w-full sm:pl-16  grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6   sm:place-content-between place-content-center">
    
-<ng-container *ngFor="let item of jobs ">
+<ng-container *ngFor="let item of job ">
 
  
   <!-- component -->
 <!-- This is an example component -->
 <!-- {{item |json}} -->
- <div  class="flex  flex-col w-72 h-[340px] bg-slate-400  shadow-lg hover:shadow-xl rounded-lg" >
-  <span class=" bg-slate-200 absolute px-2 rounded-tl-lg" > <span class="font-semibold">Date:</span> {{item.date}} </span>
+ <div  class="flex  flex-col w-72 h-[340px] bg-white  shadow-xl hover:shadow-2xl rounded-lg" >
+  <span class=" bg-slate-200 absolute px-2 py-1 rounded-tl-lg rounded-br-lg " > <span class="font-semibold">Date:</span> {{item.date}} </span>
   <div   class="w-full flex justify-center  h-2/3   items-center  "style="border-bottom: 1px solid gray; " >
     <div class=" bg-slate-200  rounded-full w-24 h-24 shadow-lg   flex justify-center  items-center">
       <img [src]="item.selectedVehicleImg" alt="" srcset="">
@@ -80,11 +80,11 @@
           weight:</span><span class="font-semibold">{{item.estimatedWeight}}</span>TON</span>
  
         </div>
-        <div class=" flex justify-between px-5 mt-2  rounded-b-lg  py-2 bg-slate-400" >
+        <div class=" flex justify-between px-5 mt-2  rounded-b-lg  py-2 bg-white" >
 
-          <span  (click)="moreInfo(item.id)"><i class="fa fa-info-circle text-xl text-white hover:text-slate-300" aria-hidden="true" title="more info"></i>
+          <span  (click)="moreInfo(item.id)"><i class="fa fa-info-circle text-xl text-slate-400 hover:text-slate-600" aria-hidden="true" title="more info"></i>
           </span>
-          <span> <i class="fa-solid fa-briefcase text-xl text-white hover:text-slate-300" title="add to jobs"></i></span>
+          <span (click)="curentOrderAccept(item.id)">  <i class="fa-solid fa-briefcase text-xl text-slate-400 hover:text-slate-600" title="add to jobs"></i></span>
         </div>
   </div>
  

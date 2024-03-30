@@ -88,4 +88,7 @@ this.AuthService.authStatus$.subscribe(status => {
     alert('user logged out')
     this.router.navigate(['/agency-login']);
   }
+  dashbord(){
+    this.router.navigate(['/agency-dashbord'])
+  }
 }

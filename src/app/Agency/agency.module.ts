@@ -38,18 +38,18 @@ import { HeaderComponent } from './compnents/header/header.component';
 import { FooterComponent } from './compnents/footer/footer.component';
 
 import { JobsComponent } from './compnents/jobs/jobs.component';
-import { MainComponent } from './compnents/main/main.component';
 
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { MoreInfoAboutJobComponent } from './compnents/moreInfoAboutJob/moreInfoAboutJob.component';
 import { AgencyAuthService } from './agencyAuthGard/agency-auth.service';
 import { AgencyCommonService } from './agency-common.service';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { MainsComponent } from './compnents/mains/mains.component';
 
 
 @NgModule({
-  declarations: [AgencyLoginComponent,AgencySignupComponent,HeaderComponent,FooterComponent, JobsComponent,MainComponent,MoreInfoAboutJobComponent],
-  exports:[AgencyLoginComponent,AgencySignupComponent,HeaderComponent,FooterComponent,MainComponent,JobsComponent,MoreInfoAboutJobComponent],
+  declarations: [AgencyLoginComponent,AgencySignupComponent,HeaderComponent,FooterComponent, JobsComponent,MainsComponent,MoreInfoAboutJobComponent],
+  exports:[AgencyLoginComponent,AgencySignupComponent,HeaderComponent,FooterComponent,MainsComponent,JobsComponent,MoreInfoAboutJobComponent],
   imports: [
     CommonModule,
     FormsModule,

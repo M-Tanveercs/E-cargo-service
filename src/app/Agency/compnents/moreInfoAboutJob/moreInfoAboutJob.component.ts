@@ -13,11 +13,16 @@ export class MoreInfoAboutJobComponent implements OnInit {
 
   ngOnInit() {
     this.commonService.CurentJob$.subscribe(job => {
-      console.log("curentJob",job);
       // this.jobs = Object.entries(job).map(([key, value]) => ({ key, value }))
       // this.jobs = job;
+      console.log(job);
+      this.jobArray=[]
       this.jobArray.push(job); 
+      console.log("curentJob",this.jobArray);
     })  
   }
 
+  orderAccept(id:any){
+    this.commonService.orderAccept(id)
+  }
 }

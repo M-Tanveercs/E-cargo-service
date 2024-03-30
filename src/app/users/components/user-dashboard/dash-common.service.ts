@@ -46,6 +46,7 @@ getuserrecord(userId: any): void {
         this.orderSuccessful = true;
         this.bookedJob=response && Object.keys(response).length
         this.bookedJobCount.next(this.bookedJob)
+        localStorage.removeItem('jobcount');
         localStorage.setItem('jobcount', this.bookedJob);
         // localStorage.setItem('bookedJob', JSON.stringify(this.bookedJob))
       } else {
@@ -108,6 +109,7 @@ getcurentcancelorder(id: any): void {
         this.allCanceljobs = response;
    this.canceljobcount=response && Object.keys(response).length ;
    this.cancelJobCounts.next(this.canceljobcount)
+   localStorage.removeItem('canceljobcount');
    localStorage.setItem('canceljobcount', this.canceljobcount);
  
  console.log("all cancel recod",this.allCanceljobs);

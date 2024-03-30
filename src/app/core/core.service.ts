@@ -93,4 +93,14 @@ export class CoreService {
   getsignupAgencyRecord(): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/AgencySignUp`);
   }
+  OrderAcceptAgency(data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.post<any>(`http://localhost:3000/OrderAccepByAgency`, data);
+  }
+  
+  getOrderAcceptAgency(): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`http://localhost:3000/OrderAccepByAgency`);
+  }
+  
 }
