@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/common.service';
 import { UserCommonService } from '../../user-common.service';
 
-
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -17,12 +17,14 @@ export class HomeComponent implements OnInit {
   searchForm!: FormGroup;
   pickupSuggestedCities$: Observable<any[]> | undefined;
   dropoffSuggestedCities$: Observable<any[]> | undefined;
+  isAgency: any;
   
   constructor(
     private fb: FormBuilder,
     private cityService: CommonService,
     private userCommonService:UserCommonService,
-   private route: Router
+   private router: ActivatedRoute,
+   private route:Router
   ) {}
 
   ngOnInit() {
@@ -30,8 +32,16 @@ export class HomeComponent implements OnInit {
       pickupLocation: ['',Validators.required],
       dropoffLocation: ['',Validators.required],
     });
+    this.isAgency = this.isAgencyRoute();
+  
   }
+isAgencyRoute(): boolean {
+    // Get the current URL
+    const segments = this.router.snapshot.url.map(segment => segment.path);
 
+    // Check if the URL contains "agency" segment
+    return segments.includes('agency');
+  }
   search(type: 'pickup' | 'dropoff'): void {
     const searchTerm = type === 'pickup' ? this.searchForm.value.pickupLocation : this.searchForm.value.dropoffLocation;
     const suggestedCities$ = type === 'pickup' ? 'pickupSuggestedCities$' : 'dropoffSuggestedCities$';

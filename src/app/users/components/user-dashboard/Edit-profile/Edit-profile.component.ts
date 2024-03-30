@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DashCommonService } from '../dash-common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoreService } from 'src/app/core/core.service';
-import { UserAuthService } from 'src/app/users/userAuth.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/users/userAuth.service';
 
 @Component({
   selector: 'app-Edit-profile',
@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
   form2 !: FormGroup;
   signup:any
   passwords: any
-  constructor(public dashcommonservice:DashCommonService,private fb: FormBuilder,private coreService:CoreService,private userAuthService:UserAuthService, private router:Router) {
+  constructor(public dashcommonservice:DashCommonService,private fb: FormBuilder,private coreService:CoreService,private userAuthService:AuthService, private router:Router) {
     this.form1 = this.fb.group({
       fullName: ['', Validators.required],
       address: ['', Validators.required],

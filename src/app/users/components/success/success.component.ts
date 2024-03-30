@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCommonService } from '../../user-common.service';
-import { UserAuthService } from '../../userAuth.service';
+
 import { CoreService } from 'src/app/core/core.service';
+import { AuthService } from 'src/app/users/userAuth.service';
 
 @Component({
   selector: 'app-success',
@@ -33,7 +34,7 @@ export class SuccessComponent implements OnInit {
   userbookingdata:any
   pickupTime: any;
 
-  constructor(public commonService:UserCommonService,private authservice:UserAuthService, private coreService:CoreService) { }
+  constructor(public commonService:UserCommonService,private authservice:AuthService, private coreService:CoreService) { }
 
   ngOnInit() {
     const getrecord=localStorage.getItem('UserBookingRecord');

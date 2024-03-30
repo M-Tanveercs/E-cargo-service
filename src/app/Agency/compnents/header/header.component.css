@@ -1,0 +1,22 @@
+
+
+.nav-li{
+    display: inline-block;
+    color: lightgray;
+    text-decoration: none;
+}
+
+.nav-li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: lightgray;
+    transition: width .3s;
+}
+
+.nav-li:hover::after {
+    width: 100%;
+
+    //transition: width .3s;
+}

@@ -23,9 +23,18 @@ export class DashCommonService implements OnInit {
   signUpUserData$ = this.SignupUser.asObservable();
   signupuserdetail: any;
  
-constructor( private coreservice:CoreService) { }
+constructor( private coreservice:CoreService) {
+  const jobcount = localStorage.getItem('jobcount');
+  if (jobcount) {
+    this.bookedJobCount.next(JSON.parse(jobcount));
+  }
+  const canceljobcount = localStorage.getItem('canceljobcount');
+  if (canceljobcount) {
+    this.cancelJobCounts.next(JSON.parse(canceljobcount));
+  }
+ }
 ngOnInit(): void {
- 
+
 }
 getuserrecord(userId: any): void {
   this.coreservice.getUserBookingReacod(userId).subscribe(
@@ -37,6 +46,7 @@ getuserrecord(userId: any): void {
         this.orderSuccessful = true;
         this.bookedJob=response && Object.keys(response).length
         this.bookedJobCount.next(this.bookedJob)
+        localStorage.setItem('jobcount', this.bookedJob);
         // localStorage.setItem('bookedJob', JSON.stringify(this.bookedJob))
       } else {
       
@@ -98,6 +108,7 @@ getcurentcancelorder(id: any): void {
         this.allCanceljobs = response;
    this.canceljobcount=response && Object.keys(response).length ;
    this.cancelJobCounts.next(this.canceljobcount)
+   localStorage.setItem('canceljobcount', this.canceljobcount);
  
  console.log("all cancel recod",this.allCanceljobs);
  

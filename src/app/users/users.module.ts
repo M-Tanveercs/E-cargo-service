@@ -38,11 +38,13 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { UserAuthService } from './userAuth.service';
+
 import { UserCommonService } from './user-common.service';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { CommonService } from '../common.service';
+import { AuthService } from './userAuth.service';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
 
@@ -71,11 +73,11 @@ import { CommonService } from '../common.service';
 
   ],
   declarations: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent, MainComponent],
   exports: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,],
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,MainComponent],
 providers: [
-  UserAuthService,UserCommonService,CommonService
+  AuthService, UserCommonService,CommonService
 ]
 })
 export class UsersModule { }

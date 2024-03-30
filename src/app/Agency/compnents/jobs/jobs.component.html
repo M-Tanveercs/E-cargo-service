@@ -1,0 +1,97 @@
+
+
+<div class="w-full h-fit pt-20 pb-10">
+  <div class="w-full flex justify-between px-20 mb-10">
+  <div>
+    <a nz-dropdown nzTrigger="click" nz-button  [nzDropdownMenu]="menu">
+      <span class="font-semibold text-slate-500">  Sort By</span>
+        
+        <span nz-icon nzType="down"></span>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-submenu nzTitle="Vehicle Type">
+            <ul>
+              <li nz-menu-item (click)="sortByVehicleType('Ascending')">a to z</li>
+              <li nz-menu-item (click)="sortByVehicleType('Descending')">z to a</li>
+            </ul>
+          </li>
+          <li nz-menu-divider></li>
+          <li nz-submenu nzTitle="Date">
+            <ul>
+              <li nz-menu-item (click)="sortByDate('Ascending')">Ascending</li>
+              <li nz-menu-item (click)="sortByDate('Descending')">Descending</li>
+            </ul>
+          </li>
+          <li nz-menu-divider></li>
+          <li nz-submenu nzTitle="Price">
+            <ul>
+              <li nz-menu-item (click)="sortByPrice('Ascending')">low to high</li>
+              <li nz-menu-item (click)="sortByPrice('Descending')">high to low</li>
+            </ul>
+          </li>
+          <li nz-menu-divider></li>
+          <li nz-submenu nzTitle="Weight">
+            <ul>
+              <li nz-menu-item (click)="sortByWeight('Ascending')">low to high</li>
+              <li nz-menu-item (click)="sortByWeight('Descending')">high to low</li>
+            </ul>
+          </li>
+        </ul>
+        
+      </nz-dropdown-menu>
+  
+  </div>
+    <div class="w-64"> <nz-input-group [nzPrefix]="prefixTemplateUser">
+      <input type="text" nz-input placeholder="Search job by Vechial Type"  [(ngModel)]="searchText" name="searchText" (keyup)="searchVehical(searchText)"/>
+    </nz-input-group>
+    
+    <ng-template #prefixTemplateUser><span nz-icon nzType="search"></span></ng-template>
+   </div>
+
+  </div>
+<div class="w-full sm:pl-16  grid  xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6   sm:place-content-between place-content-center">
+   
+<ng-container *ngFor="let item of jobs ">
+
+ 
+  <!-- component -->
+<!-- This is an example component -->
+<!-- {{item |json}} -->
+ <div  class="flex  flex-col w-72 h-[340px] bg-slate-400  shadow-lg hover:shadow-xl rounded-lg" >
+  <span class=" bg-slate-200 absolute px-2 rounded-tl-lg" > <span class="font-semibold">Date:</span> {{item.date}} </span>
+  <div   class="w-full flex justify-center  h-2/3   items-center  "style="border-bottom: 1px solid gray; " >
+    <div class=" bg-slate-200  rounded-full w-24 h-24 shadow-lg   flex justify-center  items-center">
+      <img [src]="item.selectedVehicleImg" alt="" srcset="">
+    </div>
+  </div>
+  <div class="w-full h-3/4 bg-slate-200 rounded-b-lg py-2  overflow-hidden " >
+    <div class="mb-2 px-2"><span class="font-semibold text-slate-700  " >{{item.SelectedVehicle}}</span></div>
+    
+   <div class="px-2"> <span class="text-slate-700  font-normal line-clamp-1 "><i class="fa fa-map-marker text-slate-500" aria-hidden="true"></i>
+    <span class="font-semibold ml-1">Pickup: </span>     {{item.pickupLocation}}</span></div>
+  
+  <div class="px-2">  <span  class="text-slate-700  line-clamp-1 "><i class="fa fa-map-marker text-slate-500" aria-hidden="true"></i><span class="font-semibold "> Dropoff:</span>
+    {{item.dropoffLocation}}</span></div>
+      <div class=" flex w-full mt-[26px] justify-between px-2 ">
+        <span><span class="font-semibold"><i class="fa fa-money text-slate-500" aria-hidden="true "></i>
+          Price:</span>Rs.{{item.totalVechialPrice}}</span>
+        <span><span class="font-semibold"><i class="fa-solid fa-weight-scale text-slate-500"></i>
+          weight:</span><span class="font-semibold">{{item.estimatedWeight}}</span>TON</span>
+ 
+        </div>
+        <div class=" flex justify-between px-5 mt-2  rounded-b-lg  py-2 bg-slate-400" >
+
+          <span  (click)="moreInfo(item.id)"><i class="fa fa-info-circle text-xl text-white hover:text-slate-300" aria-hidden="true" title="more info"></i>
+          </span>
+          <span> <i class="fa-solid fa-briefcase text-xl text-white hover:text-slate-300" title="add to jobs"></i></span>
+        </div>
+  </div>
+ 
+ </div>
+
+</ng-container>
+</div>
+</div>
+
+

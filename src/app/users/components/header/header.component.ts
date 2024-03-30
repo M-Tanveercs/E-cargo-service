@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAuthService } from '../../userAuth.service';
+
 import { Router } from '@angular/router';
 import { UserCommonService } from '../../user-common.service';
 import { CoreService } from 'src/app/core/core.service';
 import { CommonService } from 'src/app/common.service';
+import { AuthService } from 'src/app/users/userAuth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,9 @@ export class HeaderComponent implements OnInit {
   orderSuccessful:boolean=false
   switchValue = false
   darkMode: boolean = false;
-  constructor(public userAuthService:UserAuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService, private mainCommonService:CommonService) { }
+  authstatus: any;
+  
+  constructor(public userAuthService:AuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService, private mainCommonService:CommonService) { }
   getuserrecord(userId: any): void {
     this.coreservice.getUserBookingReacod(userId).subscribe(
       (response) => {
@@ -38,7 +41,11 @@ export class HeaderComponent implements OnInit {
   }
   
   ngOnInit() {
-
+    this.userAuthService.authStatus$.subscribe(status => {
+      this.authstatus = status;
+     
+    
+    })
     const loginUser=localStorage.getItem('LoginUser')
     if(loginUser) {
     this.userLoginData=JSON.parse(loginUser)
@@ -74,7 +81,11 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     localStorage.setItem('LoginUser','')
-    this.userAuthService.Athenticate=false;
+  
+    this.userAuthService.updateAuthStatus(false);
+    // Set authentication status to false
+    // Remove authentication status from localStorage
+    localStorage.removeItem('isAuthenticated');
     alert('user logged out')
     this.router.navigate(['/']);
   }

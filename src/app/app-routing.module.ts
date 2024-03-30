@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./users/users-routing.module').then(m => m.UsersRoutingModule)
   },
   {
-    path: 'agency',
+    path: '',
     loadChildren: () => import('./Agency/agency-routing.module').then(m => m.AgencyRoutingModule)
   },
   {

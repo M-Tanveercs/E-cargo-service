@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserAuthService } from '../../userAuth.service';
+import { AuthService } from 'src/app/users/userAuth.service';
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -15,7 +16,7 @@ export class UserLoginComponent implements OnInit {
   form: FormGroup;
 
 
-  constructor(private fb: FormBuilder , private router: Router,private authservice:UserAuthService) {
+  constructor(private fb: FormBuilder , private router: Router,private authservice:AuthService) {
       this.form = this.fb.group({
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],

@@ -21,6 +21,14 @@ export class CoreService {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.get<any>(`http://localhost:3000/usersBookingRecord/?userId=${userId}`);
   }
+  getUserBookingReacodByID(Id:any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`http://localhost:3000/usersBookingRecord/${Id}`);
+  }
+  getAllUserBookingReacod(): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`http://localhost:3000/usersBookingRecord`);
+  }
 
   signupUserRecord(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
@@ -78,5 +86,11 @@ export class CoreService {
   getPickUpTimeRecord(): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/pickupTime`);
   }
-
+  signupAgencyRecord(data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.post<any>(`http://localhost:3000/AgencySignUp`, data);
+  }
+  getsignupAgencyRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/AgencySignUp`);
+  }
 }

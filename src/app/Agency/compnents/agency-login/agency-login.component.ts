@@ -2,6 +2,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AgencyAuthService } from '../../agencyAuthGard/agency-auth.service';
 @Component({
   selector: 'app-agency-login',
   templateUrl: './agency-login.component.html',
@@ -15,7 +16,7 @@ export class AgencyLoginComponent implements OnInit {
   form: FormGroup;
 
 
-  constructor(private fb: FormBuilder , private router: Router) {
+  constructor(private fb: FormBuilder , private router: Router,private authservice: AgencyAuthService) {
       this.form = this.fb.group({
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
@@ -25,14 +26,17 @@ export class AgencyLoginComponent implements OnInit {
 ngOnInit(): void {
     
 }
+
   onSubmit() {
-      this.formSubmit.emit(this.form.value);
-      console.log(this.form.value);
+     debugger
+      let LoginEmail=this.form.get('email')?.value
+let LoginPassword=this.form.get('password')?.value
+  console.log(LoginEmail,LoginPassword);
+  this.authservice.login(LoginEmail,LoginPassword)
       
       
   }
-  signUp(){
-    this.router.navigateByUrl('/agency-signup');
-  }
+
+
 
 }

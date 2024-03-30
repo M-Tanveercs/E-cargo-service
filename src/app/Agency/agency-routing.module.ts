@@ -3,12 +3,43 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AgencyLoginComponent } from './compnents/agency-login/agency-login.component';
 import { AgencySignupComponent } from './compnents/agency-signup/agency-signup.component';
-import { HomeComponent } from './compnents/home/home.component';
+
+
+import { JobsComponent } from './compnents/jobs/jobs.component';
+import { agencyAuthGuardGuard } from './agencyAuthGard/agency-auth-guard.guard';
+import { MainComponent } from './compnents/main/main.component';
+import { HomeComponent } from '../users/components/home/home.component';
+import { AboutUsComponent } from '../users/components/aboutUs/aboutUs.component';
+import { ContactUsComponent } from '../users/components/contactUs/contactUs.component';
+import { PricingTableComponent } from '../users/components/Pricing-table/Pricing-table.component';
+import { MoreInfoAboutJobComponent } from './compnents/moreInfoAboutJob/moreInfoAboutJob.component';
+
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'',component:MainComponent,
+
+children:[
+ { path: '', 
+  redirectTo: 'agency', // Redirect to the home component
+  pathMatch: 'full' 
+},
+{ 
+  path: 'agency', 
+  component: HomeComponent,
+    canActivate: [agencyAuthGuardGuard], 
+},
   {path:'agency-login',component:AgencyLoginComponent},
   {path:'agency-signup',component:AgencySignupComponent},
+  { path: 'jobs', component: JobsComponent },
+    
+  { path: 'agency-aboutUs', component: AboutUsComponent },
+  { path: 'agency-contactUS', component: ContactUsComponent },
+  { path: 'agency-pricing-table', component: PricingTableComponent },
+  { path: 'more-info', component: MoreInfoAboutJobComponent },
+]
+},
+ 
+
 ];
 
 @NgModule({

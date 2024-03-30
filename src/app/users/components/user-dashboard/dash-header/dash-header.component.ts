@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserAuthService } from 'src/app/users/userAuth.service';
+
 import { DashCommonService } from '../dash-common.service';
+import { AuthService } from 'src/app/users/userAuth.service';
 
 @Component({
   selector: 'app-dash-header',
@@ -12,11 +13,17 @@ export class DashHeaderComponent implements OnInit {
   username: any;
   userLoginData: any;
   bookedcount: any;
+  authstatus: any;
 
-  constructor(private userAuthService:UserAuthService, private router:Router ,public commonservice:DashCommonService) { }
+  constructor(private userAuthService:AuthService, private router:Router ,public commonservice:DashCommonService) { }
 
   ngOnInit() {
     debugger
+    this.userAuthService.authStatus$.subscribe(status => {
+      this.authstatus = status;
+
+    
+    })
     const loginUser=localStorage.getItem('LoginUser')
     if(loginUser) {
     this.userLoginData=JSON.parse(loginUser)
@@ -41,7 +48,10 @@ export class DashHeaderComponent implements OnInit {
 }
   logout(){
     localStorage.setItem('LoginUser','')
-    this.userAuthService.Athenticate=false;
+    this.userAuthService.updateAuthStatus(false);
+    // Set authentication status to false
+    // Remove authentication status from localStorage
+    localStorage.removeItem('isAuthenticated');
     alert('user logged out')
     this.router.navigate(['/']);
   }

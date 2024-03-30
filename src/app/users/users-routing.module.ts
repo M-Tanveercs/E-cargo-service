@@ -11,16 +11,18 @@ import { ContactUsComponent } from './components/contactUs/contactUs.component';
 import { PricingTableComponent } from './components/Pricing-table/Pricing-table.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { SuccessComponent } from './components/success/success.component';
-import { AuthGuard } from './UserAuthGuard/user-auth.guard';
+import { AuthGuard } from './UserAuthGuard/userAuth.guard';
+import { MainComponent } from './components/main/main.component';
+
 
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  
+  { path: '', component:MainComponent,
+    
+    children:[
+    {  path: '',
+    component: HomeComponent,},
       { path: 'aboutUs', component: AboutUsComponent },
       { path: 'contactUS', component: ContactUsComponent },
       { path: 'pricing-table', component: PricingTableComponent },
@@ -32,6 +34,10 @@ const routes: Routes = [
       {path:'booking',component:BookingComponent},
       {path:'booking/success',component:SuccessComponent, 
       canActivate: [AuthGuard]},
+    ]
+  },
+  
+
      
 
 ];
