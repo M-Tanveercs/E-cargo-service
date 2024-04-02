@@ -18,8 +18,8 @@ import { AuthGuard } from 'src/app/users/UserAuthGuard/userAuth.guard';
 const routes: Routes = [
   {path:'', component: MainDashboardComponent ,  canActivate: [AuthGuard], 
   children:[
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    {path:'dashboard',component:DashboardComponent},
+    { path: '', redirectTo: 'user-dashboard', pathMatch: 'full' },
+    {path:'user-dashboard',component:DashboardComponent},
     {path:'manage-reviews',component:ManageReviewsComponent},
     {path:'booked-job',component:BookedJobComponent},
     {path:'completed-job',component:CompletedJobComponent},

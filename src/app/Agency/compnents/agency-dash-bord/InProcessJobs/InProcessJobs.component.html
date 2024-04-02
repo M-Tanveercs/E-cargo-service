@@ -1,3 +1,53 @@
-<p>
-  InProcessJobs works!
-</p>
+<div class="w-full h-fit bg-[#FAFAFA] pt-32 pb-40 overflow-x-hidden">
+  <h1 class=" text-3xl  mb-16 md:ml-40 lg:ml-72 ml-28  font-semibold">All Jobs in Procrssing</h1>
+  <div *ngIf="commonservice.filterData"><div  class="w-full  flex ml-10 justify-center mt-10  " *ngFor="let item of commonservice.filterData">
+      <div class="w-8/12  shadow-md rounded-md bg-white  h-fit  pb-10 ">
+  <div class="w-full h-fit bg-white  pt-5 px-5 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> <img class="w-6  mb-1 text-slate-400" src="../../../../../assets/imges/package.svg"> In Processing Jobs</h3></div>
+  <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
+      <div class="md:w-6/12 w-full h-full flex flex-col pl-10 pt-5 gap-1"> <span class="font-bold">{{item.SelectedVehicle}}</span>
+      <span><i class="fa fa-map-marker text-orange-400 mr-2" aria-hidden="true"></i>
+          {{item.pickupLocation}}
+      </span>
+      <span><i class="fa fa-map-marker mr-2" aria-hidden="true"></i>  {{item.dropoffLocation}}
+      </span>
+      <span><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>
+         Delivery Date: {{item.date}}
+      </span>
+      <span><i class="fa fa-money mr-1" aria-hidden="true"></i>
+  
+      Cash On Delivery
+      </span>
+      <span> <i class="fa-solid fa-id-card mr-1"></i>
+
+          Refrance Id:ECS{{item.id}}
+          </span>
+          <span> <i class="fa-solid fa-id-card mr-1"></i>
+
+            Cargo Status:{{item.status}}
+        </span>
+
+      </div>
+     <div class="md:w-6/12 w-full flex md:justify-end items-center md:ml-0 ml-20 mt-5 md:mt-0"> <div class="flex flex-col md:w-28 w-20 h-14 md:h-20 bg-[#f1ede4b0]   rounded-sm shadow-md justify-center items-center">
+      <span class="text-slate-600">Rs. {{item.totalVechialPrice}}</span>
+  <span class="text-slate-400">Job Price</span>
+  </div></div>
+  </div>
+ 
+      </div>
+  </div></div>
+  <div *ngIf="!commonservice.filterData" class="w-full  flex flex-col items-center justify-center ml-10  mt-10 ">
+    
+      <div class="w-8/12 h-52">
+     
+       <div class="w-full  shadow-md rounded-md bg-white  h-full ">
+         <div class="w-full h-1/4 bg-white  pt-3 px-5 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3>
+           All Booked Jobs<i class="fa fa-truck ml-1" aria-hidden="true"></i></h3></div>
+         <div class="w-full h-3/4 bg-[#FCFCFC]  flex justify-center items-center pr-5">
+             
+            <h3 class="text-slate-600 text-2xl font-semibold">No record found</h3>
+         </div>
+         
+             </div>
+      </div>
+     </div>
+</div>

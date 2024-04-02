@@ -13,6 +13,9 @@ export class AgencyDashBordComponent implements OnInit {
   userLoginData: any;
   jobcount: any;
   selectedCartItem: any;
+  jobproc: any;
+  jobontheway: any;
+  jobdelv: any;
 
   constructor(public commonservice:AgencyDashService,private coreservice:CoreService, ) { }
   ngOnInit() {
@@ -32,6 +35,15 @@ export class AgencyDashBordComponent implements OnInit {
   }
   this.commonservice.jobAcceptcountData$.subscribe(data => {
   this.jobcount = data
+  })
+  this.commonservice.jobProcessingcount$.subscribe(data => {
+  this.jobproc = data
+  })
+  this.commonservice.jobonthewaycount$.subscribe(data => {
+  this.jobontheway = data
+  })
+  this.commonservice.jobDeliverCount$.subscribe(data => {
+  this.jobdelv = data
   })
    
   }

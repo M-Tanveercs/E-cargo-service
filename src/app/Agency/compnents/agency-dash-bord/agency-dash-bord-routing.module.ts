@@ -6,10 +6,10 @@ import { AgencyDashBordComponent } from './AgencyDashBord/AgencyDashBord.compone
 import { AgencyMainDashBordComponent } from './agencyMainDashBord/agencyMainDashBord.component';
 import { ManageReviewsComponent } from './manageReviews/manageReviews.component';
 import { AcceptedJobsComponent } from './Accepted-jobs/Accepted-jobs.component';
-import { PendingJobsComponent } from './PendingJobs/PendingJobs.component';
 import { InProcessJobsComponent } from './InProcessJobs/InProcessJobs.component';
 import { CompletedJobsComponent } from './CompletedJobs/CompletedJobs.component';
 import { JobTrackingComponent } from './JobTracking/JobTracking.component';
+import { OnTheWayComponent } from './on-the-way/on-the-way.component';
 
 const routes: Routes = [
   {path:'', component: AgencyMainDashBordComponent ,
@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'agency-dashbord',component:AgencyDashBordComponent},
     {path:'reviews',component:ManageReviewsComponent},
     {path:'AcceptedJobs',component:AcceptedJobsComponent},
-    {path:'PendingJobs',component:PendingJobsComponent},
+    {path:'onTheWay',component:OnTheWayComponent},
     {path:'InProcessJobs',component:InProcessJobsComponent},
     {path:'CompletedJobs',component:CompletedJobsComponent},
     {path:'jobTracking/:id',component:JobTrackingComponent}

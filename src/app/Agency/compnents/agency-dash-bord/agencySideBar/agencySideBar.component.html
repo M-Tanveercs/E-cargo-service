@@ -25,17 +25,19 @@
         </nz-badge>
       </li>
         
-        <li nz-menu-item routerLink="/PendingJobs"> <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
-          Pending Jobs
-          <nz-badge [nzCount]="0" nzShowZero>
+      
+        <li nz-menu-item routerLink="/InProcessJobs"> <i class="fa-solid fa-bars-progress"></i>
+          In Process Jobs
+          <nz-badge [nzCount]="jobproc || 0 " nzShowZero>
             <a class="head-example">
            
             </a>
           </nz-badge>
         </li>
-        <li nz-menu-item routerLink="/InProcessJobs"> <i class="fa-solid fa-bars-progress"></i>
-          In Process Jobs
-          <nz-badge [nzCount]="canceljobcount" nzShowZero>
+        <li nz-menu-item routerLink="/onTheWay"> <i class="fa fa-road" aria-hidden="true"></i>
+
+        On the Way
+          <nz-badge [nzCount]=" jobontheway || 0" nzShowZero>
             <a class="head-example">
            
             </a>
@@ -43,7 +45,7 @@
         </li>
         <li nz-menu-item routerLink="/CompletedJobs"> <i class="fa fa-check-square-o"></i>
           Completed Jobs
-          <nz-badge [nzCount]="canceljobcount" nzShowZero>
+          <nz-badge [nzCount]="jobdelv || 0" nzShowZero>
             <a class="head-example">
            
             </a>

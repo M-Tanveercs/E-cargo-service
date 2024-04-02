@@ -12,25 +12,71 @@ export class JobTrackingComponent implements OnInit {
 
   jobId: any;
   form!: FormGroup;
+  userLoginData: any;
+  cargoId: any;
+  trackingid: any;
 
   constructor(private route: ActivatedRoute,private fb: FormBuilder,private commonservice:AgencyDashService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      // Retrieve the ID from the route parameters
-      this.jobId = params.get('id');
-      console.log('Job ID:', this.jobId);
-    });
+    debugger
+  
     this.form = this.fb.group({
-      trackingId: [{ value: this.jobId, disabled: true }],
+      trackingId: [],
       cargoStatus: ['Pending', Validators.required],
       cargoLocation: ['', Validators.required],
       driverName: ['', Validators.required],
       vehicleNumber: ['', Validators.required],
-      driverContact: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
+      driverContact: ['', [Validators.required]],
       currentDate: ['', Validators.required],
       deliveryProof: ['']
     });
+
+    this.route.paramMap.subscribe(params => {
+      // Retrieve the ID from the route parameters
+      this.jobId = params.get('id');
+      console.log('Job ID:', this.jobId);
+      this.commonservice.getmanageCargo(this.jobId)
+      this.commonservice.managecargodata.forEach((element: {
+        trackingId: any;
+        id: any; 
+    }) => {
+    
+this.cargoId=element.id; 
+this.trackingid=element.trackingId
+alert(this.cargoId); 
+
+
+      });
+    });
+    if (this.trackingid===this.jobId) {
+      const cargoData = this.commonservice.managecargodata[0]; // Get the first item from managecargodata
+      this.form.patchValue({
+        trackingId: cargoData.trackingId,
+        cargoStatus: cargoData.cargoStatus,
+        cargoLocation: cargoData.cargoLocation,
+        driverName: cargoData.driverName,
+        vehicleNumber: cargoData.vehicleNumber,
+        driverContact: cargoData.driverContact,
+        currentDate: cargoData.currentDate,
+        deliveryProof: cargoData.deliveryProof
+      });}
+    // Find the specific job object
+    const loginUser=localStorage.getItem('LoginAgency')
+    if(loginUser) {
+    this.userLoginData=JSON.parse(loginUser)
+    this.userLoginData.forEach((element: {
+      id: any; fullname: any; 
+  }) => {
+  
+      this.commonservice.getuserrecord(element.id)
+
+    });
+    
+    }
+    
+  
+     
   }
   onsubmit(): void {
     debugger
@@ -39,7 +85,39 @@ export class JobTrackingComponent implements OnInit {
         trackingId:this.jobId
       })
       const formData = this.form.value;
-      this.commonservice.managecargoTracking(formData)
+      if(this.commonservice.managecargodata.length > 0){
+        
+      
+        this.commonservice.updateManageCartgo(this.cargoId,formData)
+        alert('updateManageCartgo')
+      }else{
+        
+        this.commonservice.managecargoTracking(formData)
+        alert("manageCartgoTracking")
+        console.log("managecargotracking");
+       
+        
+
+      }
+  
+     
+      const specificJob = this.commonservice.data.find((job: { id: any; }) => job.id === this.jobId);
+
+if (specificJob) {
+  // Update the status of the job
+  // Assuming form is your FormGroup instance
+const cargoStatusValue = this.form.get('cargoStatus')?.value;
+
+  specificJob.status = cargoStatusValue
+
+  
+  this.commonservice.updateJobStatus(this.jobId,specificJob)
+   
+  this.commonservice.managecargodata=[]
+} else {
+  console.log('No job found with ID:', this.jobId);
+}
+
       // Handle form submission, for example, send data to the server
       console.log(formData);
       alert("form submission")
@@ -47,6 +125,7 @@ export class JobTrackingComponent implements OnInit {
       // Mark all form controls as touched to display validation messages
       
     }
+
   }
 
 }

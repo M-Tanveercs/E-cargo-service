@@ -109,4 +109,18 @@ export class CoreService {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.post<any>(`http://localhost:3000/Tracking`, data);
   }
+
+
+  updateMangeCargo(trackingId: string, updatedData: any): Observable<any> {
+    // Assuming your API endpoint for updating tracking information is '/Tracking'
+    // Use PUT method to update an existing entry
+    return this.http.put<any>(`http://localhost:3000/Tracking/${trackingId}`, updatedData);
+  }
+  updateAcceptedOrder(postId: number, updatedData: any) {
+
+    return this.http.put(`http://localhost:3000/OrderAccepByAgency/${postId}`, updatedData); // Send a PUT request to update the post
+  }
+      getManageCargoById(trackingId:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/Tracking/?trackingId=${trackingId}`);
+  }
 }

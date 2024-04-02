@@ -27,18 +27,18 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ManageReviewsComponent } from './manageReviews/manageReviews.component';
 import { AcceptedJobsComponent } from './Accepted-jobs/Accepted-jobs.component';
-import { PendingJobsComponent } from './PendingJobs/PendingJobs.component';
 import { InProcessJobsComponent } from './InProcessJobs/InProcessJobs.component';
 import { CompletedJobsComponent } from './CompletedJobs/CompletedJobs.component';
 import { JobTrackingComponent } from './JobTracking/JobTracking.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AgencyDashService } from './agency-dash.service';
+import { OnTheWayComponent } from './on-the-way/on-the-way.component';
 
 @NgModule({
   declarations: [
-AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,PendingJobsComponent,InProcessJobsComponent,CompletedJobsComponent,JobTrackingComponent
+AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,CompletedJobsComponent,JobTrackingComponent
   ],
-  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,PendingJobsComponent,InProcessJobsComponent,JobTrackingComponent,CompletedJobsComponent],
+  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,JobTrackingComponent,CompletedJobsComponent],
   imports: [
     CommonModule,
     AgencyDashBordRoutingModule,

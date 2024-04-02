@@ -13,17 +13,7 @@ export class AcceptedJobsComponent implements OnInit {
   constructor(public commonservice:AgencyDashService) { }
 
   ngOnInit() {
-    const loginUser=localStorage.getItem('LoginAgency')
-    if(loginUser) {
-    this.userLoginData=JSON.parse(loginUser)
-    this.userLoginData.forEach((element: {
-      id: any; fullname: any; 
-  }) => {
-
-
-      this.commonservice.getuserrecord(element.id)
-    });
-
-    
-    }
-  }}
+    debugger
+    this.commonservice.getcargoRecordwithStatus('Pending')
+ }
+ }

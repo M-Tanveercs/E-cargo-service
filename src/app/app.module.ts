@@ -52,7 +52,9 @@ UsersRoutingModule,
 AgencyRoutingModule,
 AdminRoutingModule,
 UserDashboardModule,
-UserDashboardRoutingModule,AgencyRoutingModule,AgencyDashBordModule
+UserDashboardRoutingModule,
+AgencyRoutingModule,
+AgencyDashBordModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

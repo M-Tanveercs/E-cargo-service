@@ -12,6 +12,9 @@ export class AgencySideBarComponent implements OnInit {
   bookedcount: any;
   canceljobcount: any;
   authstatus: any;
+  jobproc: any;
+  jobontheway: any;
+  jobdelv: any;
 
   constructor(public commonservice:AgencyDashService,private userAuthService:AgencyAuthService ,private router:Router) { }
 
@@ -25,6 +28,15 @@ export class AgencySideBarComponent implements OnInit {
       this.bookedcount = data;
     
     });
+    this.commonservice.jobProcessingcount$.subscribe(data => {
+      this.jobproc = data
+      })
+      this.commonservice.jobonthewaycount$.subscribe(data => {
+      this.jobontheway = data
+      })
+      this.commonservice.jobDeliverCount$.subscribe(data => {
+      this.jobdelv = data
+      })
   //  this.commonservice.canceljobcountData$.subscribe((data)=>{
   //   this.canceljobcount=data
   //  })

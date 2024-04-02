@@ -5,7 +5,7 @@
   <form [formGroup]="form" (submit)="onsubmit()" action="" class="flex w-ful flex-col gap-7">
 <div class="w-full flex  items-center">
   <label class="w-60 font-semibold text-base" for="">Tracking Id:</label>
-  <input nz-input placeholder="Tracking Id"  formControlName="trackingId" nzSize="large" />
+  <input nz-input placeholder="Tracking Id"  [value]="jobId"  nzSize="large" />
 </div>
 <div class="w-full flex  items-center">
   <label class="w-60 font-semibold text-base" for="">Cargo's Status:</label>

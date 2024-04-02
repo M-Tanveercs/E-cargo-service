@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AgencyDashService } from '../agency-dash.service';
 
 @Component({
   selector: 'app-InProcessJobs',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./InProcessJobs.component.css']
 })
 export class InProcessJobsComponent implements OnInit {
-
-  constructor() { }
+ 
+  constructor(public commonservice:AgencyDashService) { }
 
   ngOnInit() {
+    debugger
+    this.commonservice.getcargoRecordwithStatus('Processing')
+    // Assuming this is within a method in your component
+
+  
   }
+
+  
 
 }

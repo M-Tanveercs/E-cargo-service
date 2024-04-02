@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AgencyDashService } from '../agency-dash.service';
 
 @Component({
   selector: 'app-CompletedJobs',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompletedJobsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonservice:AgencyDashService) { }
 
   ngOnInit() {
+    debugger
+    this.commonservice.getcargoRecordwithStatus('Delivered')
   }
 
 }
