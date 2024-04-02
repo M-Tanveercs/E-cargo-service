@@ -1,0 +1,54 @@
+<div class="w-full h-fit bg-[#FAFAFA] pt-32 pb-40 overflow-x-hidden">
+  <h1 class=" text-3xl  mb-16 md:ml-40 lg:ml-72 ml-28  font-semibold">Manage Cargo</h1>
+  <div class="w-full flex justify-center items-center" >
+    <div class="w-7/12 max-h-fit bg-white shadow-xl rounded-xl p-10" > 
+  <form [formGroup]="form" (submit)="onsubmit()" action="" class="flex w-ful flex-col gap-7">
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Tracking Id:</label>
+  <input nz-input placeholder="Tracking Id"  formControlName="trackingId" nzSize="large" />
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Cargo's Status:</label>
+  <nz-select  class="w-full" formControlName="cargoStatus" nzSize="large">
+    <nz-option nzValue="Pending" nzLabel="Pending" selected></nz-option>
+    <nz-option nzValue="Processing" nzLabel="Processing"></nz-option>
+    <nz-option nzValue="On the Way" nzLabel="On the Way"></nz-option>
+    <nz-option nzValue="Delivered" nzLabel="Delivered"> </nz-option>
+  </nz-select>
+
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Cargo's Location</label>
+  <input nz-input placeholder="Cargo's Location"nzSize="large"  formControlName="cargoLocation" />
+ 
+
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Driver's Name:</label>
+  <input nz-input placeholder="Driver Name" formControlName="driverName"  nzSize="large" />
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Vehicle's No:</label>
+  <input nz-input placeholder="Vehicle No" formControlName="vehicleNumber"  nzSize="large"  />
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Driver's Contact #:</label>
+  <input nz-input placeholder="Driver Contact Number" formControlName="driverContact"  nzSize="large" />
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Current Date:</label>
+  <nz-date-picker class="w-full" nzSize="large" formControlName="currentDate"></nz-date-picker>
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Delivery Proof:</label>
+  <input nz-input type="file" placeholder="Delivery Proof" formControlName="deliveryProof" nzSize="large" />
+</div>
+<div class="w-full flex justify-center">
+  <button nz-button nzType="primary" 
+  class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  "
+  >Update Status</button>
+</div>
+</form>
+</div>
+  </div>
+</div>

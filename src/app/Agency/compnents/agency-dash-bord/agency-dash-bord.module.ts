@@ -20,15 +20,25 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ManageReviewsComponent } from './manageReviews/manageReviews.component';
+import { AcceptedJobsComponent } from './Accepted-jobs/Accepted-jobs.component';
+import { PendingJobsComponent } from './PendingJobs/PendingJobs.component';
+import { InProcessJobsComponent } from './InProcessJobs/InProcessJobs.component';
+import { CompletedJobsComponent } from './CompletedJobs/CompletedJobs.component';
+import { JobTrackingComponent } from './JobTracking/JobTracking.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { AgencyDashService } from './agency-dash.service';
 
 @NgModule({
   declarations: [
-AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent
+AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,PendingJobsComponent,InProcessJobsComponent,CompletedJobsComponent,JobTrackingComponent
   ],
-  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent],
+  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,PendingJobsComponent,InProcessJobsComponent,JobTrackingComponent,CompletedJobsComponent],
   imports: [
     CommonModule,
     AgencyDashBordRoutingModule,
@@ -45,8 +55,12 @@ AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,Agency
     NzStepsModule,
     NzInputModule,
     ReactiveFormsModule,
-    NzSelectModule
-    
+    NzSelectModule,
+    NzDrawerModule,
+    NzSpaceModule,
+    NzDatePickerModule
+  ],providers:[
+    AgencyDashService
   ]
 })
 export class AgencyDashBordModule { }

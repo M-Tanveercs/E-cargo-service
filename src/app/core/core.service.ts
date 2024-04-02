@@ -102,5 +102,11 @@ export class CoreService {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.get<any>(`http://localhost:3000/OrderAccepByAgency`);
   }
-  
+  getOrderAcceptRecordById(agencyid:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/OrderAccepByAgency/?agencyid=${agencyid}`);
+  }
+  manageCargo(data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.post<any>(`http://localhost:3000/Tracking`, data);
+  }
 }

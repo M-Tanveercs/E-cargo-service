@@ -151,6 +151,7 @@ orderAccept(id:any){
   //  this.curentCartdata['AgencyId'] = this.agencyid
 debugger
    this.curentCartdata.agencyid = this.agencyid;
+   this.curentCartdata.status='pending';
 const order=this.curentCartdata
 this.coreservice.OrderAcceptAgency(this.curentCartdata).subscribe(data=>{
   console.log(data);
