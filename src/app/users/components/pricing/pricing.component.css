@@ -58,3 +58,8 @@ display:flex!important;
             border-radius: 18px;
         }  
   }
+/* Example CSS to change the color of NgZorro spinner */
+.custom-spinner .ant-spin-dot i {
+    color: red; /* Change the color to your desired color */
+  }
+  

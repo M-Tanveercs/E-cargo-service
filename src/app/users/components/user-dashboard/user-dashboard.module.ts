@@ -30,9 +30,12 @@ import { DashCommonService } from './dash-common.service';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AuthService } from 'src/app/users/userAuth.service';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { SpinerComponent } from './spiner/spiner.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
-  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent ],
+  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent,SpinerComponent ],
   imports: [
     CommonModule,
     UserDashboardRoutingModule,
@@ -49,7 +52,9 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     NzInputModule,
     ReactiveFormsModule,
     NzSelectModule,
-    NzImageModule
+    NzImageModule,
+    NzSpinModule,
+    NzModalModule
   ],
   exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent],
   providers: [DashCommonService,AuthService]

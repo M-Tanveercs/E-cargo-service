@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashCommonService } from '../dash-common.service';
 import { CoreService } from 'src/app/core/core.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 
 @Component({
@@ -14,11 +15,16 @@ export class DashboardComponent implements OnInit {
   status: any;
   userorderid: any;
   curentStatus: any;
+  userid: any;
+  isVisible = false;
+  selectedValue:any;
+  reason: any;
 
-  constructor(public commonservice:DashCommonService,private coreservice:CoreService, ) { }
+  constructor(public commonservice:DashCommonService,private coreservice:CoreService,private modalService: NzModalService) { }
 
   ngOnInit() {
     debugger
+    this.commonservice.spinner()
     const loginUser=localStorage.getItem('LoginUser')
     if(loginUser) {
     this.userLoginData=JSON.parse(loginUser)
@@ -32,12 +38,31 @@ export class DashboardComponent implements OnInit {
     });
    
     }
-
+    this.coreservice.orderCancelReason().subscribe((responce)=>{
+      this.reason=responce
+    })
+  }
  
+  showDeleteConfirm(id:any): void {
+    this.isVisible = true;
+    this.userid=id
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+    this.cancel(this.userid);
+console.log("selected value:",this.selectedValue);
+    
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+ 
+  cancel(id:any): void {
+    debugger
+    console.log('OK button clicked');
   
-
-
-   
- 
-  }}
+  this.commonservice.getuserrecordforCancel(id,this.selectedValue)}
+}
   

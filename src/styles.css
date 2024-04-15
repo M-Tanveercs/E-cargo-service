@@ -36,4 +36,12 @@ body {
                           transparent 75%,
                           transparent)
   }
+  nz-spin {
+    display: inline-block;
+    margin-left: 16px;
+  }
   
+
+.ant-spin-dot-item{
+  background-color:  #004658 !important
+}

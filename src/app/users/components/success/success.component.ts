@@ -37,6 +37,7 @@ export class SuccessComponent implements OnInit {
   constructor(public commonService:UserCommonService,private authservice:AuthService, private coreService:CoreService) { }
 
   ngOnInit() {
+    this.commonService.spinner()
     const getrecord=localStorage.getItem('UserBookingRecord');
     if(getrecord){
     this.bookingrecord=JSON.parse(getrecord);

@@ -45,6 +45,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { CommonService } from '../common.service';
 import { AuthService } from './userAuth.service';
 import { MainComponent } from './components/main/main.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
 
@@ -69,13 +71,13 @@ import { MainComponent } from './components/main/main.component';
     NzFormModule ,
     NzAvatarModule,
     NzMessageModule,
-    NzSwitchModule
-
+    NzSwitchModule,
+    NzSpinModule,
   ],
   declarations: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent, MainComponent],
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent, MainComponent,SpinnerComponent],
   exports: [UserLoginComponent,
-    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,MainComponent],
+    UserSignupComponent, VehiclesAndGoodsInfoComponent, PricingComponent, BookingComponent, HomeComponent, AboutUsComponent, ContactUsComponent, PricingTableComponent,SuccessComponent,HeaderComponent,FooterComponent,MainComponent,SpinnerComponent],
 providers: [
   AuthService, UserCommonService,CommonService
 ]

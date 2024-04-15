@@ -24,6 +24,8 @@ export class DashCommonService implements OnInit {
   signupuserdetail: any;
   managecargodata: any;
   statusData: any;
+  loading: boolean=true
+  cancelReason: any;
  
 constructor( private coreservice:CoreService) {
   const jobcount = localStorage.getItem('jobcount');
@@ -105,7 +107,8 @@ getuserrecord(userId: any): void {
   );
 }
 
-getuserrecordforCancel(id: any): void {
+getuserrecordforCancel(id: any,reason:any): void {
+  this.cancelReason=reason
   debugger
   this.coreservice.getUserBookingReacodtocancel(id).subscribe(
     (response) => {
@@ -141,8 +144,9 @@ deleteUser(Id: any): void {
 }
 jobcanceled(data: any){
 console.log(data);
+const cancelJobRecord= data['Reason']=this.cancelReason
 
-  this.coreservice.createUserBookingcancelReacod(data).subscribe(data=>{
+  this.coreservice.createUserBookingcancelReacod(cancelJobRecord).subscribe(data=>{
     console.log('canceljob',data);
 })}
 getcurentcancelorder(id: any): void {
@@ -210,4 +214,16 @@ getcurentcancelorder(id: any): void {
       }
     );
   }
+
+
+  
+  spinner(){
+    setTimeout(() => {
+      // Data loading complete
+      this.loading = false;
+    }, 2000);
+    this.loading = true;
+  
+  }
+
 }

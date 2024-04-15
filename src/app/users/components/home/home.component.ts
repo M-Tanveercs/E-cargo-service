@@ -6,6 +6,8 @@ import { CommonService } from 'src/app/common.service';
 import { UserCommonService } from '../../user-common.service';
 
 import { ActivatedRoute } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { concatMap } from 'rxjs/operators';
 
 
 @Component({
@@ -18,16 +20,18 @@ export class HomeComponent implements OnInit {
   pickupSuggestedCities$: Observable<any[]> | undefined;
   dropoffSuggestedCities$: Observable<any[]> | undefined;
   isAgency: any;
-  
+  loading:boolean=false
   constructor(
     private fb: FormBuilder,
     private cityService: CommonService,
-    private userCommonService:UserCommonService,
+    public userCommonService:UserCommonService,
    private router: ActivatedRoute,
-   private route:Router
+   private route:Router,
+   private message: NzMessageService
   ) {}
 
   ngOnInit() {
+    this.userCommonService.spinner()
     this.searchForm = this.fb.group({
       pickupLocation: ['',Validators.required],
       dropoffLocation: ['',Validators.required],
@@ -56,6 +60,8 @@ isAgencyRoute(): boolean {
   }
 
   onSubmit(): void {
+    this.loading = true;
+this.createBasicMessage()
     debugger
    if(this.searchForm.valid){
     const pickupLocation = this.searchForm.value.pickupLocation;
@@ -83,9 +89,24 @@ isAgencyRoute(): boolean {
         console.error('Failed to get coordinates for pickup location:', pickupLocation);
       }
     });
-    
-    this.route.navigate(['vehicles-and-goods-info'])
+    setTimeout(() => {
+      // Data loading complete
+
+      this.route.navigate(['vehicles-and-goods-info'])
+    }, 2000);
+
    }
+  }
+  createBasicMessage(): void {
+    this.message
+      .loading('Action in progress', { nzDuration: 1800 })
+      .onClose!.pipe(
+        concatMap(() => this.message.success('Calculating Distance', { nzDuration: 1800 }).onClose!),
+        concatMap(() => this.message.info('Calculating Distance successfully', { nzDuration: 1800 }).onClose!)
+      )
+      .subscribe(() => {
+        console.log('All completed!');
+      });
   }
 
 

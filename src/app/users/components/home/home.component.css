@@ -10,3 +10,7 @@
         display: block;
     }
 }
+nz-spin {
+    display: inline-block;
+    margin-left: 16px;
+  }

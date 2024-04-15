@@ -123,4 +123,8 @@ export class CoreService {
       getManageCargoById(TrackingId:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/Tracking/?trackingId=${TrackingId}`);
   }
+  orderCancelReason(){
+    return this.http.get<any>(`http://localhost:3000/orderCancelReason`);
+  }
+
 }

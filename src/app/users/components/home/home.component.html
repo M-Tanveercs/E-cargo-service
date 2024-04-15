@@ -1,4 +1,4 @@
-
+<app-spinner *ngIf="userCommonService.loading"></app-spinner>
 <div class="flex   justify-between  gap-2 items-center md:h-[80vh] h-[55vh]  sm:px-20 px-14  py-10 w-full "  >
 <div class=" w-full flex flex-col md:w-96  " >
  <div class=" w-full md:w-96   ">
@@ -64,7 +64,8 @@ Anything <br> Anywhere
     </div>
   
     <div>
-      <button   type="submit" class="bg-[#44566A] hover:bg-[#30445D] w-full border-none p-1.5 text-white font-bold rounded">View Price</button>
+      <button   type="submit" class="bg-[#44566A] hover:bg-[#30445D] w-full border-none p-1.5 text-white font-bold rounded">View Price     <nz-spin *ngIf="loading" nzSimple [nzSize]="'small'"></nz-spin>
+      </button>
     </div>
   </form>
 

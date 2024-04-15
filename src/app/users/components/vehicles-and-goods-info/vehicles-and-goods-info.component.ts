@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { CoreService } from 'src/app/core/core.service';
 
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { concatMap } from 'rxjs/operators';
 @Component({
   selector: 'app-vehicles-and-goods-info',
   templateUrl: './vehicles-and-goods-info.component.html',
@@ -50,8 +52,10 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
   vehicleTypesdata: any;
   goodsTypesdata: any;
   helperCount: any;
-
-  constructor(private route: ActivatedRoute,private userCommonService: UserCommonService, private fb: FormBuilder,private coreService:CoreService) { 
+  loading:boolean=false
+  constructor(private route: ActivatedRoute,public userCommonService: UserCommonService, private fb: FormBuilder,private coreService:CoreService,
+    private message: NzMessageService
+  ) { 
 
     // Initialize form group and set up form controls
     this.vehicleGoodsForm = this.fb.group({
@@ -83,7 +87,8 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
     this.isSubmitDisabled = this.vehicleGoodsForm.invalid;
   }
   ngOnInit() {
-   
+    this.userCommonService.spinner()
+
     this.route.url.subscribe(url => {
       if (url[url.length - 1].path === 'edit') {
         console.log(url[1].path);
@@ -156,6 +161,10 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
 
   onSubmit(){
     debugger
+    this.loading = true;
+
+    this.createBasicMessage()
+
     // Check if form is valid
     if (this.vehicleGoodsForm.valid) {
       // Get form values
@@ -173,12 +182,27 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
       this.userCommonService.selectedHelper= selectedHelper
       this.userCommonService.getFormData()
   
-  this.userCommonService.calculatePriceAndDisplay(this.url)
+      setTimeout(() => {
+        // Navigate to another route after a delay (simulating data loading)
+        this.loading = true;
+
+        this.userCommonService.calculatePriceAndDisplay(this.url)
+      }, 2000); 
       // Proceed with further operations or calculations
     } else {
       // Form is invalid, handle accordingly (e.g., display error message)
       console.log('Form is invalid');
     }
   }
-  
+  createBasicMessage(): void {
+    this.message
+      .loading('Action in progress', { nzDuration: 1800 })
+      .onClose!.pipe(
+        concatMap(() => this.message.success('Calculating Price', { nzDuration: 1800 }).onClose!),
+        concatMap(() => this.message.info('Calculating Price successfully', { nzDuration: 1800 }).onClose!)
+      )
+      .subscribe(() => {
+        console.log('All completed!');
+      });
+  }
 }

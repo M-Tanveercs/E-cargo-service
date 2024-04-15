@@ -19,6 +19,7 @@ distance:any
   orderSuccessful: boolean=false
   rafranceId:number=0
   url='';
+  loading:boolean=true
 constructor(private router:Router) {
   const storedUsers = localStorage.getItem('users');
   if (storedUsers) {
@@ -157,5 +158,13 @@ calculatePriceAndDisplay(url:any): void {
  
 }
 
+spinner(){
+  setTimeout(() => {
+    // Data loading complete
+    this.loading = false;
+  }, 2000);
+  this.loading = true;
+
+}
 
 }

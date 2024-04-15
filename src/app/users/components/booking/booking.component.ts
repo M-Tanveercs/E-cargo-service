@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { concatMap } from 'rxjs/operators';
+import { UserCommonService } from '../../user-common.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -24,10 +26,13 @@ export class BookingComponent implements OnInit {
   userId: any;
   distance: any;
   vehicleImg: any;
+  loading:boolean=false
 
-  constructor( private router:Router) { }
+  constructor( private router:Router,    private message: NzMessageService,public userCommonService:UserCommonService) { }
 
   ngOnInit() {
+    this.userCommonService.spinner()
+   
     const storedUsers = localStorage.getItem('users');
     if (storedUsers) {
       this.users = JSON.parse(storedUsers);
@@ -68,11 +73,19 @@ this.remainPayment=(this.totalVechialPrice-this.initailaPayment)
   checked=false;
 
   checkout(){
+    this.loading = true;
+
+    this.createBasicMessage()
     debugger
   if(this.selectedPayment==='Card Payment'){
     alert('Sorry! Payment Method Not Available Yet. You can go with Cash on Delivery')
   }else{
-this.router.navigate(['/booking/success'])
+    setTimeout(() => {
+      // Navigate to another route after a delay (simulating data loading)
+      this.loading = true;
+
+      this.router.navigate(['/booking/success'])
+    }, 2000); 
   }
     
   }
@@ -111,7 +124,22 @@ this.router.navigate(['/booking/success'])
     selectedVehicleImg:this.vehicleImg
   }
   localStorage.setItem('editdetail', JSON.stringify(this.editdata));
-  this.router.navigate(['vehicles-and-goods-info/edit'])
-}
+  setTimeout(() => {
+    // Navigate to another route after a delay (simulating data loading)
+    this.loading = true;
 
+    this.router.navigate(['vehicles-and-goods-info/edit'])
+  }, 2000); 
+}
+createBasicMessage(): void {
+  this.message
+    .loading('Action in progress', { nzDuration: 1800 })
+    .onClose!.pipe(
+      concatMap(() => this.message.success('Store Order Detail', { nzDuration: 1800 }).onClose!),
+      concatMap(() => this.message.info('Store Order Detail successfully', { nzDuration: 1800 }).onClose!)
+    )
+    .subscribe(() => {
+      console.log('All completed!');
+    });
+}
 }

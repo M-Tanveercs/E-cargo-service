@@ -4,6 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CoreService } from 'src/app/core/core.service';
+import { concatMap } from 'rxjs/operators';
+import { UserCommonService } from '../../user-common.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -21,7 +25,10 @@ export class PricingComponent implements OnInit {
   currentdate: any;
   pickUptime: any;
   time: any;
-  constructor(private fb: FormBuilder ,private router:Router ,private coreService:CoreService) { 
+  loading: boolean=false
+  
+
+  constructor(private fb: FormBuilder ,private router:Router ,private coreService:CoreService ,private message: NzMessageService, public userCommonService:UserCommonService) { 
     this.bookingForm = this.fb.group({
       pickupTime: ['', Validators.required],
       fullName: ['', Validators.required],
@@ -37,6 +44,8 @@ export class PricingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userCommonService.spinner()
+
     const storedUsers = localStorage.getItem('users');
     if (storedUsers) {
       this.users = JSON.parse(storedUsers);
@@ -98,6 +107,9 @@ this.nextthreedays=nextThreeDays
   
   submitForm() {
     debugger
+    this.loading = true;
+
+    this.createBasicMessage()
     if (this.bookingForm.valid) {
       const currentDate = new Date();
 
@@ -152,7 +164,12 @@ this.nextthreedays=nextThreeDays
       console.log('userdata after push', this.users);
       localStorage.setItem('users','');
       localStorage.setItem('users', JSON.stringify(this.users));
-       this.router.navigate(['/booking'])
+      setTimeout(() => {
+        // Navigate to another route after a delay (simulating data loading)
+        this.loading = true;
+
+        this.router.navigate(['/booking'])
+      }, 2000); 
 
     } else {
       // Handle invalid form
@@ -164,7 +181,17 @@ this.nextthreedays=nextThreeDays
 
     // Update the selected day
   }
-
+  createBasicMessage(): void {
+    this.message
+      .loading('Action in progress', { nzDuration: 1800 })
+      .onClose!.pipe(
+        concatMap(() => this.message.success('Information Save', { nzDuration: 1800 }).onClose!),
+        concatMap(() => this.message.info('Information Save successfully', { nzDuration: 1800 }).onClose!)
+      )
+      .subscribe(() => {
+        console.log('All completed!');
+      });
+  }
   
 }
 
