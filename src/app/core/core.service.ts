@@ -120,7 +120,7 @@ export class CoreService {
 
     return this.http.put(`http://localhost:3000/OrderAccepByAgency/${postId}`, updatedData); // Send a PUT request to update the post
   }
-      getManageCargoById(trackingId:any): Observable<any> {
-    return this.http.get<any>(`http://localhost:3000/Tracking/?trackingId=${trackingId}`);
+      getManageCargoById(TrackingId:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/Tracking/?trackingId=${TrackingId}`);
   }
 }

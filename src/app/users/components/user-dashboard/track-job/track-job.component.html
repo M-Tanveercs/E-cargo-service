@@ -5,24 +5,60 @@
  <div class="md:w-5/12 w-7/12 h-fit mb-32">
 
   <div class="w-full  shadow-md rounded-md bg-white  h-full ">
-    <div class="w-full h-20 bg-white  pt-5   px-7 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> <i class="fa fa-check-square-o text-slate-400 text-xl mr-1" aria-hidden="true"></i>
+    <div class="w-full h-20 bg-white  pt-5   px-7 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> 
+      <i class="fa fa-search  text-slate-400 text-xl mr-1" aria-hidden="true"></i>
 
       Job Tracking Result</h3></div>
     <div class="w-full  flex md:pl-20 pl-5  pt-10  pb-10 m-auto pr-5">
         
-     <div class="h-full w-full "> <nz-steps [nzCurrent]="3" nzDirection="vertical" class="flex h-full w-full gap-1">
+     <div class="h-full w-full "> <nz-steps [nzCurrent]="curentvalue" nzDirection="vertical" class="flex h-full w-full gap-1">
       <nz-step nzTitle="Job Booked Date" nzDescription="12-March-2024." ></nz-step>
-      <nz-step nzTitle="Pickup date & time" nzDescription="">
+      <nz-step nzTitle="Pickup date & time" nzDescription="{{ datePickup }} {{ timePickup }}"></nz-step>
+
        
-      </nz-step>
-      <nz-step nzTitle="Pickup Completed" nzDescription=""></nz-step>
+      <nz-step nzTitle="Processing" nzDescription=""></nz-step>
+      <nz-step nzTitle="On The Way" nzDescription=""></nz-step>
       <nz-step nzTitle="Drop off Completed" nzDescription=""></nz-step>
-   <nz-step nzTitle="Delivery Proof:" nzDescription="View imge" class=""> </nz-step>
-      <nz-step nzTitle="Receiver Signature:" nzDescription="View imge"></nz-step>
+   <nz-step nzTitle="Delivery Proof:" nzDescription="View imge" class=""(click)="onClick('prof')"> </nz-step>
+      <nz-step nzTitle="Receiver Signature:" nzDescription="View imge" class=""(click)="onClick('sign')"></nz-step>
     </nz-steps></div>
     </div>
     
         </div>
- </div>
-</div>
+      </div>
+    </div>
+  </div>
+  <img [src]="deliveryProf" alt="">
+
+<div *ngIf="show" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <img src={{deliveryProf}} alt="">
+        
+      </div>
+    </div>
+  </div>
 </div>

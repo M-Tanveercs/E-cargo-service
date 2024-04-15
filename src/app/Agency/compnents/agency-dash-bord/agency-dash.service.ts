@@ -116,12 +116,16 @@ updateJobStatus(id: any,data: any){
 getmanageCargo(userId: any): void {
   this.coreservice.getManageCargoById(userId).subscribe(
     (response) => {
+      
       if (response && Object.keys(response).length > 0) {
-        this.managecargodata=[]
+        // this.managecargodata=[]
         this.managecargodata = response;
-   
-
+        console.log(response);
+        alert('data fetched successfully')
+        
+        
       } else {
+        alert('data not fetched successfully')
       
       }
     },

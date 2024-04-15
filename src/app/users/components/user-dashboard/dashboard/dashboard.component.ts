@@ -11,6 +11,9 @@ import { CoreService } from 'src/app/core/core.service';
 export class DashboardComponent implements OnInit {
   username: any;
   userLoginData: any;
+  status: any;
+  userorderid: any;
+  curentStatus: any;
 
   constructor(public commonservice:DashCommonService,private coreservice:CoreService, ) { }
 
@@ -25,12 +28,10 @@ export class DashboardComponent implements OnInit {
       this.username=element.fullname
 
       this.commonservice.getuserrecord(element.id)
+      debugger
     });
-    console.log(this.username);
-    
+   
     }
-     
-  }
 
  
   
@@ -38,5 +39,5 @@ export class DashboardComponent implements OnInit {
 
    
  
-}
+  }}
   

@@ -33,6 +33,7 @@ import { JobTrackingComponent } from './JobTracking/JobTracking.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AgencyDashService } from './agency-dash.service';
 import { OnTheWayComponent } from './on-the-way/on-the-way.component';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,Agency
     NzSelectModule,
     NzDrawerModule,
     NzSpaceModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzTimePickerModule
   ],providers:[
     AgencyDashService
   ]

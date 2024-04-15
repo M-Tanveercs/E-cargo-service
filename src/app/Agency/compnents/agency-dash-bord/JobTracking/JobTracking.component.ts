@@ -9,6 +9,7 @@ import { AgencyDashService } from '../agency-dash.service';
   styleUrls: ['./JobTracking.component.css']
 })
 export class JobTrackingComponent implements OnInit {
+  time = new Date();
 
   jobId: any;
   form!: FormGroup;
@@ -29,7 +30,9 @@ export class JobTrackingComponent implements OnInit {
       vehicleNumber: ['', Validators.required],
       driverContact: ['', [Validators.required]],
       currentDate: ['', Validators.required],
-      deliveryProof: ['']
+      pickuptime: ['', Validators.required],
+      deliveryProof: [''],
+      reciverSignature: ['']
     });
 
     this.route.paramMap.subscribe(params => {
@@ -37,17 +40,18 @@ export class JobTrackingComponent implements OnInit {
       this.jobId = params.get('id');
       console.log('Job ID:', this.jobId);
       this.commonservice.getmanageCargo(this.jobId)
-      this.commonservice.managecargodata.forEach((element: {
-        trackingId: any;
-        id: any; 
-    }) => {
     
+    });
+    this.commonservice.managecargodata.forEach((element: {
+      trackingId: any;
+      id: any; 
+  }) => {
+  
 this.cargoId=element.id; 
 this.trackingid=element.trackingId
 alert(this.cargoId); 
 
 
-      });
     });
     if (this.trackingid===this.jobId) {
       const cargoData = this.commonservice.managecargodata[0]; // Get the first item from managecargodata
@@ -59,7 +63,9 @@ alert(this.cargoId);
         vehicleNumber: cargoData.vehicleNumber,
         driverContact: cargoData.driverContact,
         currentDate: cargoData.currentDate,
-        deliveryProof: cargoData.deliveryProof
+        pickuptime: cargoData.pickuptime,
+        deliveryProof: cargoData.deliveryProof,
+        reciverSignature: cargoData.reciverSignature
       });}
     // Find the specific job object
     const loginUser=localStorage.getItem('LoginAgency')

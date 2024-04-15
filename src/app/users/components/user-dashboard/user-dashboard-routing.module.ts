@@ -24,7 +24,7 @@ const routes: Routes = [
     {path:'booked-job',component:BookedJobComponent},
     {path:'completed-job',component:CompletedJobComponent},
     {path:'payment-history',component:InoviceComponent},
-    {path:'track-job',component:TrackJobComponent},
+    {path:'track-job/:id',component:TrackJobComponent},
     {path:'edit-profile',component:EditProfileComponent},
     {path:'canceled-jobs',component:CancelJobsComponent},
     

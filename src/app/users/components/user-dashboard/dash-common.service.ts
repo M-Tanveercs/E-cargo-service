@@ -22,6 +22,8 @@ export class DashCommonService implements OnInit {
   private SignupUser = new BehaviorSubject({});
   signUpUserData$ = this.SignupUser.asObservable();
   signupuserdetail: any;
+  managecargodata: any;
+  statusData: any;
  
 constructor( private coreservice:CoreService) {
   const jobcount = localStorage.getItem('jobcount');
@@ -36,6 +38,47 @@ constructor( private coreservice:CoreService) {
 ngOnInit(): void {
 
 }
+getmanageCargo(userId: any): void {
+  this.coreservice.getManageCargoById(userId).subscribe(
+    (response) => {
+      
+      if (response && Object.keys(response).length > 0) {
+        // this.managecargodata=[]
+        this.managecargodata = response;
+        console.log(response);
+        alert('data fetched successfully')
+        
+        
+      } else {
+        alert('data not fetched successfully')
+      
+      }
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+  
+        }    );
+
+}
+// getuserrecordstatus(userid: any): void {
+//   this.coreservice.getOrderAcceptRecordById(userid,'userId').subscribe(
+//     (response) => {
+//       if (response && Object.keys(response).length > 0) {
+//         this.statusData = response;
+//    console.log(this.data);
+  
+ 
+   
+//       } else {
+      
+//       }
+//     },
+//     (error) => {
+//       console.error('Error fetching data:', error);
+//       alert('Error getUserBookingReacod fetching data');
+//     }
+//   );
+// }
 getuserrecord(userId: any): void {
   this.coreservice.getUserBookingReacod(userId).subscribe(
     (response) => {
@@ -61,6 +104,7 @@ getuserrecord(userId: any): void {
     }
   );
 }
+
 getuserrecordforCancel(id: any): void {
   debugger
   this.coreservice.getUserBookingReacodtocancel(id).subscribe(

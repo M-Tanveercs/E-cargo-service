@@ -36,12 +36,20 @@
   <input nz-input placeholder="Driver Contact Number" formControlName="driverContact"  nzSize="large" />
 </div>
 <div class="w-full flex  items-center">
-  <label class="w-60 font-semibold text-base" for="">Current Date:</label>
+  <label class="w-60 font-semibold text-base" for="">Pick up Date:</label>
   <nz-date-picker class="w-full" nzSize="large" formControlName="currentDate"></nz-date-picker>
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">PickUp time:</label>
+  <nz-time-picker class="w-full" [(ngModel)]="time" nzSize="large" formControlName="pickuptime"></nz-time-picker>
 </div>
 <div class="w-full flex  items-center">
   <label class="w-60 font-semibold text-base" for="">Delivery Proof:</label>
   <input nz-input type="file" placeholder="Delivery Proof" formControlName="deliveryProof" nzSize="large" />
+</div>
+<div class="w-full flex  items-center">
+  <label class="w-60 font-semibold text-base" for="">Receiver Signature:</label>
+  <input nz-input type="file" placeholder="Receiver Signature" formControlName="reciverSignature" nzSize="large" />
 </div>
 <div class="w-full flex justify-center">
   <button nz-button nzType="primary" 
