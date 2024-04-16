@@ -38,6 +38,8 @@ export class CommonService {
       );
   } 
 
+  
+
   private extractCityData(cities: any[]): any[] {
     return cities.map(city => ({
       name: city.display_name

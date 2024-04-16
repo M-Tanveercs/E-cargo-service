@@ -54,10 +54,19 @@
       
       </ul>
     </li>
-   
+  
+    <li nz-submenu nzTitle="Manage Driver" nzIcon="usergroup-add" class="mb-5">
+      <ul>
+        <li nz-menu-item routerLink="manage-driver">
+          <img src="../../../../../assets/imges/taxi-driver_10635967 (1).png" class="h-5 w-5" alt="">View Driver List</li>
+       
+       
+        
+      </ul>
+    </li>
     <li nz-submenu nzTitle="My Account" nzIcon="solution" class="mb-5">
       <ul>
-        <li nz-menu-item routerLink="edit-profile"><span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit Profile</li>
+        <li nz-menu-item routerLink="agency-profile-edit"><span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit Profile</li>
        
         <li (click)="logout()" nz-menu-item><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
         

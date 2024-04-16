@@ -1,4 +1,12 @@
 {
+  "adminDetails": [
+    {
+      "id": "admin123456",
+      "name": "tanveer",
+      "email": "tanveer@gmail.com",
+      "password": "123456"
+    }
+  ],
   "usersBookingRecord": [
     {
       "id": "5447",
@@ -95,150 +103,6 @@
       "date": "3/30/2024",
       "JobBookedDate": "3/29/2024",
       "JobBookedTime": "10:38:27 AM"
-    },
-    {
-      "id": "f1c7",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
-    },
-    {
-      "id": "ef98",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
-    },
-    {
-      "id": "6fb0",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
-    },
-    {
-      "id": "7689",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
-    },
-    {
-      "id": "d095",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
-    },
-    {
-      "id": "502b",
-      "userId": "_y47xtg49k",
-      "distance": 390,
-      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
-      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
-      "estimatedWeight": "1",
-      "selectedGoodsType": "Automobile",
-      "selectedHelper": "1 ",
-      "totalVechialPrice": 3900,
-      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
-      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
-      "pickupTime": "12:00 To 2:00 AM",
-      "fullName": "Charles Dejesus",
-      "phoneNumber": 986,
-      "receiverName": "Phyllis Sandoval",
-      "receiverPhoneNumber": 57,
-      "senderAddress": "Darius Fowler",
-      "receiverAddress": "Odette Norris",
-      "itemDetails": "Ea commodo tenetur s",
-      "date": "4/6/2024",
-      "JobBookedDate": "4/6/2024",
-      "JobBookedTime": "02:43:39 PM"
     },
     {
       "id": "a8a3",
@@ -682,44 +546,44 @@
   "orderCancelReason": [
     {
       "id": "1",
-      "reason": "Testing Entry"
+      "reason": "testing Entry"
     },
     {
       "id": "2",
-      "reason": " Transporter didn't get job on time "
+      "reason": "transporter didn't get job on time"
     },
     {
       "id": "3",
-      "reason": "  Job not ready  "
+      "reason": "job not ready"
     },
     {
       "id": "4",
-      "reason": "  High price  "
+      "reason": "high price"
     },
     {
       "id": "5",
-      "reason": "  Job details changed  "
+      "reason": "  job details changed  "
     },
     {
       "id": "6",
-      "reason": "   I don't need transporter anymore   "
+      "reason": "i don't need transporter anymore"
     },
     {
       "id": "7",
-      "reason": "    Other    "
+      "reason": "other"
     }
   ],
   "AgencySignUp": [
     {
       "id": "_a2rz0vn4r",
-      "fullname": "sfsdf",
-      "address": "sfsf",
-      "businessName": "cargoz",
-      "ntn": 13123,
+      "fullname": "afzal",
       "email": "test3@gmail.com",
-      "mobile": "312312",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "mobile": "0306766766",
+      "address": "fsd",
+      "businessName": "cargozsfsdf24",
+      "ntn": 131233234234,
+      "password": "1234567",
+      "confirmPassword": "1234567"
     },
     {
       "id": "_e6pmcsx16",
@@ -751,6 +615,17 @@
       "ntn": 35634,
       "email": "test6@gmail.com",
       "mobile": "5345",
+      "password": "123456",
+      "confirmPassword": "123456"
+    },
+    {
+      "id": "_bs5kvzedh",
+      "fullname": "ali",
+      "address": "sdsf",
+      "businessName": "cargot",
+      "ntn": 2423423,
+      "email": "test7@gmail.com",
+      "mobile": "2342343",
       "password": "123456",
       "confirmPassword": "123456"
     }
@@ -884,7 +759,7 @@
       "JobBookedDate": "3/29/2024",
       "JobBookedTime": "10:31:14 AM",
       "agencyid": "_a2rz0vn4r",
-      "status": "Delivered"
+      "status": "Processing"
     },
     {
       "id": "2959",
@@ -936,7 +811,7 @@
       "JobBookedDate": "3/29/2024",
       "JobBookedTime": "10:34:56 AM",
       "agencyid": "_a2rz0vn4r",
-      "status": "Delivered"
+      "status": "Processing"
     },
     {
       "id": "c9e7",
@@ -962,7 +837,33 @@
       "JobBookedDate": "3/29/2024",
       "JobBookedTime": "10:38:27 AM",
       "agencyid": "_a2rz0vn4r",
-      "status": "pending"
+      "status": "On the Way"
+    },
+    {
+      "id": "a8a3",
+      "userId": "_y47xtg49k",
+      "distance": 390,
+      "SelectedVehicle": "Suzuki Ravi ( Upto 1.2 TON )",
+      "selectedVehicleImg": "../../../../assets/imges/van-images/suzuki-ravi.png",
+      "estimatedWeight": "1",
+      "selectedGoodsType": "Automobile",
+      "selectedHelper": "1 ",
+      "totalVechialPrice": 3900,
+      "pickupLocation": "Lahore Fort, Circular Road, Murad Ali Shah, Bela Basti Ram, Qila Lachman Singh, Lahore District, Lahore Division, Punjab, Pakistan",
+      "dropoffLocation": "Lane, Kalma chowk, Dera Ghazi Khan, Dera Ghazi Khan Tehsil, Dera Ghazi Khan District, Dera Ghazi Khan Division, Punjab, Pakistan",
+      "pickupTime": "12:00 To 2:00 AM",
+      "fullName": "Charles Dejesus",
+      "phoneNumber": 986,
+      "receiverName": "Phyllis Sandoval",
+      "receiverPhoneNumber": 57,
+      "senderAddress": "Darius Fowler",
+      "receiverAddress": "Odette Norris",
+      "itemDetails": "Ea commodo tenetur s",
+      "date": "4/6/2024",
+      "JobBookedDate": "4/6/2024",
+      "JobBookedTime": "02:43:39 PM",
+      "agencyid": "_a2rz0vn4r",
+      "status": "Delivered"
     }
   ],
   "Tracking": [
@@ -974,34 +875,62 @@
       "vehicleNumber": "5345d",
       "driverContact": "5345",
       "currentDate": "2024-04-03T05:17:52.149Z",
-      "pickuptime": "2024-04-06T06:38:43.573Z",
+      "pickuptime": "2024-04-15T20:23:42.705Z",
       "deliveryProof": "C:\\fakepath\\wall-clock.png",
       "reciverSignature": "C:\\fakepath\\blob-haikei.svg",
       "id": "94be"
     },
     {
-      "trackingId": "2959",
+      "trackingId": "e77e",
       "cargoStatus": "Processing",
-      "cargoLocation": "fdsgdf",
+      "cargoLocation": "fsd",
       "driverName": "dfgdf",
       "vehicleNumber": "dfg",
       "driverContact": "dfg",
       "currentDate": "2024-04-04T05:35:43.781Z",
-      "pickuptime": "2024-04-02T21:30:31.451Z",
+      "pickuptime": "2024-04-16T10:16:12.804Z",
       "deliveryProof": "C:\\fakepath\\wall-clock.png",
       "reciverSignature": "C:\\fakepath\\blob-haikei.svg",
       "id": "b624"
     },
     {
-      "id": "0cc3",
-      "trackingId": "e77e",
+      "trackingId": "a8a3",
       "cargoStatus": "Delivered",
-      "cargoLocation": "gdfg",
-      "driverName": "dgddfg",
-      "vehicleNumber": "3454",
-      "driverContact": "345",
-      "currentDate": "2024-04-03T05:46:12.576Z",
-      "deliveryProof": "C:\\fakepath\\wall-clock.png"
+      "cargoLocation": "lhr",
+      "driverName": "dfgdf",
+      "vehicleNumber": "5345d",
+      "driverContact": "5345",
+      "currentDate": "2024-04-03T05:17:52.149Z",
+      "pickuptime": "2024-04-16T10:17:34.801Z",
+      "deliveryProof": "C:\\fakepath\\wall-clock.png",
+      "reciverSignature": "C:\\fakepath\\blob-haikei.svg",
+      "id": "0cc3"
+    },
+    {
+      "trackingId": "a8a3",
+      "cargoStatus": "Delivered",
+      "cargoLocation": "lhr",
+      "driverName": "dfgdf",
+      "vehicleNumber": "5345d",
+      "driverContact": "5345",
+      "currentDate": "2024-04-03T05:17:52.149Z",
+      "pickuptime": "2024-04-15T20:18:36.781Z",
+      "deliveryProof": "C:\\fakepath\\wall-clock.png",
+      "reciverSignature": "C:\\fakepath\\blob-haikei.svg",
+      "id": "71ba"
+    },
+    {
+      "id": "c5fc",
+      "trackingId": "c9e7",
+      "cargoStatus": "On the Way",
+      "cargoLocation": "fsdf",
+      "driverName": "3432",
+      "vehicleNumber": "fsdf",
+      "driverContact": "23432",
+      "currentDate": "2024-04-16T07:58:35.915Z",
+      "pickuptime": "",
+      "deliveryProof": "",
+      "reciverSignature": ""
     }
   ]
 }

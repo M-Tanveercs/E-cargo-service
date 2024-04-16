@@ -21,6 +21,7 @@ export class AgencyCommonService implements OnInit {
   agencyid: any;
   currentOrderArray: any[]=[];
   agencyjobs: any;
+  signupuserdetail: any;
   
   constructor(private coreservice: CoreService) { }
 

@@ -93,6 +93,13 @@ export class CoreService {
   getsignupAgencyRecord(): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/AgencySignUp`);
   }
+  getsignupAgencyRecordbyid(id:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/AgencySignUp/${id}`);
+  }
+  updateAgencySignUp(postId: number, updatedData: any) {
+
+    return this.http.put(`http://localhost:3000/AgencySignUp/${postId}`, updatedData); // Send a PUT request to update the post
+  }
   OrderAcceptAgency(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.post<any>(`http://localhost:3000/OrderAccepByAgency`, data);
@@ -126,5 +133,7 @@ export class CoreService {
   orderCancelReason(){
     return this.http.get<any>(`http://localhost:3000/orderCancelReason`);
   }
-
+  getAdminRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/adminDetails`);
+  }
 }

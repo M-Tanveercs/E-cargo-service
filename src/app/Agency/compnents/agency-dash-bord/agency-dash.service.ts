@@ -10,6 +10,8 @@ export class AgencyDashService  {
   jobSuccessfull: any;
   jobAccepted: any;
   bookedJob:any
+  private SignupUser = new BehaviorSubject({});
+  signUpUserData$ = this.SignupUser.asObservable();
   private jobAcceptedCount = new BehaviorSubject<any>(null);
   jobAcceptcountData$ = this.jobAcceptedCount.asObservable();
   
@@ -30,6 +32,7 @@ export class AgencyDashService  {
   Processing: any[]=[];
   Delivered: any[]=[];
   ontheWay: any[]=[];
+  signupuserdetail: any;
   constructor(private coreservice :CoreService) {
     const jobcount = localStorage.getItem('jobAccepted');
   if (jobcount) {
@@ -120,6 +123,8 @@ getmanageCargo(userId: any): void {
       if (response && Object.keys(response).length > 0) {
         // this.managecargodata=[]
         this.managecargodata = response;
+        localStorage.setItem('managecargodata', '')
+        localStorage.setItem('managecargodata', JSON.stringify(response))
         console.log(response);
         alert('data fetched successfully')
         
@@ -142,6 +147,28 @@ updateManageCartgo(id: any,data: any){
     },
     (error) => {
       console.error('Error updating post:', error);
+    }
+  );
+}
+getAgencySignUserData(id:any){
+  debugger
+  this.coreservice.getsignupAgencyRecordbyid(id).subscribe(
+    (response) => {
+     console.log(response && Object.keys(response).length );
+     
+      if (response && Object.keys(response).length > 0) {
+     this.signupuserdetail=response
+        this.SignupUser.next(this.signupuserdetail)
+  console.log(this.signupuserdetail);
+  
+
+      }
+     
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+      alert('Error getUserBookingReacodtocancel fetching data');
+     
     }
   );
 }

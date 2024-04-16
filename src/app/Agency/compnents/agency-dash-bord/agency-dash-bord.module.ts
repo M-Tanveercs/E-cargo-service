@@ -34,13 +34,20 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AgencyDashService } from './agency-dash.service';
 import { OnTheWayComponent } from './on-the-way/on-the-way.component';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { AgencyProfileEditComponent } from './agencyProfileEdit/agencyProfileEdit.component';
+import { CoreService } from 'src/app/core/core.service';
+import { AgencyAuthService } from '../../agencyAuthGard/agency-auth.service';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { ManageDriverComponent } from './manage-driver/manage-driver.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 @NgModule({
   declarations: [
-AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,CompletedJobsComponent,JobTrackingComponent
+AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,CompletedJobsComponent,JobTrackingComponent,AgencyProfileEditComponent,ManageDriverComponent
   ],
-  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,JobTrackingComponent,CompletedJobsComponent],
+  exports:[AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,AgencyHeaderComponent,AgencySideBarComponent,ManageReviewsComponent ,AcceptedJobsComponent,OnTheWayComponent,InProcessJobsComponent,JobTrackingComponent,CompletedJobsComponent,AgencyProfileEditComponent,ManageDriverComponent],
   imports: [
+
     CommonModule,
     AgencyDashBordRoutingModule,
     CommonModule,
@@ -60,9 +67,11 @@ AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,Agency
     NzDrawerModule,
     NzSpaceModule,
     NzDatePickerModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+    NzSpinModule,
+    NzTableModule
   ],providers:[
-    AgencyDashService
+    AgencyDashService,CoreService,AgencyAuthService
   ]
 })
 export class AgencyDashBordModule { }

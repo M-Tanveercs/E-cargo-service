@@ -63,6 +63,8 @@ console.log("selected value:",this.selectedValue);
     debugger
     console.log('OK button clicked');
   
-  this.commonservice.getuserrecordforCancel(id,this.selectedValue)}
+    this.commonservice.cancelReason=this.selectedValue
+  this.commonservice.getuserrecordforCancel(id)
+}
 }
   

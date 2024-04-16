@@ -18,7 +18,7 @@ import { ManageReviewsComponent } from './manage-reviews/manage-reviews.componen
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { BookedJobComponent } from './booked-job/booked-job.component';
 import { CompletedJobComponent } from './completed-job/completed-job.component';
-import { FooterComponent } from './footer/footer.component';
+
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { TrackJobComponent } from './track-job/track-job.component';
@@ -34,8 +34,10 @@ import { SpinerComponent } from './spiner/spiner.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
+import { UserDashFooterComponent } from './user-dash-footer/user-dash-footer.component';
+
 @NgModule({
-  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent,SpinerComponent ],
+  declarations: [DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent,SpinerComponent,UserDashFooterComponent ],
   imports: [
     CommonModule,
     UserDashboardRoutingModule,
@@ -56,7 +58,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzSpinModule,
     NzModalModule
   ],
-  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,FooterComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent],
+  exports:[DashboardComponent,DashSidebarComponent,DashHeaderComponent,ManageReviewsComponent,MainDashboardComponent,BookedJobComponent,CompletedJobComponent,TrackJobComponent,EditProfileComponent,CancelJobsComponent,UserDashFooterComponent],
   providers: [DashCommonService,AuthService]
 })
 export class UserDashboardModule { }

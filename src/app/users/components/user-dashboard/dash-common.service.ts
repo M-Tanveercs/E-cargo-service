@@ -26,7 +26,7 @@ export class DashCommonService implements OnInit {
   statusData: any;
   loading: boolean=true
   cancelReason: any;
- 
+  userdata: any;
 constructor( private coreservice:CoreService) {
   const jobcount = localStorage.getItem('jobcount');
   if (jobcount) {
@@ -106,14 +106,39 @@ getuserrecord(userId: any): void {
     }
   );
 }
+getUserBookingReacodByID(Id: any): void {
+  this.coreservice.getUserBookingReacodByID(Id).subscribe(
+    (response) => {
+      if (response && Object.keys(response).length > 0) {
+        this.userdata = response;
+   console.log(this.userdata);
+   
 
-getuserrecordforCancel(id: any,reason:any): void {
-  this.cancelReason=reason
+        localStorage.removeItem('userdata');
+        localStorage.setItem('userdata', JSON.stringify(this.userdata))
+ 
+      } else {
+      
+        this.orderSuccessful = false;
+      }
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+      alert('Error getUserBookingReacod fetching data');
+      this.orderSuccessful = false;
+    }
+  );
+}
+
+getuserrecordforCancel(id: any): void {
+  // this.cancelReason=reason
   debugger
   this.coreservice.getUserBookingReacodtocancel(id).subscribe(
     (response) => {
       if (response && Object.keys(response).length > 0) {
         this.canceljobs = response;
+        console.log(this.canceljobs);
+        
         this.jobcanceled(response)
    console.log( this.canceljobs);
    this.deleteUser(id)
@@ -143,8 +168,9 @@ deleteUser(Id: any): void {
   );
 }
 jobcanceled(data: any){
+  debugger
 console.log(data);
-const cancelJobRecord= data['Reason']=this.cancelReason
+const cancelJobRecord= data.reason=this.cancelReason
 
   this.coreservice.createUserBookingcancelReacod(cancelJobRecord).subscribe(data=>{
     console.log('canceljob',data);

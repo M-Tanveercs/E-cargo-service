@@ -10,6 +10,8 @@ import { InProcessJobsComponent } from './InProcessJobs/InProcessJobs.component'
 import { CompletedJobsComponent } from './CompletedJobs/CompletedJobs.component';
 import { JobTrackingComponent } from './JobTracking/JobTracking.component';
 import { OnTheWayComponent } from './on-the-way/on-the-way.component';
+import { AgencyProfileEditComponent } from './agencyProfileEdit/agencyProfileEdit.component';
+import { ManageDriverComponent } from './manage-driver/manage-driver.component';
 
 const routes: Routes = [
   {path:'', component: AgencyMainDashBordComponent ,
@@ -21,8 +23,9 @@ const routes: Routes = [
     {path:'onTheWay',component:OnTheWayComponent},
     {path:'InProcessJobs',component:InProcessJobsComponent},
     {path:'CompletedJobs',component:CompletedJobsComponent},
-    {path:'jobTracking/:id',component:JobTrackingComponent}
-  
+    {path:'agency-profile-edit',component:AgencyProfileEditComponent},
+    {path:'jobTracking/:id',component:JobTrackingComponent},
+  {path:'manage-driver',component:ManageDriverComponent}
     
   ]}
 ]

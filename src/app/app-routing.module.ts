@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./Agency/agency-routing.module').then(m => m.AgencyRoutingModule)
   },
   {
-    path: 'admin',
+    path: '',
     loadChildren: () => import('./Admin/admin-routing.module').then(m => m.AdminRoutingModule)
   },
   {

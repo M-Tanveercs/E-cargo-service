@@ -30,6 +30,7 @@
               }
             ],
             "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
               "src/theme.less",
               "src/styles.css"
             ],
@@ -102,6 +103,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "43fc9fb1-fa25-4df3-8599-429e620006b8"
   }
 }
