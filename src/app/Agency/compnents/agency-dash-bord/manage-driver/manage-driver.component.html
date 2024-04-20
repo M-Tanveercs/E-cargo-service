@@ -1,69 +1,141 @@
-
 <div class=" w-full  h-[100vh] bg-[#FAFAFA]  overflow-x-hidden  pb-20">
   <div class="  md:ml-40 lg:ml-80 ml-28  text-slate-600    mt-32   flex  ">
     <div class="w-5/6 flex justify-center">
-      <span class="font-semibold text-4xl underline">Resgistered Driver</span>
+<span class="font-semibold text-4xl underline">Registered Drivers </span>
     </div>
-    <div class="w-1/6"><button (click)="open()" nz-button nzType="primary" nzShape="circle"><span nz-icon nzType="plus"></span></button></div>
 
- 
+
   </div>
-  <nz-drawer [nzSize]="size" [nzVisible]="true" nzPlacement="right" [nzTitle]="title" (nzOnClose)="close()">
+  <div class="md:ml-40 lg:ml-80 ml-28   mr-28   mt-24"> 
+   <div class="text-end mb-5"> <button class="rounded-lg" (click)="addDriver()" nz-button nzType="primary" ><span nz-icon nzType="plus"></span>Add New Driver </button></div>
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed"  class="tableHeader">
+      <thead >
+        <tr >
+          <th >#</th>
+          <th nzCustomFilter>
+            Name
+            <nz-filter-trigger [(nzVisible)]="visibletable" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+          </th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>CNIC</th>
+          <th>Vehicle Number</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let i=index">
+     <td class="text-center font-bold text-base">{{i+1}}</td>
+          <td>{{ data.fullName }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.phoneNumber }}</td>
+          <td>{{ data.cnic }}</td>
+          <td>{{ data.vehicleNumber }}</td>
+          <td>{{ data.address }}</td>
+         
+          <td class="bg-slate-200" > <div class="flex gap-8 justify-center text-base ">
+            <i class="fa-regular fa-pen-to-square text-blue-700" (click)="EditDriveDetail(data.id)"></i> 
+            
+            <i  nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteDriver(data.id)" class="fa-regular fa-trash-can text-red-700" ></i>
+          </div>
+      </td>
+      
+        </tr>
+      </tbody>
+    </nz-table>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box ">
+          <input type="text" class="mt-1" (input)="search()" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+<div class=" flex justify-between " >
+  <span class="w-1/2 bg-slate-50 hover:bg-slate-200 text-center" nzSize="small" (click)="reset()"><img class="w-3" src="../../../../../assets/imges/rotate-left-circular-arrow-interface-symbol_32418.png" alt=""></span>
+  <span  class="w-1/2 bg-slate-50 hover:bg-slate-200 text-center" (click)="closeDropdown()" nzSize="small" ><i class="fa-solid fa-xmark hover:text-red" ></i></span>
+</div>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+  </div>
+  </div>
+
+
+  <!-- drawer -->
+  <nz-drawer [nzSize]="size" [nzVisible]="visible" nzPlacement="right" [nzTitle]="title" (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
 <div class=" w-full h-full">
   <form [formGroup]="form" >
     <div class="w-full px-10 py-5">
-    
-      <div class="w-full flex  flex-col gap-6 mt-5">
-        <div class=" w-full">
+      <div class="w-full flex flex-col gap-6 mt-5">
+        <div class="w-full">
           <label for="fullName" class="text-slate-600">Full Name</label>
-        
-            <input type="text" nz-input formControlName="fullName" placeholder="Enter Full Name" />
-
+          <input type="text" nz-input formControlName="fullName" placeholder="Enter Full Name" />
+          <div *ngIf="submitted && f['fullName'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['fullName'].errors['required']">Full Name is required</div>
+          </div>
         </div>
-        <div class=" w-full">
+  
+        <div class="w-full">
           <label for="address" class="text-slate-600">Address</label>
-        
-            <input type="text" nz-input formControlName="address" placeholder="Enter Address" />
-
+          <input type="text" nz-input formControlName="address" placeholder="Enter Address" />
+          <div *ngIf="submitted && f['address'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['address'].errors['required']">Address is required</div>
+          </div>
         </div>
-      </div>
-      <div class="w-full flex  flex-col gap-6 mt-5">
-        <div class=" w-full">
+  
+        <div class="w-full">
           <label for="email" class="text-slate-600">Email</label>
-        
-            <input type="email" nz-input formControlName="email" placeholder="Enter Email" />
-
+          <input type="email" nz-input formControlName="email" placeholder="Enter Email" />
+          <div *ngIf="submitted && f['email'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['pattern']">Invalid email format</div>
+          </div>
         </div>
-        <div class=" w-full">
+  
+        <div class="w-full">
           <label for="phoneNumber" class="text-slate-600">Phone Number</label>
-        
-            <input type="tel" nz-input formControlName="phoneNumber" placeholder="Enter Phone Number" />
-
+          <input type="tel" nz-input formControlName="phoneNumber" placeholder="Enter Phone Number" />
+          <div *ngIf="submitted && f['phoneNumber'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['phoneNumber'].errors['required']">Phone Number is required</div>
+            <div *ngIf="f['phoneNumber'].errors['pattern']">Invalid phone number format</div>
+          </div>
         </div>
-      </div>
-      <div class="w-full flex  flex-col gap-6 mt-5">
-    
-        <div class=" w-full">
+  
+        <div class="w-full">
           <label for="cnic" class="text-slate-600">CNIC Number</label>
-        
-            <input type="number" nz-input formControlName="cnic" placeholder="Enter CNIC Number" />
-
+          <input type="number" nz-input formControlName="cnic" placeholder="Enter CNIC Number" />
+          <div *ngIf="submitted && f['cnic'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['cnic'].errors['required']">CNIC Number is required</div>
+            <div *ngIf="f['cnic'].errors['pattern']">Invalid CNIC number format (should be 13 digits)</div>
+          </div>
         </div>
-    
-        <div class=" w-full">
+  
+        <div class="w-full">
           <label for="vehicleNumber" class="text-slate-600">Vehicle Number</label>
-        
-            <input type="number" nz-input formControlName="cnic" placeholder="Enter Vehicle Number" />
-
+          <input type="text" nz-input formControlName="vehicleNumber" placeholder="Enter Vehicle Number" />
+          <div *ngIf="submitted && f['vehicleNumber'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['vehicleNumber'].errors['required']">Vehicle Number is required</div>
+          </div>
+        </div>
+        <div class="w-full">
+          <label for="driverPassword" class="text-slate-600">Driver Password</label>
+          <input type="text" nz-input formControlName="driverPassword" placeholder="Set Driver Login Password" />
+          <div *ngIf="submitted && f['driverPassword'].errors" class="text-red-600 mt-1">
+            <div *ngIf="f['driverPassword'].errors['required']">Driver Password is required</div>
+          </div>
         </div>
       </div>
-      <div class="w-full text-center  mt-16">
-
-        <button type="submit" nz-button nzType="primary" class="w-1/4 h-11 font-bold text-base rounded-lg">Submit</button>
+  
+      <div class="w-full text-center mt-16" *ngIf="drawertype==='add'" >
+        <button (click)="submit()" nz-button nzType="primary" class="w-1/4 h-11 font-bold text-base rounded-lg">Submit</button>
+      </div>
+      <div class="w-full text-center mt-16" *ngIf="drawertype==='edit'">
+        <button (click)="updateDriverDetail()" nz-button nzType="primary" class="w-1/4 h-11 font-bold text-base rounded-lg">Update</button>
       </div>
     </div>
   </form>
+  
 
 </div>
      

@@ -31,6 +31,9 @@ const routes: Routes = [
   {
      path: '', loadChildren: () => import('./Agency/compnents/agency-dash-bord/agency-dash-bord-routing.module').then(m => m.AgencyDashBordRoutingModule) 
   },
+  {
+     path: '', loadChildren: () => import('./Agency/compnents/driver-dashBord/driver-routing.module').then(m => m.DriverRoutingModule) 
+  },
 
 
 

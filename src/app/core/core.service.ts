@@ -100,6 +100,23 @@ export class CoreService {
 
     return this.http.put(`http://localhost:3000/AgencySignUp/${postId}`, updatedData); // Send a PUT request to update the post
   }
+  AddnewDriver(data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.post<any>(`http://localhost:3000/DriverRecords`, data);
+  }
+  GetDriverDetail(agencyid:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/DriverRecords/?AgencyId=${agencyid}`);
+  }
+  GetDriverDetailById(id:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/DriverRecords/${id}`);
+  }
+  
+  updateDriverDetail(id:any,data:any): Observable<any> {
+    return this.http.put<any>(`http://localhost:3000/DriverRecords/${id}`,data);
+  }
+  DelDriverDetail(id:any): Observable<any> {
+    return this.http.delete<any>(`http://localhost:3000/DriverRecords/${id}`);
+  }
   OrderAcceptAgency(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.post<any>(`http://localhost:3000/OrderAccepByAgency`, data);

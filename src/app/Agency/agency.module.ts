@@ -45,6 +45,7 @@ import { AgencyAuthService } from './agencyAuthGard/agency-auth.service';
 import { AgencyCommonService } from './agency-common.service';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { MainsComponent } from './compnents/mains/mains.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { MainsComponent } from './compnents/mains/mains.component';
     NzSwitchModule,
     NzToolTipModule,
     NzAutocompleteModule,
+    NzPopconfirmModule,
   ],
 providers: [AgencyCommonService],
 })
