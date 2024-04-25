@@ -97,7 +97,8 @@ export class TrackJobComponent implements OnInit {
       this.pickuplocation = data.pickupLocation;
       this.dropoffLocation = data.dropoffLocation;
       // Wrap the liveLocation value in an Observable
-      this.liveCoordinates$ = of(this.liveLocation);
+      const trackingdata=this.commonservice.managecargodata.find((filter:any)=>filter.trackingId ===data.id)
+      this.liveCoordinates$ = of(trackingdata.driverLocation);
       console.log("    this.liveCoordinates$", this.liveCoordinates$);
 
       this.dropoffCoordinates$ = this.cityService.getCoordinates(this.dropoffLocation);
@@ -105,12 +106,32 @@ export class TrackJobComponent implements OnInit {
 
     }
     this.initMap();
-    this.getLiveLocation()
+    // this.getLiveLocation()
 this.drawRoute()
   }
 
 
   private initMap(): void {
+    var drivericon = L.icon({
+      iconUrl: '../../../../../assets/imges/8221800-removebg-preview.png',
+      // shadowUrl: 'leaf-shadow.png',
+  
+      iconSize:     [70, 80], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      // shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
+  var greenIcon = L.icon({
+    iconUrl: '../../../../../assets/imges/46831-removebg-preview.png',
+    // shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [70, 80], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
     this.map = L.map('map').setView([0, 0], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -128,8 +149,17 @@ this.drawRoute()
         debugger
         console.log("drop", coordinates);
 
-        L.marker([coordinates.latitude, coordinates.longitude]).addTo(this.map)
+        L.marker([coordinates.latitude, coordinates.longitude],{icon: greenIcon}).addTo(this.map)
           .bindPopup('Drop-off Location').openPopup();
+      }
+    });
+    this.liveCoordinates$.subscribe(coordinates => {
+      if (coordinates) {
+        debugger
+        console.log("drop", coordinates);
+
+        L.marker([coordinates.latitude, coordinates.longitude],{icon: drivericon}).addTo(this.map)
+          .bindPopup('Driver Location').openPopup();
       }
     });
   }
@@ -146,35 +176,35 @@ this.drawRoute()
 
 
   }
-  getLiveLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log("position", position);
+  // getLiveLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         console.log("position", position);
 
-          const latitude = position.coords.latitude;
-          this.liveLocationlatitude = latitude
-          console.log("latitude", typeof latitude);
+  //         const latitude = position.coords.latitude;
+  //         this.liveLocationlatitude = latitude
+  //         console.log("latitude", typeof latitude);
 
-          const longitude = position.coords.longitude;
-          console.log("longitude", longitude);
+  //         const longitude = position.coords.longitude;
+  //         console.log("longitude", longitude);
 
-          this.liveLocationlongitude = longitude
-          this.liveLocation = { latitude, longitude };
-          console.log('Live location:', this.liveLocation);
-          if (this.liveLocationlatitude) {
-            L.marker([this.liveLocationlatitude, this.liveLocationlongitude]).addTo(this.map)
-              .bindPopup('Pick-up Location').openPopup();
-          }
-        },
-        (error) => {
-          console.error('Error getting live location:', error.message);
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
-  }
+  //         this.liveLocationlongitude = longitude
+  //         this.liveLocation = { latitude, longitude };
+  //         console.log('Live location:', this.liveLocation);
+  //         if (this.liveLocationlatitude) {
+  //           L.marker([this.liveLocationlatitude, this.liveLocationlongitude]).addTo(this.map)
+  //             .bindPopup('Pick-up Location').openPopup();
+  //         }
+  //       },
+  //       (error) => {
+  //         console.error('Error getting live location:', error.message);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //   }
+  // }
   drawRoute(): void {
   
       this.dropoffCoordinates$.subscribe(dropoffCoordinates => {

@@ -9,7 +9,9 @@ interface DataItem {
   vehicleNumber: number;
   address: string;
   phoneNumber: string;
-  id:any
+  id:any,
+  driverPassword:any;
+  status:any
 }
 @Component({
   selector: 'app-manage-driver',
@@ -24,6 +26,7 @@ export class ManageDriverComponent implements OnInit {
   driverDetail: any = [];
   drawertype:any
   driverId: any;
+  passwordVisible = false;
   constructor(private fb: FormBuilder, private message: NzMessageService, private coreService: CoreService) {
     this.form = this.fb.group({
       fullName: ['', Validators.required],
@@ -33,6 +36,7 @@ export class ManageDriverComponent implements OnInit {
       cnic: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
       vehicleNumber: ['', Validators.required],
       driverPassword: ['', Validators.required],
+      status: ['', Validators.required],
     });
   }
 
@@ -66,7 +70,8 @@ export class ManageDriverComponent implements OnInit {
     if (this.form.valid) {
       // Handle form1 submission logic here
       console.log(this.form.value);
-      let formData = { AgencyId: this.agencyid, ...this.form.value };
+      let formData = { AgencyId: this.agencyid,...this.form.value };
+    
       this.coreService.AddnewDriver(formData).subscribe(
         data => {
           console.log(data);
@@ -166,7 +171,8 @@ this.coreService.DelDriverDetail(id).subscribe(driver =>{
           phoneNumber:element.phoneNumber,
           cnic:element.cnic,
           vehicleNumber:element.vehicleNumber,
-
+          driverPassword:element.driverPassword,
+          status:element.status
         })
         this.driverId=element.id
       });

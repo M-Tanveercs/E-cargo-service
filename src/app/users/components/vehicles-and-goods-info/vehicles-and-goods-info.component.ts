@@ -60,9 +60,8 @@ export class VehiclesAndGoodsInfoComponent implements OnInit {
     // Initialize form group and set up form controls
     this.vehicleGoodsForm = this.fb.group({
    
-      estimatedWeight: ['', Validators.required], // Require input for estimated weight
-      selectedGoodsType: ['', Validators.required], // Require selection of goods type
-      selectedHelper: ['None'] // Optional selection of helper
+     // Require selection of goods type
+     selectedDriver: ['None'] // Optional selection of helper
     });
     this.vehicleGoodsForm.valueChanges.subscribe(() => {
       this.updateSubmitButtonStatus();

@@ -59,9 +59,11 @@
     <div *ngIf="commonservice.jobAccepted">
         <div class="w-full  flex ml-10 justify-center mt-10  " *ngFor="let item of commonservice.data">
             <div class="w-8/12  shadow-md rounded-md bg-white  h-fit  pb-10 ">
-                <div class="w-full h-fit bg-white  pt-5 px-5 " style="border-bottom: 1px solid  rgb(196, 196, 196);">
+                <div class="w-full h-fit bg-white  pt-5 px-5 flex justify-between" style="border-bottom: 1px solid  rgb(196, 196, 196);">
                     <h3> <img class="w-6  mb-1 text-slate-400" src="../../../../../assets/imges/package.svg"> Accepted
                         Jobs</h3>
+                        
+                        <span *ngIf="driverJobIds.includes(item.jobid)" class="font-medium ml-5" >Order Assigned to Driver</span>
                 </div>
                 <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
                     <div class="md:w-6/12 w-full h-full flex flex-col pl-10 pt-5 gap-1">
@@ -81,13 +83,14 @@
 
                         <span> <i class="fa-solid fa-id-card mr-1"></i>
 
-                            Refrance Id:ECS{{item.id}}
+                            Refrance Id:{{item.jobid}}
                         </span>
                         <span> <i class="fa-solid fa-id-card mr-1"></i>
 
                             Cargo Status:{{item.status}}
                         </span>
-
+                        <!-- <h1 [title]="item.id">drivername </h1> -->
+                        <span><span class="font-bold">Driver Name:</span>{{item?.driverName || ""}}</span>
 
                     </div>
                     <div class="md:w-6/12 w-full flex md:justify-end items-center md:ml-0 ml-20 mt-5 md:mt-0">
@@ -95,6 +98,7 @@
                             class="flex flex-col md:w-28 w-20 h-14 md:h-20 bg-[#f1ede4b0]   rounded-sm shadow-md justify-center items-center">
                             <span class="text-slate-600">Rs. {{item.totalVechialPrice}}</span>
                             <span class="text-slate-400">Job Price</span>
+                            
                         </div>
                     </div>
                 </div>
@@ -106,12 +110,46 @@
                         class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  "
                         (click)="showLarge(item)">View All Details</button>
 
-         <button nz-button nzType="primary" [routerLink]="['/jobTracking', item.id]"
-                        class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Manage Cargo</button>
+         <!-- <button nz-button nzType="primary" [routerLink]="['/jobTracking', item.id]"
+                        class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Manage Cargo</button> -->
+        <div *ngIf="!driverJobIds.includes(item.jobid)" > <button  nz-button nzType="primary" 
+            (click)="showModal(item.jobid,'assign')"
+                           class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Assign Job</button></div>
+        <div *ngIf="driverJobIds.includes(item.jobid)" > <button  nz-button nzType="primary" 
+            (click)="showModal(item.jobid,'reAssign')"
+                           class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Re Assign Job</button></div>
+                       
+                    
                 </nz-space>
+             
             </div>
         </div>
     </div>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Assigne Job" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <ng-container *nzModalContent>
+            <form action="" [formGroup]="driverForm">
+                <div class="w-full flex flex-col sm:mt-8">
+                  <label for="">Select Driver to assign job.</label>
+                  <!-- <nz-select formControlName="selectedDriver" nzAllowClear nzPlaceHolder="Select a Driver" nzSize="large" class="w-full rounded-lg">
+                    <nz-option nzLabel="None" nzValue="none"></nz-option>
+                    <ng-container *ngFor="let driver of drivers">
+                      <nz-option nzLabel="{{ driver.fullName }}" [nzValue]="driver.id" [nzDisabled]="driverJobIds.includes(driver.id)"></nz-option>
+                    </ng-container>
+                  </nz-select> -->
+                  <nz-select formControlName="selectedDriver" nzAllowClear nzPlaceHolder="Select a Driver" nzSize="large" class="w-full rounded-lg">
+                    <nz-option nzLabel="None" nzValue="none"></nz-option>
+                    <!-- <ng-container *ngIf="driverJobIds.includes(item.id)"> -->
+                    <ng-container *ngFor="let driver of drivers">
+                        <nz-option nzLabel="{{ driver.fullName }}" [nzValue]="driver.id "></nz-option>
+                      </ng-container>
+                    <!-- </ng-container -->
+                  </nz-select>
+                </div>
+              </form>
+              
+              
+        </ng-container>
+      </nz-modal>
     <!-- drawer -->
     <nz-drawer [nzSize]="size" [nzVisible]="visible" nzPlacement="right" [nzTitle]="title" (nzOnClose)="close()">
         <ng-container *nzDrawerContent>
@@ -177,6 +215,10 @@
         </ng-container>
     </nz-drawer>
 
+
+    <!-- modal -->
+ 
+    
     <div *ngIf="!commonservice.jobAccepted" class="w-full  flex flex-col items-center justify-center ml-10  mt-10 ">
 
         <div class="w-8/12 h-52">

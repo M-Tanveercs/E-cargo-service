@@ -31,36 +31,37 @@ import { CommonService } from './common.service';
 import { CoreService } from './core/core.service';
 import { AgencyDashBordModule } from './Agency/compnents/agency-dash-bord/agency-dash-bord.module';
 import { DriverModule } from './Agency/compnents/driver-dashBord/driver.module';
+import { DriverRoutingModule } from './Agency/compnents/driver-dashBord/driver-routing.module';
 
 
 @NgModule({
-  declarations: [							
+  declarations: [
     AppComponent,
-     
- 
-   ],
+
+
+  ],
   imports: [
     BrowserModule,
-  UsersModule,
-AgencyModule,
-NzIconModule,
-  AdminModule,
+    UsersModule,
+    AgencyModule,
+    NzIconModule,
+    AdminModule,
     AppRoutingModule,
     NzButtonModule,
     HttpClientModule,
     NzDropDownModule,
-UsersRoutingModule,
-AgencyRoutingModule,
-AdminRoutingModule,
-UserDashboardModule,
-UserDashboardRoutingModule,
-AgencyRoutingModule,
-AgencyDashBordModule,
-DriverModule,
+    UsersRoutingModule,
+    AgencyRoutingModule,
+    AdminRoutingModule,
+    UserDashboardModule,
+    UserDashboardRoutingModule,
+    AgencyDashBordModule,
+    DriverModule,
+    DriverRoutingModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    CommonService,CoreService
+    CommonService, CoreService
   ],
   bootstrap: [AppComponent]
 })

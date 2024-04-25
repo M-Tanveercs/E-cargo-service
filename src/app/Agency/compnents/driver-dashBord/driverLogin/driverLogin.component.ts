@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { agencyAuthGuardGuard } from 'src/app/Agency/agencyAuthGard/agency-auth-guard.guard';
-import { AgencyAuthService } from 'src/app/Agency/agencyAuthGard/agency-auth.service';
+import { AuthserviceService } from '../auth/authservice.service';
 
 @Component({
   selector: 'app-driverLogin',
@@ -17,7 +16,7 @@ export class DriverLoginComponent implements OnInit {
   form: FormGroup;
 
 
-  constructor(private fb: FormBuilder , private router: Router,private authservice:AgencyAuthService) {
+  constructor(private fb: FormBuilder , private router: Router,private authservice:AuthserviceService) {
       this.form = this.fb.group({
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
@@ -34,7 +33,6 @@ ngOnInit(): void {
 let LoginPassword=this.form.get('password')?.value
   console.log(LoginEmail,LoginPassword);
   this.authservice.login(LoginEmail,LoginPassword)
-      
       
   }
 

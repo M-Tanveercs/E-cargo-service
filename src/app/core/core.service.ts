@@ -15,11 +15,19 @@ export class CoreService {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.post<any>(`http://localhost:3000/usersBookingRecord`, data);
   }
-
+  updateuserOrder( updatedData: any) {
+    const id=updatedData.id
+        return this.http.put(`http://localhost:3000/usersBookingRecord/${id}`, updatedData); // Send a PUT request to update the post
+      }
 
   getUserBookingReacod(userId:any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.get<any>(`http://localhost:3000/usersBookingRecord/?userId=${userId}`);
+  }
+  
+  updateSignUp(postId: number, updatedData: any) {
+
+    return this.http.put(`http://localhost:3000/signup/${postId}`, updatedData); // Send a PUT request to update the post
   }
   getUserBookingReacodByID(Id:any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
@@ -41,10 +49,7 @@ export class CoreService {
   getsignupUserRecordById(id:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/signup/${id}`);
   }
-  updateSignUp(postId: number, updatedData: any) {
-
-    return this.http.put(`http://localhost:3000/signup/${postId}`, updatedData); // Send a PUT request to update the post
-  }
+  
   createUserBookingcancelReacod(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     console.log('create cancel ordertable',this.http.post<any>(`http://localhost:3000/cancelOrder`, data));
@@ -52,8 +57,6 @@ export class CoreService {
     return this.http.post<any>(`http://localhost:3000/cancelOrder`, data);
   }
   getUserBookingCanceldRecod(id:any): Observable<any> {
-    
-    
     
     return this.http.get<any>(`http://localhost:3000/cancelOrder/?userId=${id}`);
   }
@@ -107,6 +110,9 @@ export class CoreService {
   GetDriverDetail(agencyid:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/DriverRecords/?AgencyId=${agencyid}`);
   }
+  getDriverRecord(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/DriverRecords`);
+  }
   GetDriverDetailById(id:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/DriverRecords/${id}`);
   }
@@ -129,6 +135,36 @@ export class CoreService {
   getOrderAcceptRecordById(agencyid:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/OrderAccepByAgency/?agencyid=${agencyid}`);
   }
+  getOrderAcceptRecordByIdonly(id:any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/OrderAccepByAgency/?jobid=${id}`);
+  }
+
+  OrderAssignToDriver(data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.post<any>(`${this.baseUrl}/OrderAssignToDriver`, data);
+  }
+  OrderReAssignToDriver(id:any,data: any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.put<any>(`${this.baseUrl}/OrderAssignToDriver/${id}`, data);
+  }
+  
+  getOrderAssignToDriver(): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`${this.baseUrl}/OrderAssignToDriver`);
+  }
+  getOrderAssignToDriverByid(id:any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`${this.baseUrl}/OrderAssignToDriver/${id}`);
+  }
+  getOrderAssignToDriverBydriverId(id:any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`${this.baseUrl}/OrderAssignToDriver/?driverId=${id}`);
+  }
+  
+  getOrderAssignToDriverByJobId(jobId:any): Observable<any> {
+    // Assuming you want to send data to the 'usersBookingRecord' endpoint
+    return this.http.get<any>(`${this.baseUrl}/OrderAssignToDriver/?jobid=${jobId}`);
+  }
   manageCargo(data: any): Observable<any> {
     // Assuming you want to send data to the 'usersBookingRecord' endpoint
     return this.http.post<any>(`http://localhost:3000/Tracking`, data);
@@ -140,9 +176,9 @@ export class CoreService {
     // Use PUT method to update an existing entry
     return this.http.put<any>(`http://localhost:3000/Tracking/${trackingId}`, updatedData);
   }
-  updateAcceptedOrder(postId: number, updatedData: any) {
-
-    return this.http.put(`http://localhost:3000/OrderAccepByAgency/${postId}`, updatedData); // Send a PUT request to update the post
+  updateAcceptedOrder( updatedData: any) {
+const id=updatedData.id
+    return this.http.put(`http://localhost:3000/OrderAccepByAgency/${id}`, updatedData); // Send a PUT request to update the post
   }
       getManageCargoById(TrackingId:any): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/Tracking/?trackingId=${TrackingId}`);

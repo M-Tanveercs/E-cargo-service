@@ -23,6 +23,8 @@
           <th>CNIC</th>
           <th>Vehicle Number</th>
           <th>Address</th>
+          <th>Password</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -35,6 +37,8 @@
           <td>{{ data.cnic }}</td>
           <td>{{ data.vehicleNumber }}</td>
           <td>{{ data.address }}</td>
+          <td>{{ data.driverPassword }}</td>
+          <td>{{ data.status }}</td>
          
           <td class="bg-slate-200" > <div class="flex gap-8 justify-center text-base ">
             <i class="fa-regular fa-pen-to-square text-blue-700" (click)="EditDriveDetail(data.id)"></i> 
@@ -96,6 +100,7 @@
         <div class="w-full">
           <label for="phoneNumber" class="text-slate-600">Phone Number</label>
           <input type="tel" nz-input formControlName="phoneNumber" placeholder="Enter Phone Number" />
+          
           <div *ngIf="submitted && f['phoneNumber'].errors" class="text-red-600 mt-1">
             <div *ngIf="f['phoneNumber'].errors['required']">Phone Number is required</div>
             <div *ngIf="f['phoneNumber'].errors['pattern']">Invalid phone number format</div>
@@ -120,10 +125,36 @@
         </div>
         <div class="w-full">
           <label for="driverPassword" class="text-slate-600">Driver Password</label>
-          <input type="text" nz-input formControlName="driverPassword" placeholder="Set Driver Login Password" />
+         
+          <nz-input-group [nzSuffix]="suffixTemplate">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              formControlName="driverPassword" placeholder="Set Driver Login Password"
+   
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <span
+              nz-icon
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+            ></span>
+          </ng-template>
           <div *ngIf="submitted && f['driverPassword'].errors" class="text-red-600 mt-1">
             <div *ngIf="f['driverPassword'].errors['required']">Driver Password is required</div>
           </div>
+        </div>
+        <div class=" w-full flex flex-col ">
+          <label for="">Driver Status.</label>
+          <nz-select formControlName="status" nzAllowClear nzPlaceHolder="Select a status"  class=" w-full  rounded-lg" nzDefaultValue="free">
+          
+            <ng-container >
+              <nz-option nzLabel="free" nzValue="free"  ></nz-option>
+              <nz-option nzLabel="booked" nzValue="booked"></nz-option>
+            
+            </ng-container>
+          </nz-select>
         </div>
       </div>
   

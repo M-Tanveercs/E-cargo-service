@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { CoreService } from '../core/core.service';
-import { BehaviorSubject, Subject, map } from 'rxjs';
+import { BehaviorSubject, Subject , map, } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,7 @@ export class AgencyCommonService implements OnInit {
   currentOrderArray: any[]=[];
   agencyjobs: any;
   signupuserdetail: any;
-  
+  job: any[]=[]
   constructor(private coreservice: CoreService) { }
 
   ngOnInit(): void {
@@ -67,7 +69,7 @@ getAllJobs() {
     map((allJobs: any[]) => {
       if (this.agencyjobs && this.agencyjobs.length > 0) {
         // Filter out jobs that are also in the agency jobs data
-        return allJobs.filter(job => !this.agencyjobs.some((agencyJob: { id: any; }) => agencyJob.id === job.id));
+        return allJobs.filter(job => !this.agencyjobs.some((agencyJob: {jobid: any; }) => agencyJob.jobid === job.id));
       } else {
         // If there are no agency jobs data, return all jobs
         return allJobs;
@@ -117,50 +119,61 @@ getAllJobs() {
   //   console.log(this.searchText);
   //   this.searchSubject.next(this.searchText);
   // }
-  GetCurentJob(id: string) {
+  async GetCurentJob(jobid: string) {
     debugger
-    this.coreservice.getUserBookingReacodByID(id).subscribe(
-      (response) => {
-        if (response && Object.keys(response).length > 0) {
-          this.curentCartdata = response;
-          this.CurentJobRecord.next(response);
-        
-        } else {
-
-        }
-      },
-      (error) => {
+   try{
+    this.curentCartdata= await this.coreservice.getUserBookingReacodByID(jobid).toPromise() 
+    this.CurentJobRecord.next(this.curentCartdata);
+   } catch(error)  {
         console.error('Error fetching data:', error);
 
 
       }
-    );
+    
 
   }
-orderAccept(id:any){
-  debugger
-  const getrecord=localStorage.getItem('LoginAgency');
-  if(getrecord){
-  this.AgencyLoginData=JSON.parse(getrecord);
-  this.AgencyLoginData.forEach((data: { id: any; })=>{
-    this.agencyid=data.id
-    console.log("agency id",data.id);
-    
-  })
+  orderAccept(jobid: any) {
+    const getrecord = localStorage.getItem('LoginAgency');
+    if (getrecord) {
+      this.AgencyLoginData = JSON.parse(getrecord);
+      this.AgencyLoginData.forEach((data: { id: any }) => {
+        this.agencyid = data.id;
+        console.log("agency id", data.id);
+      });
+    }
+  
+    this.GetCurentJob(jobid);
+  
+    const randomFourDigitNumber = this.generateRandomFourDigitNumber();
+    console.log(randomFourDigitNumber);
+  
+    this.curentCartdata.agencyid = this.agencyid;
+    this.curentCartdata.jobid = this.curentCartdata.id;
+    this.curentCartdata.id = randomFourDigitNumber;
+    this.curentCartdata.status = 'pending';
+  
+    const order = this.curentCartdata;
+  
+    this.coreservice.OrderAcceptAgency(this.curentCartdata).pipe(
+      catchError(error => {
+        console.error('Error accepting order:', error);
+        // Handle the error as needed, for example, throw a custom error
+        return throwError('Failed to accept order. Please try again.');
+      })
+    ).subscribe(data => {
+      console.log(data);
+      alert("Order accepted");
+      this.getAllJobs();
+      this.AllJobs$.subscribe(jobs => this.job = jobs);
+    });
   }
-  this.GetCurentJob(id)
-  //  this.curentCartdata['AgencyId'] = this.agencyid
-debugger
-   this.curentCartdata.agencyid = this.agencyid;
-   this.curentCartdata.status='pending';
-const order=this.curentCartdata
-this.coreservice.OrderAcceptAgency(this.curentCartdata).subscribe(data=>{
-  console.log(data);
-  
-})
-  console.log(this.curentCartdata);
-  
-  alert("order accepted")
+ generateRandomFourDigitNumber(): number {
+  const min = 1000; // Minimum 4-digit number (1000)
+  const max = 9999; // Maximum 4-digit number (9999)
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Output a random 4-digit number
+
 
 }

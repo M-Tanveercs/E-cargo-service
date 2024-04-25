@@ -41,6 +41,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ManageDriverComponent } from './manage-driver/manage-driver.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ AgencyMainDashBordComponent,AgencyDashBordComponent,AgencyFooterComponent,Agency
     NzTimePickerModule,
     NzSpinModule,
     NzTableModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzModalModule
   ],providers:[
     AgencyDashService,CoreService,AgencyAuthService
   ]

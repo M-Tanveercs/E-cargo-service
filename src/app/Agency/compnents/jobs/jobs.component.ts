@@ -73,8 +73,8 @@ this.router.navigate(['/more-info'])
       this.job.sort((a:any, b:any) => b.estimatedWeight - a.estimatedWeight);
     }
   }
-  curentOrderAccept(id:any){
-    this.commonService.orderAccept(id)
+  curentOrderAccept(jobid:any){
+    this.commonService.orderAccept(jobid)
   
    }
 }

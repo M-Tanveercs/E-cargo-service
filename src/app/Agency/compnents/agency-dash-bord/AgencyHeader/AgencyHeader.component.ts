@@ -19,7 +19,7 @@ export class AgencyHeaderComponent implements OnInit {
   constructor(private userAuthService:AgencyAuthService, private router:Router ,public commonservice:AgencyDashService) { }
 
   ngOnInit() {
-    debugger
+    // debugger
     this.userAuthService.authStatus$.subscribe(status => {
       this.authstatus = status;
 

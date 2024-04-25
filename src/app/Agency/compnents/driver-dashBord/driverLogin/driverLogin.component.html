@@ -14,7 +14,7 @@
           <h3 class="pt-4 text-2xl text-center">Login in Your Account!</h3>
           <form [formGroup]="form" (ngSubmit)="onSubmit()" class="px-8 pt-6 pb-8 mb-4  rounded">
             <div class="mb-4">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">Email</label>
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">Driver Email</label>
                 <input formControlName="email" id="email" type="email" placeholder="Email"
                     class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                 <p class="text-red-500 text-xs italic" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
@@ -43,11 +43,7 @@
             <div class="text-center">
               <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="#">Forgot Password?</a>
             </div>
-            <div class="text-center">
-              <a class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" routerLink="/agency-signup">
-                If you don't have an account? <span>Sign Up!</span>
-              </a>
-            </div>
+           
         </form>
        
         </div>
