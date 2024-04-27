@@ -1,4 +1,4 @@
-<div class="w-full h-fit bg-[#FAFAFA] pt-32 pb-40 overflow-x-hidden">
+<!-- <div class="w-full h-fit bg-[#FAFAFA] pt-32 pb-40 overflow-x-hidden">
   <h1 class=" text-3xl  mb-16 md:ml-40 lg:ml-72 ml-28  font-semibold">Manage Cargo</h1>
   <div class="w-full flex justify-center items-center" >
     <div class="w-7/12 max-h-fit bg-white shadow-xl rounded-xl p-10" > 
@@ -60,4 +60,93 @@
 </form>
 </div>
   </div>
+</div> -->
+
+
+<div class="w-full h-fit  bg-[#FAFAFA] pt-32 overflow-x-hidden">
+  <h1 class=" md:ml-72 ml-28 mt-3 text-3xl  mb-10 font-semibold">Track Job</h1>
+  <div  class="w-full  flex flex-col items-center justify-center ml-10  mt-10 ">
+   
+ <div class="md:w-5/12 w-7/12 h-fit mb-32">
+
+  <div class="w-full  shadow-md rounded-md bg-white  h-full ">
+    <div class="w-full h-20 bg-white  pt-5   px-7 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> 
+      <i class="fa fa-search  text-slate-400 text-xl mr-1" aria-hidden="true"></i>
+
+      Job Tracking Result</h3></div>
+    <div class="w-full  flex md:pl-20 pl-5  pt-10  pb-10 m-auto pr-5">
+        
+     <div class="h-full w-full "> <nz-steps [nzCurrent]="curentvalue" nzDirection="vertical" class="flex h-full w-full gap-1">
+      <nz-step nzTitle="Job Booked Date" nzDescription="12-March-2024." ></nz-step>
+      <nz-step nzTitle="Pickup date & time" nzDescription="{{ datePickup }} {{ timePickup }}"></nz-step>
+
+       
+      <nz-step nzTitle="Processing" nzDescription=""></nz-step>
+      <nz-step nzTitle="On The Way" nzDescription=""></nz-step>
+      <nz-step nzTitle="Drop off Completed" nzDescription=""></nz-step>
+   <nz-step class="cursor-pointer" nzTitle="Delivery Proof:" nzDescription="View imge" class=""(click)="onClick('prof')"> </nz-step>
+      <nz-step class="cursor-pointer" nzTitle="Receiver Signature:" nzDescription="View imge" class=""(click)="onClick('sign')"></nz-step>
+    </nz-steps></div>
+    </div>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+<div *ngIf="show" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <span class="absolute right-7 top-4" (click)="hideimgModal()" type="button"><i class="fa-regular fa-rectangle-xmark text-3xl text-slate-200 hover:text-red-400 "></i></span>
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <!--
+        
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <img src={{src}} alt="">
+<div class="w-full text-center">
+  
+  <span class=" text-2xl ">{{text}}</span>
 </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="trackingid === jobId"  class="w-full flex justify-center">
+  <div class="w-8/12 text-center mt-10  flex justify-center "> 
+ <div class="w-8/12 flex justify-end mr-20">   <h2 class="text-3xl font-semibold ">Job Tracking Map</h2></div>
+    <button  (click)="refresh()"  nz-button nzSize="default" nzType="primary" class=" h-8  ml-28  px-2 text-base rounded-md cursor-pointer  ">ReFresh Map
+  
+  </button>
+  
+   </div>
+</div>
+<div *ngIf="trackingid != jobId" class="w-full text-center"> <h2 class="text-3xl font-semibold ">No Map Data Found</h2></div>
+ <div class="w-full  ml-10 mt-10  h-[70vh] flex justify-center items-center mb-20 ">
+      
+  <div  id="map"  class="w-2/3 h-full"></div>
+</div>
+
+
+<div class="text-slate-500 rounded-lg"></div>

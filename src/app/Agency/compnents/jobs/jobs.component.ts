@@ -22,7 +22,7 @@ searchText: any;
     debugger
     this.commonService.getAllAgencyJobs()
     this.commonService.getAllJobs()
-    this.commonService.AllJobs$.subscribe(jobs =>
+    this.commonService.AllJobs.subscribe(jobs =>
       this.job=jobs,
       
     )
@@ -74,8 +74,11 @@ this.router.navigate(['/more-info'])
     }
   }
   curentOrderAccept(jobid:any){
+
     this.commonService.orderAccept(jobid)
-  
+
+   this.commonService.getAllAgencyJobs()
+    this.commonService.getAllJobs()
    }
 }
 

@@ -46,11 +46,11 @@
 </div>
 <div class="w-full flex  items-center">
   <label class="w-60 font-semibold text-base" for="">Delivery Proof:</label>
-  <input nz-input type="file" placeholder="Delivery Proof" formControlName="deliveryProof" nzSize="large" />
+  <input (change)="deliveryProof($event)" nz-input type="file" placeholder="Delivery Proof" formControlName="deliveryProof" nzSize="large" />
 </div>
 <div class="w-full flex  items-center">
   <label class="w-60 font-semibold text-base" for="">Receiver Signature:</label>
-  <input nz-input type="file" placeholder="Receiver Signature" formControlName="reciverSignature" nzSize="large" />
+  <input  (change)="reciverSignature($event)" nz-input type="file" placeholder="Receiver Signature" formControlName="reciverSignature" nzSize="large" />
 </div>
 <div class="w-full flex justify-center">
   <button nz-button nzType="primary" 

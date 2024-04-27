@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { DashCommonService } from '../dash-common.service';
 import { AuthService } from 'src/app/users/userAuth.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-dash-header',
   templateUrl: './dash-header.component.html',
@@ -15,7 +15,7 @@ export class DashHeaderComponent implements OnInit {
   bookedcount: any;
   authstatus: any;
 
-  constructor(private userAuthService:AuthService, private router:Router ,public commonservice:DashCommonService) { }
+  constructor(private userAuthService:AuthService, private router:Router ,public commonservice:DashCommonService,private message:NzMessageService) { }
 
   ngOnInit() {
     debugger
@@ -49,10 +49,8 @@ export class DashHeaderComponent implements OnInit {
   logout(){
     localStorage.setItem('LoginUser','')
     this.userAuthService.updateAuthStatus(false);
-    // Set authentication status to false
-    // Remove authentication status from localStorage
     localStorage.removeItem('isAuthenticated');
-    alert('user logged out')
+    this.message.create('info','Logout Successfully')
     this.router.navigate(['/']);
   }
 }

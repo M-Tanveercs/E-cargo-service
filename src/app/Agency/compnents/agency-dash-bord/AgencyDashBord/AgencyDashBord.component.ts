@@ -35,7 +35,7 @@ export class AgencyDashBordComponent implements OnInit {
     });
   }
   ngOnInit() {
-    // debugger
+    debugger
     const loginUser = localStorage.getItem('LoginAgency')
     if (loginUser) {
       this.userLoginData = JSON.parse(loginUser)
@@ -74,7 +74,7 @@ export class AgencyDashBordComponent implements OnInit {
 
   }
   getAllDriverData() {
-    this.coreservice.getDriverRecord().subscribe(driverRecord => {
+    this.coreservice.GetDriverDetail(this.agencyId).subscribe(driverRecord => {
       // this.drivers = driverRecord
 
       this.drivers = driverRecord.filter((driver: any) => {
@@ -118,8 +118,13 @@ export class AgencyDashBordComponent implements OnInit {
 
   showModal(jobid:any,type:any): void {
     this.isVisible = true;
-this.jobId=jobid
-this.assignType=type
+    if(this.drivers.length!=0){
+
+      this.jobId=jobid
+      this.assignType=type
+    }else{
+      this.message.create('info', 'No Driver Available');
+    }
 
   }
 
@@ -298,12 +303,17 @@ this.existingDriverId=jobdata.driverId
   async getOrderToDriver() {
     // Get driver details
     const driverDetails = await this.coreservice.getOrderAssignToDriver().toPromise();
+    const deliverDriverId = driverDetails.find((driver: { status: string; }) => driver.status === "Delivered")?.driverId;
+      
+    const data = await this.coreservice.GetDriverDetailById(deliverDriverId).toPromise();
+    // Prepare the updated data with the new status
+    const Data = { ...data, status: 'free'};
 
+    // Update the driver's details with the new status
+    await this.coreservice.updateDriverDetail(deliverDriverId, Data).toPromise();
     // Extract job IDs from driver details
     this.driverJobIds = driverDetails.map((driver: { jobid: any; }) => driver.jobid);
     console.log('driverjobids', this.driverJobIds);
-
-    // Iterate over your carts
 
 
   }

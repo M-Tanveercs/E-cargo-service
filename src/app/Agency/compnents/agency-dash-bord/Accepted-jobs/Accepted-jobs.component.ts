@@ -14,6 +14,7 @@ export class AcceptedJobsComponent implements OnInit {
 
   ngOnInit() {
     debugger
+    
     this.commonservice.getcargoRecordwithStatus('Pending')
  }
  }

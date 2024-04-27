@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { CoreService } from 'src/app/core/core.service';
@@ -20,7 +20,7 @@ export class AuthserviceService {
   private driverAuthStatus = new BehaviorSubject<boolean>(false);
   driverAuthStatus$ = this.driverAuthStatus.asObservable();
   data: any
-constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService) {
+constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService,private message:NzMessageService) {
 
  }
 // isDriverAuthenticated():boolean{
@@ -46,18 +46,19 @@ isDriverAuthenticated(): boolean {
 updateDriverAuthStatus(isDriverAuthenticated: boolean): void {
   this.driverAuthStatus.next(isDriverAuthenticated);
 }
-signupDriverRecord(): void {
-  this.coreservice.getDriverRecord().subscribe(
-    (response) => {
+async signupDriverRecord() {
+  try{
+ const response=await this.coreservice.getDriverRecord().toPromise()
+   
       if (response && Object.keys(response).length > 0) {
       this.data = response;
       console.log(typeof response);
       }
-    },
-    (error) => {
+    }catch
+    (error) {
       console.error('Error fetching data:', error);
     }
-  );
+  
 }
 
 // getsignupUserRecord() {
@@ -69,13 +70,13 @@ signupDriverRecord(): void {
 //   })
 // }
 
-login(loginemail:any,password:any) {
+async login(loginemail:any,password:any) {
   this.loginemail = loginemail;
 this.password = password;
 
 // const storedSignUpData = localStorage.getItem('SignUp');
 
-this.signupDriverRecord();
+await this.signupDriverRecord();
     
 if (this.data) {
    debugger
@@ -99,9 +100,8 @@ if (this.data) {
     localStorage.setItem('LoginDriver','')
     localStorage.setItem('LoginDriver',JSON.stringify( this.loginuserDetails))
 // this.toastr.success('You Login Successfully')
-
+this.message.create('success','Login successfully')
     console.log('user Match');
-    alert(' login successfully')
     this.Athenticate=true
    
   
@@ -114,14 +114,14 @@ if (this.data) {
 //  this.toastr.error('Login Detailes not match')
     localStorage.setItem('LoginAdmin','')
     // this.isSignIn=false
-    alert('user not match')
+    this.message.create('info','User Not Match')
     console.log('user not match');
     // alert('not match')
     // this.router.navigate(['/login'])
   }
  
 }else{
-  alert('user account not found sign up first')
+  this.message.create('info','User Not Found Sign up First')
 }
 }
 }

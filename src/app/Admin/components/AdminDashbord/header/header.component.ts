@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminAuthService } from 'src/app/Admin/adminAuthGard/admin-auth.service';
-import { AgencyAuthService } from 'src/app/Agency/agencyAuthGard/agency-auth.service';
-import { AgencyDashService } from 'src/app/Agency/compnents/agency-dash-bord/agency-dash.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,7 +15,7 @@ export class HeaderComponent implements OnInit {
   bookedcount: any;
   authstatus: any;
 
-  constructor(private userAuthService:AdminAuthService, private router:Router ) { }
+  constructor(private userAuthService:AdminAuthService, private router:Router,private message:NzMessageService ) { }
 
   ngOnInit() {
     debugger
@@ -55,7 +53,7 @@ export class HeaderComponent implements OnInit {
     // Set authentication status to false
     // Remove authentication status from localStorage
     localStorage.removeItem('isAuthenticated');
-    alert('user logged out')
+    this.message.create('info','Logout Successfully')
     this.router.navigate(['admin-login']);
   }
 }

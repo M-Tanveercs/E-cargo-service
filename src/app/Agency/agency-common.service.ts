@@ -3,7 +3,7 @@ import { CoreService } from '../core/core.service';
 import { BehaviorSubject, Subject , map, } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,8 @@ export class AgencyCommonService implements OnInit {
 
   private JobRecord = new BehaviorSubject([]);
   AllJobs$ = this.JobRecord.asObservable();
+  AllJobs: Subject<any> = new Subject<any>();
+
   private CurentJobRecord = new BehaviorSubject({});
   CurentJob$ = this.CurentJobRecord.asObservable();
   private AgencyJobRecord = new BehaviorSubject({});
@@ -25,7 +27,8 @@ export class AgencyCommonService implements OnInit {
   agencyjobs: any;
   signupuserdetail: any;
   job: any[]=[]
-  constructor(private coreservice: CoreService) { }
+
+  constructor(private coreservice: CoreService,private message:NzMessageService) { }
 
   ngOnInit(): void {
   
@@ -78,7 +81,7 @@ getAllJobs() {
   ).subscribe(
     (response: any) => {
       // Update the records with filtered jobs
-      this.JobRecord.next(response);
+      this.AllJobs.next(response);
       console.log("All non-agency jobs:", response);
     },
     (error) => {
@@ -132,7 +135,7 @@ getAllJobs() {
     
 
   }
-  orderAccept(jobid: any) {
+  async orderAccept(jobid: any) {
     const getrecord = localStorage.getItem('LoginAgency');
     if (getrecord) {
       this.AgencyLoginData = JSON.parse(getrecord);
@@ -142,7 +145,7 @@ getAllJobs() {
       });
     }
   
-    this.GetCurentJob(jobid);
+   await this.GetCurentJob(jobid);
   
     const randomFourDigitNumber = this.generateRandomFourDigitNumber();
     console.log(randomFourDigitNumber);
@@ -150,7 +153,7 @@ getAllJobs() {
     this.curentCartdata.agencyid = this.agencyid;
     this.curentCartdata.jobid = this.curentCartdata.id;
     this.curentCartdata.id = randomFourDigitNumber;
-    this.curentCartdata.status = 'pending';
+    this.curentCartdata.status = 'Pending';
   
     const order = this.curentCartdata;
   
@@ -162,7 +165,8 @@ getAllJobs() {
       })
     ).subscribe(data => {
       console.log(data);
-      alert("Order accepted");
+this.message.create('info','Job Accepted Successfully');
+      // alert("Order accepted");
       this.getAllJobs();
       this.AllJobs$.subscribe(jobs => this.job = jobs);
     });

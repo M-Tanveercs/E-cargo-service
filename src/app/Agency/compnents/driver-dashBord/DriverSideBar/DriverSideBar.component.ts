@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DriverCommonService } from '../auth/common.service';
 import { AuthserviceService } from '../auth/authservice.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-DriverSideBar',
   templateUrl: './DriverSideBar.component.html',
@@ -17,7 +17,7 @@ export class DriverSideBarComponent implements OnInit {
   jobontheway: any;
   jobdelv: any;
 
-  constructor(public commonservice:DriverCommonService,private userAuthService:AuthserviceService ,private router:Router) { }
+  constructor(public commonservice:DriverCommonService,private userAuthService:AuthserviceService ,private router:Router,private message:NzMessageService) { }
 
   ngOnInit( ) {
     this.userAuthService.driverAuthStatus$.subscribe(status => {
@@ -52,11 +52,9 @@ export class DriverSideBarComponent implements OnInit {
   theme = false;
   logout(){
     localStorage.setItem('LoginDriver','')
-    this.userAuthService.updateDriverAuthStatus(false);
-    // Set authentication status to false
-    // Remove authentication status from localStorage
+  
     localStorage.removeItem('isDriverAuthenticated');
-    alert('user logged out')
+    this.message.create('info','Logout Successfully')
     this.router.navigate(['']);
   }
 

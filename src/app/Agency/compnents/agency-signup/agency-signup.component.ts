@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CoreService } from 'src/app/core/core.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-agency-signup',
   templateUrl: './agency-signup.component.html',
@@ -10,7 +11,7 @@ import { CoreService } from 'src/app/core/core.service';
 export class AgencySignupComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router,private coreservice:CoreService) { }
+  constructor(private fb: FormBuilder, private router: Router,private coreservice:CoreService,private message:NzMessageService) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -54,7 +55,8 @@ export class AgencySignupComponent implements OnInit {
     
         if (emailExists) {
           // Display an error message or take appropriate action
-          alert('Email already exists. Please use a different email.');
+          this.message.create('danger','Email already exists. Please use a different email.')
+          
           return; // Stop further execution
         }
         const uniqueId = this.generateUniqueId();
@@ -81,8 +83,7 @@ export class AgencySignupComponent implements OnInit {
     
       // Generate a unique ID for the new user
      
-   
-      alert('signup successfully')
+      this.message.create('info','SignUp Successfully')
       this.router.navigate(['/agency-login'])
     }
 

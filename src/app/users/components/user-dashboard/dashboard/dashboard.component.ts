@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   isVisible = false;
   selectedValue:any;
   reason: any;
+  jobdeliverCount: any;
 
   constructor(public commonservice:DashCommonService,private coreservice:CoreService,private modalService: NzModalService) { }
 
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
       id: any; fullname: any; 
   }) => {
       this.username=element.fullname
-
+this.userid=element.id
       this.commonservice.getuserrecord(element.id)
       debugger
     });
@@ -40,6 +41,9 @@ export class DashboardComponent implements OnInit {
     }
     this.coreservice.orderCancelReason().subscribe((responce)=>{
       this.reason=responce
+    })
+    this.commonservice.jobDeliverCount$.subscribe((responce)=>{
+      this.jobdeliverCount=responce
     })
   }
  
@@ -65,6 +69,7 @@ console.log("selected value:",this.selectedValue);
   
     this.commonservice.cancelReason=this.selectedValue
   this.commonservice.getuserrecordforCancel(id)
+  this.commonservice.getuserrecord(this.userid)
 }
 }
   

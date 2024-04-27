@@ -3,7 +3,7 @@ import { DashCommonService } from '../dash-common.service';
 
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/users/userAuth.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-dash-sidebar',
   templateUrl: './dash-sidebar.component.html',
@@ -13,8 +13,9 @@ export class DashSidebarComponent implements OnInit {
   bookedcount: any;
   canceljobcount: any;
   authstatus: any;
+  completedJob: any;
 
-  constructor(public commonservice:DashCommonService,private userAuthService:AuthService ,private router:Router) { }
+  constructor(public commonservice:DashCommonService,private userAuthService:AuthService ,private router:Router,private message:NzMessageService) { }
 
   ngOnInit( ) {
     this.userAuthService.authStatus$.subscribe(status => {
@@ -24,6 +25,10 @@ export class DashSidebarComponent implements OnInit {
     })
     this.commonservice.jobcountData$.subscribe((data) => {
       this.bookedcount = data;
+    
+    });
+    this.commonservice.jobDeliverCount$.subscribe((data) => {
+      this.completedJob = data;
     
     });
    this.commonservice.canceljobcountData$.subscribe((data)=>{
@@ -41,11 +46,10 @@ export class DashSidebarComponent implements OnInit {
   logout(){
     localStorage.setItem('LoginUser','')
     this.userAuthService.updateAuthStatus(false);
-    // Set authentication status to false
-    // Remove authentication status from localStorage
+  
     localStorage.removeItem('isAuthenticated');
-    alert('user logged out')
-    this.router.navigate(['/']);
+    this.message.create('info','Logout Successfully')
+        this.router.navigate(['/']);
   }
 
 }

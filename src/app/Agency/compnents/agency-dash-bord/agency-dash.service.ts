@@ -24,7 +24,10 @@ export class AgencyDashService {
     private Jobdeliverd = new BehaviorSubject<any>(null);
     jobDeliverCount$ = this.Jobdeliverd.asObservable();
 
+    orderSuccessful: boolean=false
     managecargodata: any[] = [];
+    private managecargodatas = new BehaviorSubject<any>(null);
+    managecargodata$ = this.managecargodatas.asObservable();
     cargoID: any;
     userLoginData: any;
     Alldata: any;
@@ -33,6 +36,7 @@ export class AgencyDashService {
     Delivered: any[] = [];
     ontheWay: any[] = [];
     signupuserdetail: any;
+  userdata: any;
   constructor(private coreservice: CoreService) {
     const jobcount = localStorage.getItem('jobAccepted');
     if (jobcount) {
@@ -130,30 +134,25 @@ export class AgencyDashService {
       }
     );
   }
-  getmanageCargo(userId: any): void {
-    this.coreservice.getManageCargoById(userId).subscribe(
-      (response) => {
-
-        if (response && Object.keys(response).length > 0) {
-          // this.managecargodata=[]
-          this.managecargodata = response;
-          localStorage.setItem('managecargodata', '')
-          localStorage.setItem('managecargodata', JSON.stringify(response))
-          console.log(response);
-          alert('data fetched successfully')
-
-
-        } else {
-          alert('data not fetched successfully')
-
-        }
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-
-      });
-
+  async getmanageCargo(userId: any) {
+    try {
+      const response = await this.coreservice.getManageCargoById(userId).toPromise();
+  
+      if (response && Object.keys(response).length > 0) {
+this.managecargodatas.next(response)
+        this.managecargodata = response;
+        localStorage.setItem('managecargodata', '');
+        localStorage.setItem('managecargodata', JSON.stringify(response));
+        console.log(response);
+        // alert('data fetched successfully')
+      } else {
+        // alert('data not fetched successfully')
+      }
+    } catch (error) {
+      console.error('Error in async operation:', error);
+    }
   }
+  
   updateManageCartgo(id: any, data: any) {
     this.coreservice.updateMangeCargo(id, data).subscribe(
       (response) => {
@@ -183,6 +182,29 @@ export class AgencyDashService {
         console.error('Error fetching data:', error);
         alert('Error getUserBookingReacodtocancel fetching data');
 
+      }
+    );
+  }
+  getUserBookingReacodByID(Id: any): void {
+    this.coreservice.getUserBookingReacodByID(Id).subscribe(
+      (response) => {
+        if (response && Object.keys(response).length > 0) {
+          this.userdata = response;
+     console.log(this.userdata);
+     
+  
+          localStorage.removeItem('userdata');
+          localStorage.setItem('userdata', JSON.stringify(this.userdata))
+   
+        } else {
+        
+          this.orderSuccessful = false;
+        }
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+        alert('Error getUserBookingReacod fetching data');
+        this.orderSuccessful = false;
       }
     );
   }

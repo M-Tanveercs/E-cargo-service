@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { CoreService } from 'src/app/core/core.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +19,7 @@ export class AgencyAuthService {
   private authStatus = new BehaviorSubject<boolean>(false);
   authStatus$ = this.authStatus.asObservable();
   data: any
-constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService) {
+constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService,private message:NzMessageService) {
 
  }
 // isAuthenticated():boolean{
@@ -45,17 +45,17 @@ isAuthenticated(): boolean {
 updateAuthStatus(isAuthenticated: boolean): void {
   this.authStatus.next(isAuthenticated);
 }
-signupAgencyRecord(): void {
-  this.coreservice.getsignupAgencyRecord().subscribe(
-    (response) => {
+async signupAgencyRecord() {
+  try{
+  const response =await this.coreservice.getsignupAgencyRecord().toPromise()
+    
       this.data = response;
       console.log(typeof response);
       
-    },
-    (error) => {
+  }catch(error)  {
       console.error('Error fetching data:', error);
     }
-  );
+  
 }
 
 // getsignupUserRecord() {
@@ -67,13 +67,13 @@ signupAgencyRecord(): void {
 //   })
 // }
 
-login(loginemail:any,password:any) {
+async login(loginemail:any,password:any) {
   this.loginemail = loginemail;
 this.password = password;
 
 // const storedSignUpData = localStorage.getItem('SignUp');
 
-this.signupAgencyRecord();
+await this.signupAgencyRecord();
     
 if (this.data) {
    debugger
@@ -99,7 +99,7 @@ if (this.data) {
 // this.toastr.success('You Login Successfully')
 
     console.log('user Match');
-    alert(' login successfully')
+    this.message.create('success','Login successfully')
     this.Athenticate=true
    
   
@@ -112,14 +112,14 @@ if (this.data) {
 //  this.toastr.error('Login Detailes not match')
     localStorage.setItem('LoginAgency','')
     // this.isSignIn=false
-    alert('user not match')
+    this.message.create('info','User Not Match')
     console.log('user not match');
     // alert('not match')
     // this.router.navigate(['/login'])
   }
  
 }else{
-  alert('user account not found sign up first')
+  this.message.create('info','User Not Found Sign up First')
 }
 }
 }

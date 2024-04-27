@@ -18,12 +18,13 @@ export class CargoStatusComponent implements OnInit {
   userLoginData: any;
   cargoId: any;
   trackingid: any;
-  managecargodata:[]=[]
+  managecargodata:any[]=[]
   username: any;
   driverId: any;
   DriverContact: any;
   driverVehicleNo: any;
   agencyId: any
+  imgDisplay: any;
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private commonservice: DriverCommonService ) {
     this.form = this.fb.group({
       trackingId: [],
@@ -32,15 +33,15 @@ export class CargoStatusComponent implements OnInit {
       driverName: ['' ],
       vehicleNumber: ['' ],
       driverContact: [''],
-      currentDate: ['' ],
-      pickuptime: ['' ],
-      deliveryProof: [''],
-      reciverSignature: ['']
+      currentDate: [null ],
+      pickuptime: [null ],
+      deliveryProof: [null],
+      reciverSignature: [null]
     });
   }
 
   ngOnInit(): void {
-    debugger
+   debugger
     const loginUser=localStorage.getItem('LoginDriver')
   if(loginUser) {
   this.userLoginData=JSON.parse(loginUser)
@@ -68,18 +69,23 @@ this.agencyId=element.AgencyId
       // Retrieve the ID from the route parameters
       this.jobId = params.get('id');
       console.log('Job ID:', this.jobId);
-      this.commonservice.getmanageCargo(this.jobId);
-
-      this.loadData();
+  
     });
-
-
-
-
+ this.getcargodata()
 
   }
+  async  getcargodata(){
+    try {
+      await this.commonservice.getmanageCargo(this.jobId)
 
-  loadData() {
+      this.loadData(); // Call checkTracking after getmanageCargo
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    }
+
+  async loadData() {
+    try{
     const data = localStorage.getItem('managecargodata');
     if (data) {
 
@@ -91,14 +97,14 @@ this.agencyId=element.AgencyId
 
         this.cargoId = element.id;
         this.trackingid = element.trackingId
-        debugger
+ 
         alert(this.cargoId);
 
 
       });
   
     if (this.trackingid === this.jobId) {
-      const cargoData = this.commonservice.managecargodata[0]; // Get the first item from managecargodata
+      const cargoData = this.managecargodata[0]; // Get the first item from managecargodata
       this.form.patchValue({
         trackingId: cargoData.trackingId,
         cargoStatus: cargoData.cargoStatus,
@@ -118,17 +124,41 @@ this.agencyId=element.AgencyId
     // Find the specific job object
     this.commonservice.getuserrecord(this.agencyId)
     this.commonservice.getAssignDriverrecord(this.driverId)
-    debugger
+  
     this.commonservice.getuserBookedRecord(this.jobId)
   }
- 
+  catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+reciverSignature(event: any) {
+  const file: File = event.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+console.log( e.target.result);
+this.reciverSignature=e.target.result
+  };
+  reader.readAsDataURL(file);
+}
+deliveryProof(event: any) {
+  const file: File = event.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+console.log( e.target.result);
+this.deliveryProof=e.target.result
+  };
+  reader.readAsDataURL(file);
+}
   onsubmit(): void {
-    debugger
+   
     if (this.form.valid) {
-      this.form.patchValue({
-        trackingId: this.jobId
-      })
       const formData = this.form.value;
+   
+       formData.trackingId= this.jobId,
+       formData.deliveryProof=this.deliveryProof,
+       formData.reciverSignature=this.reciverSignature
+    
+
       if (this.commonservice.managecargodata.length > 0) {
 
 

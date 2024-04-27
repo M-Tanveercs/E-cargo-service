@@ -63,7 +63,8 @@
                     <h3> <img class="w-6  mb-1 text-slate-400" src="../../../../../assets/imges/package.svg"> Accepted
                         Jobs</h3>
                         
-                        <span *ngIf="driverJobIds.includes(item.jobid)" class="font-medium ml-5" >Order Assigned to Driver</span>
+                        <span *ngIf="driverJobIds.includes(item.jobid) && item.status !== 'Delivered'" class=" ml-5 font-semibold" >Job Assigned to Driver</span>
+                        <span *ngIf=" item.status == 'Delivered'"  class="font-semibold ml-5" >Job Delivered to Customer </span>
                 </div>
                 <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
                     <div class="md:w-6/12 w-full h-full flex flex-col pl-10 pt-5 gap-1">
@@ -105,7 +106,9 @@
 
 
                 <nz-space>
-
+                    <button  [routerLink]="['/jobTracking', item.jobid]"  nz-button nzSize="default" nzType="primary" class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  "> Track Job 
+                        <i class="fa fa-search ml-2" aria-hidden="true"></i> 
+                    </button>
                     <button *nzSpaceItem nz-button nzType="primary"
                         class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  "
                         (click)="showLarge(item)">View All Details</button>
@@ -115,9 +118,15 @@
         <div *ngIf="!driverJobIds.includes(item.jobid)" > <button  nz-button nzType="primary" 
             (click)="showModal(item.jobid,'assign')"
                            class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Assign Job</button></div>
-        <div *ngIf="driverJobIds.includes(item.jobid)" > <button  nz-button nzType="primary" 
-            (click)="showModal(item.jobid,'reAssign')"
-                           class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  ">Re Assign Job</button></div>
+                           <div>
+                            <button *ngIf="driverJobIds.includes(item.jobid) && item.status !== 'Delivered'"
+                                    nz-button nzType="primary" 
+                                    (click)="showModal(item.jobid, 'reAssign')"
+                                    class="w-36 h-8 ml-10 mt-6 px-2 text-base rounded-md cursor-pointer">
+                              Re Assign Job
+                            </button>
+                          </div>
+                          
                        
                     
                 </nz-space>
@@ -137,7 +146,6 @@
                     </ng-container>
                   </nz-select> -->
                   <nz-select formControlName="selectedDriver" nzAllowClear nzPlaceHolder="Select a Driver" nzSize="large" class="w-full rounded-lg">
-                    <nz-option nzLabel="None" nzValue="none"></nz-option>
                     <!-- <ng-container *ngIf="driverJobIds.includes(item.id)"> -->
                     <ng-container *ngFor="let driver of drivers">
                         <nz-option nzLabel="{{ driver.fullName }}" [nzValue]="driver.id "></nz-option>

@@ -10,6 +10,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class CancelJobsComponent implements OnInit {
   userLoginData: any;
   userid: any;
+  cancelJob: any[]=[];
  
 
   constructor(private coreservice:CoreService, public commonservice:DashCommonService,private modal: NzModalService) { }
@@ -22,11 +23,24 @@ export class CancelJobsComponent implements OnInit {
    this.userLoginData.forEach((element: {
      id: any; fullname: any; 
 }) => {
+ this.userid=element.id
  
-   this.commonservice.getcurentcancelorder(element.id)
    });
+   this.getCancelrecord()
   
   }
+  this.commonservice.jobCancel$.subscribe(data => {
+this.cancelJob=data
+  })
+   }
+  async getCancelrecord(){
+    try{
+
+      await this.commonservice.getcurentcancelorder(this.userid)
+    }catch(error){
+      console.log(error);
+      
+    }
    }
 
    showDeleteConfirm(id:any): void {

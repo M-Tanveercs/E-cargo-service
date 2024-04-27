@@ -8,7 +8,7 @@ import { CommonService } from 'src/app/common.service';
 import { UserCommonService } from 'src/app/users/user-common.service';
 import { AuthService } from 'src/app/users/userAuth.service';
 import { AgencyAuthService } from '../../agencyAuthGard/agency-auth.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   switchValue = false
   darkMode: boolean = false;
   authstatus: any;
-  constructor(public AuthService:AgencyAuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService, private mainCommonService:CommonService) { }
+  constructor(public AuthService:AgencyAuthService,private router:Router,public commonservice:UserCommonService, private coreservice:CoreService, private mainCommonService:CommonService,private message:NzMessageService) { }
   // getuserrecord(userId: any): void {
   //   this.coreservice.getUserBookingReacod(userId).subscribe(
   //     (response) => {
@@ -85,7 +85,7 @@ this.AuthService.authStatus$.subscribe(status => {
     localStorage.setItem('LoginAgency','')
 
     this.AuthService.updateAuthStatus(false);
-    alert('user logged out')
+    this.message.create('info','Logout Successfully')
     this.router.navigate(['/agency-login']);
   }
   dashbord(){

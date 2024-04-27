@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +20,7 @@ export class AdminAuthService {
   private adminAuthStatus = new BehaviorSubject<boolean>(false);
   adminAuthStatus$ = this.adminAuthStatus.asObservable();
   data: any
-constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService) {
+constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService,private message:NzMessageService) {
 
  }
 // isAuthenticated():boolean{
@@ -46,18 +46,18 @@ isAuthenticated(): boolean {
 updateadminAuthStatus(isAuthenticated: boolean): void {
   this.adminAuthStatus.next(isAuthenticated);
 }
-signupAdminRecord(): void {
-  this.coreservice.getAdminRecord().subscribe(
-    (response) => {
+async signupAdminRecord() {
+const response= await  this.coreservice.getAdminRecord().toPromise()
+try{
       if (response && Object.keys(response).length > 0) {
       this.data = response;
       console.log(typeof response);
       }
-    },
-    (error) => {
+    }catch
+    (error)  {
       console.error('Error fetching data:', error);
     }
-  );
+  
 }
 
 // getsignupUserRecord() {
@@ -69,13 +69,13 @@ signupAdminRecord(): void {
 //   })
 // }
 
-login(loginemail:any,password:any) {
+async login(loginemail:any,password:any) {
   this.loginemail = loginemail;
 this.password = password;
 
 // const storedSignUpData = localStorage.getItem('SignUp');
 
-this.signupAdminRecord();
+await this.signupAdminRecord();
     
 if (this.data) {
    debugger
@@ -101,8 +101,8 @@ if (this.data) {
 // this.toastr.success('You Login Successfully')
 
     console.log('user Match');
-    alert(' login successfully')
-    this.Athenticate=true
+    this.message.create('success','Login successfully')   
+     this.Athenticate=true
    
   
       this.router.navigate(['/admin-dashbord']); // Default redirect if no returnUrl is stored
@@ -114,14 +114,15 @@ if (this.data) {
 //  this.toastr.error('Login Detailes not match')
     localStorage.setItem('LoginAdmin','')
     // this.isSignIn=false
-    alert('user not match')
+    this.message.create('info','User Not Match')
     console.log('user not match');
     // alert('not match')
     // this.router.navigate(['/login'])
   }
  
 }else{
-  alert('user account not found sign up first')
+  this.message.create('info','User Not Found Sign up First')
+
 }
 }
 }

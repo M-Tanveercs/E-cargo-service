@@ -18,7 +18,8 @@ export class DashCommonService implements OnInit {
   jobcountData$ = this.bookedJobCount.asObservable();
   private cancelJobCounts = new BehaviorSubject<any>(null);
   canceljobcountData$ = this.cancelJobCounts.asObservable();
- 
+  private managecargodatas = new BehaviorSubject<any>(null);
+  managecargodata$ = this.managecargodatas.asObservable();
   private SignupUser = new BehaviorSubject({});
   signUpUserData$ = this.SignupUser.asObservable();
   signupuserdetail: any;
@@ -27,41 +28,47 @@ export class DashCommonService implements OnInit {
   loading: boolean=true
   cancelReason: any;
   userdata: any;
+  private Jobdeliverd = new BehaviorSubject<any>(null);
+  jobDeliverCount$ = this.Jobdeliverd.asObservable();
+  private JobCancel = new BehaviorSubject<any>(null);
+  jobCancel$ = this.JobCancel.asObservable();
+  Delivered: any;
+  filterData: any[]=[];
 constructor( private coreservice:CoreService) {
   const jobcount = localStorage.getItem('jobcount');
   if (jobcount) {
     this.bookedJobCount.next(JSON.parse(jobcount));
   }
-  const canceljobcount = localStorage.getItem('canceljobcount');
-  if (canceljobcount) {
-    this.cancelJobCounts.next(JSON.parse(canceljobcount));
-  }
+
  }
 ngOnInit(): void {
 
 }
-getmanageCargo(userId: any): void {
-  this.coreservice.getManageCargoById(userId).subscribe(
-    (response) => {
+// getmanageCargo(userId: any): void {
+//   this.coreservice.getManageCargoById(userId).subscribe(
+//     (response) => {
       
-      if (response && Object.keys(response).length > 0) {
-        // this.managecargodata=[]
-        this.managecargodata = response;
-        console.log(response);
-        alert('data fetched successfully')
-        
-        
-      } else {
-        alert('data not fetched successfully')
-      
-      }
-    },
-    (error) => {
-      console.error('Error fetching data:', error);
-  
-        }    );
+//       if (response && Object.keys(response).length > 0) {
+//         // this.managecargodata=[]
+//         this.managecargodata = response;
+//         localStorage.setItem('trackingData', '')
+//         localStorage.setItem('trackingdata', JSON.stringify(  this.managecargodata));
 
-}
+//         console.log(response);
+//         // alert('data fetched successfully')
+        
+        
+//       } else {
+//         alert('data not fetched successfully')
+      
+//       }
+//     },
+//     (error) => {
+//       console.error('Error fetching data:', error);
+  
+//         }    );
+
+// }
 // getuserrecordstatus(userid: any): void {
 //   this.coreservice.getOrderAcceptRecordById(userid,'userId').subscribe(
 //     (response) => {
@@ -81,6 +88,25 @@ getmanageCargo(userId: any): void {
 //     }
 //   );
 // }
+async getmanageCargo(userId: any) {
+  try {
+    const response = await this.coreservice.getManageCargoById(userId).toPromise();
+
+    if (response && Object.keys(response).length > 0) {
+this.managecargodatas.next(response)
+      this.managecargodata = response;
+      localStorage.setItem('managecargodata', '');
+      localStorage.setItem('managecargodata', JSON.stringify(response));
+      console.log(response);
+      
+      // alert('data fetched successfully')
+    } else {
+      // alert('data not fetched successfully')
+    }
+  } catch (error) {
+    console.error('Error in async operation:', error);
+  }
+}
 getuserrecord(userId: any): void {
   this.coreservice.getUserBookingReacod(userId).subscribe(
     (response) => {
@@ -94,6 +120,9 @@ getuserrecord(userId: any): void {
         localStorage.removeItem('jobcount');
         localStorage.setItem('jobcount', this.bookedJob);
         // localStorage.setItem('bookedJob', JSON.stringify(this.bookedJob))
+        this.Delivered = this.data.filter((data: { status: string }) => data.status === 'Delivered');
+      const del = this.Delivered.length
+      this.Jobdeliverd.next(del)
       } else {
       
         this.orderSuccessful = false;
@@ -105,6 +134,32 @@ getuserrecord(userId: any): void {
       this.orderSuccessful = false;
     }
   );
+}
+getcargoRecordwithStatus(status: string) {
+  debugger
+  const loginUser = localStorage.getItem('LoginUser')
+  if (loginUser) {
+    this.userLoginData = JSON.parse(loginUser)
+    this.userLoginData.forEach((element: {
+      id: any; fullname: any;
+    }) => {
+
+      this.getuserrecord(element.id)
+
+    });
+
+  }
+  if (status === 'Processing') {
+    this.filterData = this.data.filter((data: { status: string }) => data.status === 'Processing');
+  } else if (status === 'Pending') {
+    this.filterData = this.data.filter((data: { status: string }) => data.status === 'Pending');
+  } else if (status === 'On the Way') {
+    this.filterData = this.data.filter((data: { status: string }) => data.status === 'On the Way');
+  } else {
+    this.filterData = this.data.filter((data: { status: string }) => data.status === 'Delivered');
+  }
+
+
 }
 getUserBookingReacodByID(Id: any): void {
   this.coreservice.getUserBookingReacodByID(Id).subscribe(
@@ -138,7 +193,7 @@ getuserrecordforCancel(id: any): void {
       if (response && Object.keys(response).length > 0) {
         this.canceljobs = response;
         console.log(this.canceljobs);
-        
+        this.JobCancel.next(response);
         this.jobcanceled(response)
    console.log( this.canceljobs);
    this.deleteUser(id)
@@ -170,34 +225,36 @@ deleteUser(Id: any): void {
 jobcanceled(data: any){
   debugger
 console.log(data);
-const cancelJobRecord= data.reason=this.cancelReason
+ data.reason=this.cancelReason
 
-  this.coreservice.createUserBookingcancelReacod(cancelJobRecord).subscribe(data=>{
+  this.coreservice.createUserBookingcancelReacod(data).subscribe(data=>{
     console.log('canceljob',data);
 })}
-getcurentcancelorder(id: any): void {
+
+
+async getcurentcancelorder(id: any) {
   debugger
-  this.coreservice.getUserBookingCanceldRecod(id).subscribe(
-    (response) => {
+  try{
+  const response=await this.coreservice.getUserBookingCanceldRecod(id).toPromise()
+ 
       if (response && Object.keys(response).length > 0) {
         this.allCanceljobs = response;
+      
    this.canceljobcount=response && Object.keys(response).length ;
    this.cancelJobCounts.next(this.canceljobcount)
-   localStorage.removeItem('canceljobcount');
-   localStorage.setItem('canceljobcount', this.canceljobcount);
+  
  
  console.log("all cancel recod",this.allCanceljobs);
  
 
    
       } 
-    },
-    (error) => {
+    }catch(error) {
       console.error('Error fetching data:', error);
       alert('Error fetching data');
      
     }
-  );
+  
 }
 
 

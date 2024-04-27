@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoreService } from '../core/core.service';
 import { BehaviorSubject } from 'rxjs';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class AuthService {
 
     private authStatus = new BehaviorSubject<boolean>(false);
   authStatus$ = this.authStatus.asObservable();
-constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService) {
+constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService,private message:NzMessageService) {
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   const isAuthenticated = localStorage.getItem('isAuthenticated');
   if (isAuthenticated) {
@@ -37,17 +38,18 @@ if(loginUserData  ){
   return false
 }
 }
-getsignupUserRecord(): void {
-  this.coreservice.getsignupUserRecord().subscribe(
-    (response) => {
+async getsignupUserRecord(){
+  try{
+  const response= await this.coreservice.getsignupUserRecord().toPromise()
+   
       this.data = response;
       console.log(typeof response);
       
-    },
-    (error) => {
+    }catch
+    (error) {
       console.error('Error fetching data:', error);
     }
-  );
+  
 }
 
 // getsignupUserRecord() {
@@ -61,13 +63,13 @@ getsignupUserRecord(): void {
 updateAuthStatus(isAuthenticated: boolean): void {
   this.authStatus.next(isAuthenticated);
 }
-login(loginemail:any,password:any) {
+async login(loginemail:any,password:any) {
   this.loginemail = loginemail;
 this.password = password;
 
 // const storedSignUpData = localStorage.getItem('SignUp');
 
-this.getsignupUserRecord();
+await this.getsignupUserRecord();
     
 if (this.data) {
    debugger
@@ -81,10 +83,7 @@ if (this.data) {
     
   });
   console.log(matchingUser);
-  if (matchingUser) {
-    // Other login logic...
-   
-  }
+ 
   if (matchingUser) {
     this.loginuserDetails.splice(0)
     this.loginuserDetails.push(matchingUser)
@@ -96,7 +95,8 @@ this.authStatus.next(true); // Set authentication status to true
     // Save authentication status to localStorage
     localStorage.setItem('isAuthenticated', 'true');
     console.log('user Match');
-    alert(' login successfully')
+    // alert(' login successfully')
+    this.message.create('success','Login successfully')
    
     const returnUrl = localStorage.getItem('returnUrl');
     if (returnUrl) {
@@ -109,17 +109,14 @@ this.authStatus.next(true); // Set authentication status to true
     
   }else{
     
-//  this.toastr.error('Login Detailes not match')
+    this.message.create('info','User Not Match')
     localStorage.setItem('LoginUser','')
-    // this.isSignIn=false
-    alert('user not match')
-    console.log('user not match');
-    // alert('not match')
-    // this.router.navigate(['/login'])
+   
   }
  
 }else{
-  alert('user account not found sign up first')
+  this.message.create('info','user account not found sign up first')
+
 }
 }
 

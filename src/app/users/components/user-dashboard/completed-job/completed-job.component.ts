@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashCommonService } from '../dash-common.service';
 
 @Component({
   selector: 'app-completed-job',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompletedJobComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonservice:DashCommonService) { }
 
   ngOnInit() {
+    this.commonservice.getcargoRecordwithStatus('Delivered')
   }
   jobCompleted:boolean=true
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AgencyDashService } from '../../agency-dash-bord/agency-dash.service';
 import { AuthserviceService } from '../auth/authservice.service';
 import { DriverCommonService } from '../auth/common.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-DriverHeader',
   templateUrl: './DriverHeader.component.html',
@@ -17,7 +17,7 @@ export class DriverHeaderComponent implements OnInit {
   bookedcount: any;
   authstatus: any;
 
-  constructor(private userAuthService:AuthserviceService, private router:Router ,public commonservice:DriverCommonService) { }
+  constructor(private userAuthService:AuthserviceService, private router:Router ,public commonservice:DriverCommonService,private message:NzMessageService) { }
 
   ngOnInit() {
     debugger
@@ -51,11 +51,10 @@ export class DriverHeaderComponent implements OnInit {
   logout(){
     localStorage.setItem('LoginDriver','')
     this.userAuthService.updateDriverAuthStatus(false);
-    // Set authentication status to false
-    // Remove authentication status from localStorage
+  
     localStorage.removeItem('isDriverAuthenticated');
-    alert('user logged out')
-    this.router.navigate(['']);
+    this.message.create('info','Logout Successfully')
+        this.router.navigate(['']);
   }
 }
 

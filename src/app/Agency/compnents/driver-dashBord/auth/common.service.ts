@@ -46,9 +46,7 @@ getuserrecord(agencyid: any): void {
         this.Processing = this.data.filter((data: { status: string }) => data.status === 'Processing');
         const proc = this.Processing.length
         this.jobProcessing.next(proc)
-        this.Delivered = this.data.filter((data: { status: string }) => data.status === 'Delivered');
-        const del = this.Delivered.length
-        this.Jobdeliverd.next(del)
+      
         this.ontheWay = this.data.filter((data: { status: string }) => data.status === 'On the Way');
       
         const ontheways = this.ontheWay.length;
@@ -77,9 +75,9 @@ getAssignDriverrecord(driverId: any): void {
         // this.Processing = this.data.filter((data: { status: string }) => data.status === 'Processing');
         // const proc = this.Processing.length
         // this.jobProcessing.next(proc)
-        // this.Delivered = this.data.filter((data: { status: string }) => data.status === 'Delivered');
-        // const del = this.Delivered.length
-        // this.Jobdeliverd.next(del)
+        this.Delivered =  this.DriverData.filter((data: { status: string }) => data.status === 'Delivered');
+        const del = this.Delivered.length
+        this.Jobdeliverd.next(del)
         // this.ontheWay = this.data.filter((data: { status: string }) => data.status === 'On the Way');
       
         // const ontheways = this.ontheWay.length;
@@ -116,30 +114,20 @@ getuserBookedRecord(userId: any): void {
     }
   );
 }
-getmanageCargo(jobId: any): void {
-  this.coreservice.getManageCargoById(jobId).subscribe(
-    (response) => {
-
-      if (response && Object.keys(response).length > 0) {
-        // this.managecargodata=[]
+async getmanageCargo(jobId: any) {
+  try {
+    const response=await this.coreservice.getManageCargoById(jobId).toPromise()
         this.managecargodata = response;
-        localStorage.setItem('managecargodata', '')
-        localStorage.setItem('managecargodata', JSON.stringify(response))
+        localStorage.setItem('managecargodata', JSON.stringify(response));
         console.log(response);
-        // alert('data fetched successfully')
-
-
-      } else {
-        alert('data not fetched successfully')
-
-      }
-    },
-    (error) => {
-      console.error('Error fetching data:', error);
-
-    });
-
+        // alert('Data fetched successfully');
+    
+    
+  } catch(error) {
+    console.error('Error in async operation:', error);
+  }
 }
+
 updateManageCartgo(id: any, data: any) {
   this.coreservice.updateMangeCargo(id, data).subscribe(
     (response) => {
