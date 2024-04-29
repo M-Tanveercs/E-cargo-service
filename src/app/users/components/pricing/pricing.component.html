@@ -40,20 +40,20 @@
                   </select>
                  
                   <div class="flex flex-col">
-                    <button 
+                    <span 
                             class="h-7 px-6 rounded-md mb-[1px] outline-none border-0  "
                             [class.bg-slate-200]="selectedPeriod !== 'AM'"
                             [class.bg-[#44566A]]="selectedPeriod === 'AM'"
                             [class.text-white]="selectedPeriod === 'AM'"
                             [class.font-bold]="selectedPeriod === 'AM'"
-                            (click)="selectPeriod('AM')">AM</button>
-                    <button  
-                            class="h-7 rounded-md mb-[1px] outline-none border-0 "
+                            (click)="selectPeriod('AM')">AM</span>
+                    <span  
+                            class="h-7 px-6 rounded-md mb-[1px] outline-none border-0 "
                             [class.bg-slate-200]="selectedPeriod !== 'PM'"
                             [class.bg-[#44566A]]="selectedPeriod === 'PM'"
                             [class.text-white]="selectedPeriod === 'PM'"
                             [class.font-bold]="selectedPeriod === 'PM'"
-                            (click)="selectPeriod('PM')">PM</button>
+                            (click)="selectPeriod('PM')">PM</span>
                   </div>
                   
                 </div>

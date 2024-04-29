@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
-
-
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
@@ -33,9 +32,17 @@ import { AdminMainDashComponent } from './components/AdminDashbord/admin-main-da
 import { HeaderComponent } from './components/AdminDashbord/header/header.component';
 import { SideBarComponent } from './components/AdminDashbord/sideBar/sideBar.component';
 import { AdminDashFooterComponent } from './components/AdminDashbord/admin-dash-footer/admin-dash-footer.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { UserJobTrackingComponent } from './components/AdminDashbord/userJobTracking/userJobTracking.component';
+import { AcceptedJobsAgencyComponent } from './components/AdminDashbord/Accepted-Jobs-Agency/Accepted-Jobs-Agency.component';
+import { PostedJobsComponent } from './components/AdminDashbord/Posted-Jobs/Posted-Jobs.component';
+import { JobsInProgressComponent } from './components/AdminDashbord/Jobs-in-progress/Jobs-in-progress.component';
+import { JobsOntheWayComponent } from './components/AdminDashbord/jobs-ontheWay/jobs-ontheWay.component';
+import { DeliveredJobsComponent } from './components/AdminDashbord/delivered-jobs/delivered-jobs.component';
+import { AdminCommonService } from './adminCommon.service';
 
 @NgModule({
-  declarations: [AdminLoginComponent,AdminDashbordComponent,AdminMainDashComponent,AdminDashFooterComponent,HeaderComponent,SideBarComponent],
+  declarations: [AdminLoginComponent,AdminDashbordComponent,AdminMainDashComponent,AdminDashFooterComponent,HeaderComponent,SideBarComponent,UserJobTrackingComponent,AcceptedJobsAgencyComponent,PostedJobsComponent,JobsInProgressComponent,JobsOntheWayComponent,DeliveredJobsComponent],
   imports: [
   
     AdminRoutingModule,
@@ -56,9 +63,11 @@ import { AdminDashFooterComponent } from './components/AdminDashbord/admin-dash-
     NzDrawerModule,
     NzSpaceModule,
     NzDatePickerModule,
-    NzTimePickerModule
-    
+    NzTimePickerModule,
+    NzTabsModule,
+    NzPaginationModule
   ],
-  exports:[AdminLoginComponent]
+  exports:[AdminLoginComponent],
+  providers: [AdminCommonService]
 })
 export class AdminModule { }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AgencyAuthService } from 'src/app/Agency/agencyAuthGard/agency-auth.service';
 import { AgencyDashService } from 'src/app/Agency/compnents/agency-dash-bord/agency-dash.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { AdminCommonService } from 'src/app/Admin/adminCommon.service';
 @Component({
   selector: 'app-sideBar',
   templateUrl: './sideBar.component.html',
@@ -16,7 +17,7 @@ export class SideBarComponent implements OnInit {
   jobontheway: any;
   jobdelv: any;
 
-  constructor(public commonservice:AgencyDashService,private userAuthService:AgencyAuthService ,private router:Router,private message:NzMessageService) { }
+  constructor(public commonservice:AdminCommonService,private userAuthService:AgencyAuthService ,private router:Router,private message:NzMessageService) { }
 
   ngOnInit( ) {
     this.userAuthService.authStatus$.subscribe(status => {
@@ -40,6 +41,7 @@ export class SideBarComponent implements OnInit {
   //  this.commonservice.canceljobcountData$.subscribe((data)=>{
   //   this.canceljobcount=data
   //  })
+  
   
   }
 

@@ -16,7 +16,7 @@
   
     <li nz-submenu nzTitle="Manage Jobs" nzIcon="appstore-add"  class="mb-5">
       <ul>
-        <li nz-menu-item routerLink="/AcceptedJobs"><i class="fa fa-truck" aria-hidden="true"></i>
+        <li nz-menu-item routerLink="/accepted-jobs"><i class="fa fa-truck" aria-hidden="true"></i>
           Accepted Jobs
         <nz-badge [nzCount]="bookedcount">
           <a class="head-example">
@@ -26,7 +26,7 @@
       </li>
         
       
-        <li nz-menu-item routerLink="/InProcessJobs"> <i class="fa-solid fa-bars-progress"></i>
+        <li nz-menu-item routerLink="/inProcessJobs"> <i class="fa-solid fa-bars-progress"></i>
           In Process Jobs
           <nz-badge [nzCount]="jobproc || 0 " nzShowZero>
             <a class="head-example">
@@ -34,7 +34,7 @@
             </a>
           </nz-badge>
         </li>
-        <li nz-menu-item routerLink="/onTheWay"> <i class="fa fa-road" aria-hidden="true"></i>
+        <li nz-menu-item routerLink="/Job-onTheWay"> <i class="fa fa-road" aria-hidden="true"></i>
 
         On the Way
           <nz-badge [nzCount]=" jobontheway || 0" nzShowZero>
@@ -43,7 +43,7 @@
             </a>
           </nz-badge>
         </li>
-        <li nz-menu-item routerLink="/CompletedJobs"> <i class="fa fa-check-square-o"></i>
+        <li nz-menu-item routerLink="/deliveed-jobs"> <i class="fa fa-check-square-o"></i>
           Completed Jobs
           <nz-badge [nzCount]="jobdelv || 0" nzShowZero>
             <a class="head-example">

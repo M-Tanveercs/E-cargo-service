@@ -85,6 +85,7 @@ export class SuccessComponent implements OnInit {
       this.totalVechialPrice=userData.totalVechialPrice 
       this.estimatedWeight=userData.estimatedWeight
      this.pickupTime=userData.pickupTime
+
 this.initailaPayment=(this.totalVechialPrice*40)/100
 this.remainPayment=(this.totalVechialPrice-this.initailaPayment)
       });
@@ -104,6 +105,7 @@ this.loginuserid=loginuser.id;
         this.users = JSON.parse(storedUsers);
         this.users.forEach((userData: any) => {
           userData.userId = this.loginuserid;
+          userData.status='Pending'
           this.userbookingdata=userData
           this.createUserRecord(userData)
         });

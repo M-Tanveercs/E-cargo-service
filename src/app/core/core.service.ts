@@ -60,6 +60,10 @@ export class CoreService {
     
     return this.http.get<any>(`http://localhost:3000/cancelOrder/?userId=${id}`);
   }
+  getCanceldRecod(): Observable<any> {
+    
+    return this.http.get<any>(`http://localhost:3000/cancelOrder`);
+  }
   getUserBookingReacodtocancel(id:any): Observable<any> {
     
     // Assuming you want to send data to the 'usersBookingRecord' endpoint

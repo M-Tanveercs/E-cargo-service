@@ -51,12 +51,12 @@ this.cancelJob=data
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
-      nzOnOk: () => this.confirmDelete(this.userid),
+      nzOnOk: () => this.confirmDelete(id),
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
   }
-  confirmDelete(userid: string){
-this.commonservice.deletedrecod(userid)
+  confirmDelete(id: string){
+this.commonservice.deletedrecod(id)
   }
 }
