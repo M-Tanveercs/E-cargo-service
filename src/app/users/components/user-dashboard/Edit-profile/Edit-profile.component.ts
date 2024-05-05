@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
   form2 !: FormGroup;
   signup:any
   passwords: any
-  constructor(public dashcommonservice:DashCommonService,private fb: FormBuilder,private coreService:CoreService,private userAuthService:AuthService, private router:Router) {
+  constructor(public dashcommonservice:DashCommonService,private fb: FormBuilder,private coreService:CoreService,public userAuthService:AuthService, private router:Router) {
     this.form1 = this.fb.group({
       fullName: ['', Validators.required],
       address: ['', Validators.required],
@@ -28,8 +28,8 @@ export class EditProfileComponent implements OnInit {
     });
     this.form2 = this.fb.group({
       currentPassword: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      repeatNewPassword: ['', Validators.required]
+      newPassword: ['' ],
+      repeatNewPassword: ['']
     });
    }
 
@@ -38,9 +38,9 @@ export class EditProfileComponent implements OnInit {
     const loginUser=localStorage.getItem('LoginUser')
     if(loginUser){
       this.loginuser=JSON.parse(loginUser)
-    this.loginuser.forEach((element: { id: any; }) => {
-    this.userid=element.id
-      this.dashcommonservice.getSignUserData(element.id)
+    this.loginuser.forEach((element: { _id: any; }) => {
+    this.userid=element._id
+      this.dashcommonservice.getSignUserData(element._id)
       this.signupuser=element
     });
       this.dashcommonservice.signUpUserData$.subscribe((data) =>{
@@ -69,6 +69,7 @@ this.form2.patchValue({
     
   }
   submitForm1(): void {
+    debugger
     if (this.form1.valid) {
       // Handle form1 submission logic here
       console.log(this.form1.value);
@@ -116,9 +117,9 @@ this.form2.patchValue({
         console.error('Error updating post:', error);
       }
     );
-    this.userAuthService.Athenticate=false;
     alert('user logged out')
     this.router.navigate(['/']);
+    this.userAuthService.authStatus.next(false);
   }
 
 }

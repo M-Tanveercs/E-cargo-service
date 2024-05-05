@@ -26,7 +26,7 @@ export class AgencyDashBordComponent implements OnInit {
   agencyId: any;
   assignType: any;
   existingDriverId: any;
-
+  excludedFields = ['_id', '__v'];
   constructor(public commonservice: AgencyDashService, private coreservice: CoreService, private fb: FormBuilder, private message: NzMessageService) {
     this.driverForm = this.fb.group({
       // Require selection of goods type
@@ -40,15 +40,16 @@ export class AgencyDashBordComponent implements OnInit {
     if (loginUser) {
       this.userLoginData = JSON.parse(loginUser)
       this.userLoginData.forEach((element: {
-        id: any; fullname: any;
+        _id: any; fullname: any;
       }) => {
-        this.agencyId=element.id
+        this.agencyId=element._id
         this.username = element.fullname
 
-        this.commonservice.getuserrecord(element.id)
+       
       });
       console.log(this.username);
-
+    
+      this.commonservice.getuserrecord(this.agencyId)
     }
     this.commonservice.jobAcceptcountData$.subscribe(data => {
       this.jobcount = data
@@ -74,6 +75,7 @@ export class AgencyDashBordComponent implements OnInit {
 
   }
   getAllDriverData() {
+    debugger
     this.coreservice.GetDriverDetail(this.agencyId).subscribe(driverRecord => {
       // this.drivers = driverRecord
 
@@ -135,7 +137,7 @@ export class AgencyDashBordComponent implements OnInit {
       const data =  this.coreservice.GetDriverDetailById(driverId).subscribe(driver => {
 
       })
-      const getDriverName = this.drivers.find(a => a.id == driverId);
+      const getDriverName = this.drivers.find(a => a._id == driverId);
       console.log('Button ok clicked!');
       this.isVisible = false;
       this.getOrderAcceptRecord(this.jobId,getDriverName);
@@ -158,7 +160,13 @@ export class AgencyDashBordComponent implements OnInit {
 
   // Example usage
   // Output a random 4-digit ID
-
+  removeExcludedFields(obj:any, excludedFields:any) {
+    const newObj = { ...obj }; // Create a copy of the original object
+    excludedFields.forEach((field: string | number) => {
+      delete newObj[field]; // Delete the field from the copy
+    });
+    return newObj;
+  }
   async getOrderAcceptRecord(id: any,drivername:any) {
     debugger
     try {
@@ -168,20 +176,20 @@ export class AgencyDashBordComponent implements OnInit {
         if (jobdataArray.length > 0) {
           // Access the first element of the array
           const data = jobdataArray[0];
-      const randomId = this.generateRandomId();
       data.driverId = this.driverForm.value.selectedDriver;
       data.jobid = id
-      data.id = randomId
       data.driverName = drivername.fullName
+      const filteredData = this.removeExcludedFields(data, this.excludedFields);
+  
       // let newObj = Object.fromEntries(
       //   Object.entries(data).filter(([key, value]) => value !== data.id)
       // )
-      console.log('newobj', data);
+      console.log('newobj', filteredData);
         
-      await this.coreservice.OrderAssignToDriver(data).toPromise()
+      await this.coreservice.OrderAssignToDriver(filteredData).toPromise()
         .then((response) => {
           if (response) {
-            this.updateDriverSatus( data.driverId, this.jobId)
+            this.updateDriverSatus( filteredData.driverId, this.jobId)
             this.message.create('success', 'Driver Assigned Successfully');
           } else {
             this.message.create('error', 'Something went wrong');
@@ -203,7 +211,7 @@ this.existingDriverId=jobdata.driverId
   // Add new properties driverId and driverName
   jobdata.driverId = this.driverForm.value.selectedDriver;
   jobdata.driverName = drivername.fullName;
-  await this.coreservice.OrderReAssignToDriver(jobdata.id,jobdata).toPromise()
+  await this.coreservice.OrderReAssignToDriver(jobdata._id,jobdata).toPromise()
   .then((response) => {
     if (response) {
       this.updateDriverSatus( jobdata.driverId, this.jobId)
@@ -300,23 +308,44 @@ this.existingDriverId=jobdata.driverId
   }
 
 
-  async getOrderToDriver() {
-    // Get driver details
-    const driverDetails = await this.coreservice.getOrderAssignToDriver().toPromise();
-    const deliverDriverId = driverDetails.find((driver: { status: string; }) => driver.status === "Delivered")?.driverId;
-      
-    const data = await this.coreservice.GetDriverDetailById(deliverDriverId).toPromise();
-    // Prepare the updated data with the new status
-    const Data = { ...data, status: 'free'};
+  getOrderToDriver() {
+  this.coreservice.getOrderAssignToDriver().subscribe((responce)=>{
 
-    // Update the driver's details with the new status
-    await this.coreservice.updateDriverDetail(deliverDriverId, Data).toPromise();
+ this.getdata(responce)
+    
+    // Find the driver with a status of "Delivered"
+   
+    
+   
     // Extract job IDs from driver details
-    this.driverJobIds = driverDetails.map((driver: { jobid: any; }) => driver.jobid);
+    this.driverJobIds = responce.map((driver: { jobid: any; }) => driver.jobid);
     console.log('driverjobids', this.driverJobIds);
-
-
+  }), (error:any)=> {
+    console.error("Error in getOrderToDriver:", error);
+    // Handle the error appropriately, such as showing an error message to the user or logging it
   }
+}
+async getdata(responce:any){
+  const deliveredDriver = responce.find((driver: { status: string; }) => driver.status === "Delivered");
+  if (!deliveredDriver) {
+    throw new Error("No driver with status 'Delivered' found.");
+  }
+  const deliverDriverId = deliveredDriver.driverId;
+
+  // Get the driver details by ID
+  const driverData = await this.coreservice.GetDriverDetailById(deliverDriverId).toPromise();
+  if (!driverData) {
+    throw new Error("Driver details not found.");
+  }
+  
+  // Prepare the updated data with the new status
+  const updatedData = { ...driverData, status: 'free' };
+
+  // Update the driver's details with the new status
+  await this.coreservice.updateDriverDetail(deliverDriverId, updatedData).toPromise();
+
+}
+
   // async drivername(id: any): Promise<any> {
   //   if (!id) {
   //     return ''; // Return empty string if id is falsy

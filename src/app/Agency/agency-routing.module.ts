@@ -30,12 +30,16 @@ children:[
 },
   {path:'agency-login',component:AgencyLoginComponent},
   {path:'agency-signup',component:AgencySignupComponent},
-  { path: 'jobs', component: JobsComponent },
+  { path: 'jobs', component: JobsComponent,
+  canActivate: [agencyAuthGuardGuard] 
+   },
     
   { path: 'agency-aboutUs', component: AboutUsComponent },
   { path: 'agency-contactUS', component: ContactUsComponent },
   { path: 'agency-pricing-table', component: PricingTableComponent },
-  { path: 'more-info', component: MoreInfoAboutJobComponent },
+  { path: 'more-info', component: MoreInfoAboutJobComponent,
+  canActivate: [agencyAuthGuardGuard], 
+   },
 ]
 },
  

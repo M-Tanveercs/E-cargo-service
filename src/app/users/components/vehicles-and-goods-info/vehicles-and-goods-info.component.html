@@ -87,7 +87,7 @@
             
             <div class=" w-full flex flex-col sm:mt-8 ">
               <label for="">Select according to your need.</label>
-              <nz-select formControlName="selectedDriver" nzAllowClear nzPlaceHolder="Select Helper Option" nzSize="large" class=" w-full  rounded-lg">
+              <nz-select formControlName="selectedHelper" nzAllowClear nzPlaceHolder="Select Helper Option" nzSize="large" class=" w-full  rounded-lg">
                 <nz-option nzLabel="None" nzValue="none"></nz-option>
                 <ng-container *ngFor="let item of helperCount">
                   <nz-option nzLabel="{{item.name}}Helper" [nzValue]="item.name"></nz-option>

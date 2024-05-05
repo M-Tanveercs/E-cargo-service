@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -56,7 +57,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     FormsModule,
     AgencyRoutingModule,
     ReactiveFormsModule,
-    
+    NzModalModule,
     CommonModule,
     ReactiveFormsModule,
     NzStepsModule,

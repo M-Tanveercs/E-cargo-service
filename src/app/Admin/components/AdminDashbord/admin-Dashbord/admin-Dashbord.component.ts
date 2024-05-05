@@ -68,9 +68,12 @@ AcceptedjobSearch: any;
       })
   }
   async getDashcartData(){
+    await this.commonservice.getuserrecord()
     await this.commonservice.getAllAcceptedJobByAgency()
    await this.commonservice.getAllJobsByUser()
    await this.commonservice.getCanceledJobRecord()
+   await this.commonservice.getAllRegisteredUser()
+   await this.commonservice.getAllRegisteredAgency()
    this.jobData=this.commonservice.userBookingReacod
    this.totalItemsTab1 = this.jobData.length;
    this.AcceptedJobData=this.commonservice.AgencyAcceptedReacod
@@ -176,7 +179,7 @@ await this.commonservice.getCanceledJobRecord()
     this.totalItemsTab1 = this.jobData.length;
       // Replace [] with your original list of jobs if you want to reset to the original list
 
-      this.jobData = this.jobData.filter(job => job.id.toLowerCase().includes(this.jobSearch.toLowerCase()));
+      this.jobData = this.jobData.filter(job => job._id.toLowerCase().includes(this.jobSearch.toLowerCase()));
       console.log(this.jobData);
       // this.searchResultsFound = this.jobData.length > 0;
       if(this.jobData.length=== 0){

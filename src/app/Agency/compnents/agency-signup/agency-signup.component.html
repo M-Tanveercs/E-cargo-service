@@ -94,6 +94,20 @@
                     Passwords must match
                 </p>
             </div>
+            <div class="w-full flex flex-col mb-2">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="">CNIC Front Image </label>
+              <input   (change)="cnicFrontImage($event)"   class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" nz-input type="file" placeholder="CNIC Front Side" formControlName="cnicfront" nzSize="large" />
+              <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('cnicfront')?.invalid && signupForm.get('cnicfront')?.touched">
+                CNIC Front Image is required 
+            </p>
+            </div>
+            <div class="w-full flex flex-col mb-5 ">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="">CNIC Back Image </label>
+              <input (change)="cnicBackImage($event)"     class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" nz-input type="file" placeholder="Receiver Signature" formControlName="cnicback" nzSize="large" />
+            </div>
+            <p class="text-red-500 text-xs italic" *ngIf="signupForm.get('cnicback')?.invalid && signupForm.get('cnicback')?.touched">
+              CNIC Back Image is required 
+          </p>
         
             <div class="mb-6 text-center">
                 <button type="submit"

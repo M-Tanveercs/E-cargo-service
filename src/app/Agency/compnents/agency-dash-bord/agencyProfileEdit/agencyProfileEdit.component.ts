@@ -45,9 +45,9 @@ export class AgencyProfileEditComponent implements OnInit {
     const loginUser=localStorage.getItem('LoginAgency')
     if(loginUser){
       this.loginuser=JSON.parse(loginUser)
-    this.loginuser.forEach((element: { id: any; }) => {
-    this.userid=element.id
-      this.dashcommonservice.getAgencySignUserData(element.id)
+    this.loginuser.forEach((element: { _id: any; }) => {
+    this.userid=element._id
+      this.dashcommonservice.getAgencySignUserData(element._id)
       this.signupuser=element
     });
       this.dashcommonservice.signUpUserData$.subscribe((data) =>{

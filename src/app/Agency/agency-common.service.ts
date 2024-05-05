@@ -27,7 +27,8 @@ export class AgencyCommonService implements OnInit {
   agencyjobs: any;
   signupuserdetail: any;
   job: any[]=[]
-
+  excludedFields = ['_id', '__v'];
+  AlljobsData: any[]=[];
   constructor(private coreservice: CoreService,private message:NzMessageService) { }
 
   ngOnInit(): void {
@@ -67,27 +68,27 @@ filterAgencyJobs(allJobs: any[], agencyJobs: any[]): any[] {
 }
 
 // Modify getAllJobs to filter out agency jobs
-getAllJobs() {
-  this.coreservice.getAllUserBookingReacod().pipe(
+async getAllJobs() {
+  try{
+ const response= await this.coreservice.getAllUserBookingReacod().pipe(
     map((allJobs: any[]) => {
       if (this.agencyjobs && this.agencyjobs.length > 0) {
+        this.AlljobsData=allJobs.filter(job => !this.agencyjobs.some((agencyJob: {jobid: any; }) => agencyJob.jobid === job._id));
         // Filter out jobs that are also in the agency jobs data
-        return allJobs.filter(job => !this.agencyjobs.some((agencyJob: {jobid: any; }) => agencyJob.jobid === job.id));
+        return this.AlljobsData
       } else {
         // If there are no agency jobs data, return all jobs
         return allJobs;
       }
     })
-  ).subscribe(
-    (response: any) => {
+  ).toPromise()
       // Update the records with filtered jobs
       this.AllJobs.next(response);
       console.log("All non-agency jobs:", response);
-    },
-    (error) => {
+    }catch(error:any) {
       console.error('Error fetching data:', error);
     }
-  );
+  
 }
 
 
@@ -139,25 +140,23 @@ getAllJobs() {
     const getrecord = localStorage.getItem('LoginAgency');
     if (getrecord) {
       this.AgencyLoginData = JSON.parse(getrecord);
-      this.AgencyLoginData.forEach((data: { id: any }) => {
-        this.agencyid = data.id;
-        console.log("agency id", data.id);
+      this.AgencyLoginData.forEach((data: { _id: any }) => {
+        this.agencyid = data._id;
+        console.log("agency id", data._id);
       });
     }
   
    await this.GetCurentJob(jobid);
   
-    const randomFourDigitNumber = this.generateRandomFourDigitNumber();
-    console.log(randomFourDigitNumber);
+
   
     this.curentCartdata.agencyid = this.agencyid;
-    this.curentCartdata.jobid = this.curentCartdata.id;
-    this.curentCartdata.id = randomFourDigitNumber;
+    this.curentCartdata.jobid = this.curentCartdata._id;
     this.curentCartdata.status = 'Pending';
-  
     const order = this.curentCartdata;
+    const filteredData = this.removeExcludedFields(order, this.excludedFields);
   
-    this.coreservice.OrderAcceptAgency(this.curentCartdata).pipe(
+    this.coreservice.OrderAcceptAgency(filteredData).pipe(
       catchError(error => {
         console.error('Error accepting order:', error);
         // Handle the error as needed, for example, throw a custom error
@@ -179,5 +178,11 @@ this.message.create('info','Job Accepted Successfully');
 
 // Output a random 4-digit number
 
-
+removeExcludedFields(obj:any, excludedFields:any) {
+  const newObj = { ...obj }; // Create a copy of the original object
+  excludedFields.forEach((field: string | number) => {
+    delete newObj[field]; // Delete the field from the copy
+  });
+  return newObj;
+}
 }

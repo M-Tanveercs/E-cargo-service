@@ -31,6 +31,7 @@ export class BookingComponent implements OnInit {
   constructor( private router:Router,    private message: NzMessageService,public userCommonService:UserCommonService) { }
 
   ngOnInit() {
+    debugger
     this.userCommonService.spinner()
    
     const storedUsers = localStorage.getItem('users');

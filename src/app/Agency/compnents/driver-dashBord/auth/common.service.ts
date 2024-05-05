@@ -64,14 +64,16 @@ getuserrecord(agencyid: any): void {
       alert('Error  fetching data');
       this.jobSuccessfull = false;
     }
-  );
+  )
 }
 getAssignDriverrecord(driverId: any): void {
   this.coreservice.getOrderAssignToDriverBydriverId(driverId).subscribe(
     (response) => {
-      if (response && Object.keys(response).length > 0) {
+      if ( response && Object.keys(response).length > 0) {
         this.DriverData = response;
-        console.log(this.DriverData);
+        localStorage.setItem('driverdata','')
+        localStorage.setItem('driverdata', JSON.stringify( this.DriverData ))
+        console.log('driverData',this.DriverData);
         // this.Processing = this.data.filter((data: { status: string }) => data.status === 'Processing');
         // const proc = this.Processing.length
         // this.jobProcessing.next(proc)
@@ -83,8 +85,7 @@ getAssignDriverrecord(driverId: any): void {
         // const ontheways = this.ontheWay.length;
         // this.JobontheWayCount.next(ontheways)
         // this.jobSuccessfull = true;
-       
-        // localStorage.setItem('bookedJob', JSON.stringify(this.bookedJob))
+     
       } else {
 
         // this.jobSuccessfull = false;
@@ -102,9 +103,9 @@ getuserBookedRecord(userId: any): void {
     (response) => {
       if (response && Object.keys(response).length > 0) {
         this.userData.push( response)
-                console.log(this.DriverData);
-                localStorage.removeItem('userdata');
-                localStorage.setItem('userdata', JSON.stringify(response))
+                console.log(this.userData);
+                localStorage.setItem('userdata','');
+                localStorage.setItem('userdata', JSON.stringify(this.userData))
       } else {
       }
     },

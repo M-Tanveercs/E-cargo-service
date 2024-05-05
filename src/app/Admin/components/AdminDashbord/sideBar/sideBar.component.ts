@@ -4,6 +4,7 @@ import { AgencyAuthService } from 'src/app/Agency/agencyAuthGard/agency-auth.ser
 import { AgencyDashService } from 'src/app/Agency/compnents/agency-dash-bord/agency-dash.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AdminCommonService } from 'src/app/Admin/adminCommon.service';
+import { AdminAuthService } from 'src/app/Admin/adminAuthGard/admin-auth.service';
 @Component({
   selector: 'app-sideBar',
   templateUrl: './sideBar.component.html',
@@ -17,12 +18,13 @@ export class SideBarComponent implements OnInit {
   jobontheway: any;
   jobdelv: any;
 
-  constructor(public commonservice:AdminCommonService,private userAuthService:AgencyAuthService ,private router:Router,private message:NzMessageService) { }
+  constructor(public commonservice:AdminCommonService,private userAuthService:AdminAuthService ,private router:Router,private message:NzMessageService) { }
 
   ngOnInit( ) {
-    this.userAuthService.authStatus$.subscribe(status => {
+    debugger
+    this.userAuthService.adminAuthStatus$.subscribe(status => {
       this.authstatus = status;
-   
+
     
     })
     this.commonservice.jobAcceptcountData$.subscribe((data) => {
@@ -52,13 +54,13 @@ export class SideBarComponent implements OnInit {
   }
   theme = false;
   logout(){
-    localStorage.setItem('LoginAgency','')
-    this.userAuthService.updateAuthStatus(false);
-    // Set authentication status to false
-    // Remove authentication status from localStorage
+    debugger
+    localStorage.setItem('LoginAdmin','')
+    this.userAuthService.updateadminAuthStatus(false);
+    
     localStorage.removeItem('isAuthenticated');
     this.message.create('info','Logout Successfully')
-    this.router.navigate(['/agency']);
+    this.router.navigate(['admin-login']);
   }
 
 }

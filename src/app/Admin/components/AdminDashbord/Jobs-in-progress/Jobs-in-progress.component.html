@@ -2,7 +2,7 @@
   <h1 class=" text-3xl  mb-16 md:ml-40 lg:ml-72 ml-28  font-semibold">All Jobs In Processing</h1>
   <div *ngIf="commonservice.filterData"><div  class="w-full  flex ml-10 justify-center mt-10  " *ngFor="let item of commonservice.filterData">
       <div class="w-8/12  shadow-md rounded-md bg-white  h-fit  pb-10 ">
-  <div class="w-full h-fit bg-white  pt-5 px-5 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> <img class="w-6  mb-1 text-slate-400" src="../../../../../assets/imges/package.svg">  Jobs In Processing</h3></div>
+  <div class="w-full h-fit bg-white  pt-5 px-5 " style="border-bottom: 1px solid  rgb(196, 196, 196);"><h3> <i class="fa-solid fa-bars-progress"></i> Jobs In Processing</h3></div>
   <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
       <div class="md:w-6/12 w-full h-full flex flex-col pl-10 pt-5 gap-1"> <span class="font-bold">{{item.SelectedVehicle}}</span>
       <span><i class="fa fa-map-marker text-orange-400 mr-2" aria-hidden="true"></i>

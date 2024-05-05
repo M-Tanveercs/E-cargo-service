@@ -59,37 +59,25 @@ export class DriverDashComponent implements OnInit {
     if (loginUser) {
       this.userLoginData = JSON.parse(loginUser)
       this.userLoginData.forEach((element: {
-        id: any; fullName: any;
+        _id: any; fullName: any;
       }) => {
         this.username = element.fullName
-        this.driverId = element.id
-        // this.commonservice.getuserrecord(element.id)
-        this.commonservice.getAssignDriverrecord( this.driverId)
+        this.driverId = element._id
+        this.commonservice.getuserrecord(element._id)
       });
       console.log(this.username);
 
     }
     this.getallJobs()
 
-    // this.commonservice.jobAcceptcountData$.subscribe(data => {
-    // this.jobcount = data
-    // })
-    // this.commonservice.jobProcessingcount$.subscribe(data => {
-    // this.jobproc = data
-    // })
-    // this.commonservice.jobonthewaycount$.subscribe(data => {
-    // this.jobontheway = data
-    // })
-    // this.commonservice.jobDeliverCount$.subscribe(data => {
-    // this.jobdelv = data
-    // })
+   
    this.commonservice.jobDeliverCount$.subscribe(data => {
     this.completedJob=data
   })
    this.userData()
     this.map = L.map('map').setView([0, 0], 10);
     this.startLiveLocationUpdates();
-    this.commonservice.getmanageCargo(this.jobId)
+    // this.commonservice.getmanageCargo(this.jobId)
   }
  
   startLiveLocationUpdates() {
@@ -113,19 +101,20 @@ export class DriverDashComponent implements OnInit {
   userData(){
     const userdata = localStorage.getItem('userdata');
     if (userdata) {
-      debugger
+     
 
       const data = JSON.parse(userdata);
       this.pickuplocation = data.pickupLocation;
       this.dropoffLocation = data.dropoffLocation;
-      this.jobId = data.id
+      this.jobId = data._id
       // Wrap the liveLocation value in an Observable
       this.liveCoordinates$ = of(this.liveLocation);
       console.log("    this.liveCoordinates$", this.liveCoordinates$);
 
       this.dropoffCoordinates$ = this.cityService.getCoordinates(this.dropoffLocation);
       console.log("this.dropoffCoordinates$ ", this.dropoffCoordinates$);
-
+      this.commonservice.getuserBookedRecord(this.jobId)
+      this.commonservice.getmanageCargo(this.jobId)
     }
   }
   async getallJobs() {
@@ -180,7 +169,7 @@ export class DriverDashComponent implements OnInit {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
-    debugger
+   
     if (this.marker) {
       this.map.removeLayer(this.marker);
     }
@@ -190,7 +179,7 @@ export class DriverDashComponent implements OnInit {
 
     this.dropoffCoordinates$.subscribe(coordinates => {
       if (coordinates) {
-        debugger
+       
         console.log("drop", coordinates);
 
          L.marker([coordinates.latitude, coordinates.longitude],{icon: greenIcon}).addTo(this.map)
@@ -212,6 +201,7 @@ export class DriverDashComponent implements OnInit {
 
   }
   getLiveLocation() {
+    debugger
     var drivericon = L.icon({
       iconUrl: '../../../../../assets/imges/8221800-removebg-preview.png',
       // shadowUrl: 'leaf-shadow.png',
@@ -222,7 +212,7 @@ export class DriverDashComponent implements OnInit {
       // shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
-    debugger
+   
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -244,10 +234,13 @@ export class DriverDashComponent implements OnInit {
           console.log('Live location:', this.liveLocation);
           if (this.liveLocationlatitude) {
             L.marker([this.liveLocationlatitude, this.liveLocationlongitude],{icon: drivericon}).addTo(this.map).bindPopup('Driver current location').openPopup();
+            debugger
             const jobdata = this.commonservice.managecargodata.find((data: any) => data.trackingId === this.jobId)
+            
             if (jobdata) {
               jobdata.driverLocation = this.liveLocation
-              this.commonservice.updateManageCartgo(jobdata?.id, jobdata);
+              console.log('jobdata',jobdata);
+              this.commonservice.updateManageCartgo(jobdata?._id, jobdata);
             }
           }
 

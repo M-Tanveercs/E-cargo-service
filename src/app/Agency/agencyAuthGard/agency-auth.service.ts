@@ -101,7 +101,7 @@ if (this.data) {
     console.log('user Match');
     this.message.create('success','Login successfully')
     this.Athenticate=true
-   
+   this.authStatus.next(true)
   
       this.router.navigate(['/agency']); // Default redirect if no returnUrl is stored
     

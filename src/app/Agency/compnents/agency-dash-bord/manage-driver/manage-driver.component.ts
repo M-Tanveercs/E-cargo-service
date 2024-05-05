@@ -9,7 +9,7 @@ interface DataItem {
   vehicleNumber: number;
   address: string;
   phoneNumber: string;
-  id:any,
+  _id:any,
   driverPassword:any;
   status:any
 }
@@ -46,9 +46,9 @@ export class ManageDriverComponent implements OnInit {
     if (loginUser) {
       const userLoginData = JSON.parse(loginUser)
       userLoginData.forEach((element: {
-        id: any; fullname: any;
+        _id: any; fullname: any;
       }) => {
-        this.agencyid = element.id
+        this.agencyid = element._id
 
       });
     }
@@ -174,7 +174,7 @@ this.coreService.DelDriverDetail(id).subscribe(driver =>{
           driverPassword:element.driverPassword,
           status:element.status
         })
-        this.driverId=element.id
+        this.driverId=element._id
       });
     })
     this.open()

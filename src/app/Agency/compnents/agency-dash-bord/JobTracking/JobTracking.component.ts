@@ -63,7 +63,7 @@ ngOnInit() {
 async fetchData() {
   try {
     await this.commonservice.getmanageCargo(this.jobId);
-  this.commonservice.getUserBookingReacodByID(this.jobId);// Wait for getmanageCargo to complete
+  await this.commonservice.getUserBookingReacodByID(this.jobId);// Wait for getmanageCargo to complete
     this.checkTracking(); // Call checkTracking after getmanageCargo
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -141,7 +141,7 @@ getmapData(){
     this.pickuplocation = data.pickupLocation;
     this.dropoffLocation = data.dropoffLocation;
     // Wrap the liveLocation value in an Observable
-    const trackingdata=this.mangcargoData.find((filter:any)=>filter.trackingId ===data.id)
+    const trackingdata=this.mangcargoData.find((filter:any)=>filter.trackingId ===data._id)
     this.liveCoordinates$ = of(trackingdata.driverLocation);
     console.log("    this.liveCoordinates$", this.liveCoordinates$);
 this.liveCoordinates$.subscribe((driverData)=>{

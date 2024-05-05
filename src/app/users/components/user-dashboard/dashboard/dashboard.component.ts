@@ -30,11 +30,11 @@ export class DashboardComponent implements OnInit {
     if(loginUser) {
     this.userLoginData=JSON.parse(loginUser)
     this.userLoginData.forEach((element: {
-      id: any; fullname: any; 
+      _id: any; fullname: any; 
   }) => {
       this.username=element.fullname
-this.userid=element.id
-      this.commonservice.getuserrecord(element.id)
+this.userid=element._id
+      this.commonservice.getuserrecord(element._id)
       debugger
     });
    
@@ -49,12 +49,12 @@ this.userid=element.id
  
   showDeleteConfirm(id:any): void {
     this.isVisible = true;
-    this.userid=id
+   
   }
 
-  handleOk(): void {
+  handleOk(id:any): void {
+    this.cancel(id);
     this.isVisible = false;
-    this.cancel(this.userid);
 console.log("selected value:",this.selectedValue);
     
   }
@@ -63,13 +63,18 @@ console.log("selected value:",this.selectedValue);
     this.isVisible = false;
   }
  
-  cancel(id:any): void {
+    cancel(id:any) {
     debugger
     console.log('OK button clicked');
   
     this.commonservice.cancelReason=this.selectedValue
-  this.commonservice.getuserrecordforCancel(id)
-  this.commonservice.getuserrecord(this.userid)
+     this.commonservice.getuserrecordforCancel(id)
+   setTimeout(()=>{
+    
+     this.commonservice.getuserrecord(this.userid)
+   },500)
+
+   
 }
 }
   

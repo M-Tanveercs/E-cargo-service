@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminCommonService } from 'src/app/Admin/adminCommon.service';
 
 @Component({
   selector: 'app-Posted-Jobs',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostedJobsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonservice:AdminCommonService) { }
 
   ngOnInit() {
+   this.getData()
+  }
+ async getData(){
+    await this.commonservice.getAllJobsByUser()
   }
 
 }

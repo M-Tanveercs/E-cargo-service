@@ -40,15 +40,22 @@ import { JobsInProgressComponent } from './components/AdminDashbord/Jobs-in-prog
 import { JobsOntheWayComponent } from './components/AdminDashbord/jobs-ontheWay/jobs-ontheWay.component';
 import { DeliveredJobsComponent } from './components/AdminDashbord/delivered-jobs/delivered-jobs.component';
 import { AdminCommonService } from './adminCommon.service';
+import { ManageUserComponent } from './components/AdminDashbord/manageUser/manageUser.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { ManageAgencyComponent } from './components/AdminDashbord/manageAgency/manageAgency.component';
+import { EditAdminProfileComponent } from './components/AdminDashbord/editAdminProfile/editAdminProfile.component';
+import { AgencyDashService } from '../Agency/compnents/agency-dash-bord/agency-dash.service';
+import { MangaeAdminComponent } from './components/AdminDashbord/mangaeAdmin/mangaeAdmin.component';
 
 @NgModule({
-  declarations: [AdminLoginComponent,AdminDashbordComponent,AdminMainDashComponent,AdminDashFooterComponent,HeaderComponent,SideBarComponent,UserJobTrackingComponent,AcceptedJobsAgencyComponent,PostedJobsComponent,JobsInProgressComponent,JobsOntheWayComponent,DeliveredJobsComponent],
+  declarations: [AdminLoginComponent,AdminDashbordComponent,AdminMainDashComponent,AdminDashFooterComponent,HeaderComponent,SideBarComponent,UserJobTrackingComponent,AcceptedJobsAgencyComponent,PostedJobsComponent,JobsInProgressComponent,JobsOntheWayComponent,DeliveredJobsComponent,ManageUserComponent,ManageAgencyComponent,EditAdminProfileComponent,MangaeAdminComponent],
   imports: [
   
     AdminRoutingModule,
     CommonModule,
     NzIconModule,
-
+    NzTableModule,
     NzLayoutModule,
     NzSwitchModule,FormsModule,
     NzCollapseModule,
@@ -65,7 +72,8 @@ import { AdminCommonService } from './adminCommon.service';
     NzDatePickerModule,
     NzTimePickerModule,
     NzTabsModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzPopconfirmModule
   ],
   exports:[AdminLoginComponent],
   providers: [AdminCommonService]

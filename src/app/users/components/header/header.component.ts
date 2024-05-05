@@ -50,10 +50,10 @@ export class HeaderComponent implements OnInit {
     if(loginUser) {
     this.userLoginData=JSON.parse(loginUser)
     this.userLoginData.forEach((element: {
-      id: any; fullname: any; 
+      _id: any; fullname: any; 
 }) => {
       this.username=element.fullname
-      this.getuserrecord(element.id)
+      this.getuserrecord(element._id)
     });
     console.log(this.username);
     

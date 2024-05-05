@@ -4,54 +4,12 @@
         <span class="text-2xl">Welcome to Admin Dashboard </span>
     </div>
     <div class="w-full h-fit flex flex-col justify-center mt-10  gap-5 ml-10 overflow-hidden ">
-        <div class="w-full  flex  justify-center gap-5">
-
-
-            <div class="bg-white w-4/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1">
-                <div class="flex flex-col justify-between gap-7 ">
-                    <h3 class="text-slate-400">Registerd Users</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold">{{jobontheway ||0}} </h3>
-                </div>
-
-
-                <div class="flex flex-col h-full justify-between  gap-7">
-                    <div class="w-full text-right ">
-                        <i class="fa-solid fa-arrow-up-right-from-square   rounded-md shadow-sm text-orange-400 bg-[#FEF9EE] text-base "
-                            aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-users-line md:px-5 px-2 md:py-3 py-2 md:text-3xl text-lg rounded-md shadow-sm text-orange-400 bg-[#FEF9EE]  "
-                            aria-hidden="true"></i>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="bg-white w-4/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1">
-                <div class="flex flex-col justify-between gap-7 ">
-                    <h3 class="text-slate-400">Registerd Cargo Agencies</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold"> {{jobdelv || 0}}</h3>
-                </div>
-
-                <div class="flex flex-col h-full justify-between  gap-7">
-                    <div class="w-full text-right ">
-                        <i class="fa-solid fa-arrow-up-right-from-square   rounded-md shadow-sm text-orange-400 bg-[#FEF9EE] text-base "
-                            aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-store md:px-5 px-2 md:py-3 py-2 md:text-3xl text-lg rounded-md shadow-sm text-orange-400 bg-[#FEF9EE]  "
-                            aria-hidden="true"></i>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+       
         <div class="w-full h-full py-2 flex  justify-center gap-2">
-            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1">
+            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 cursor-pointer"  routerLink="/posted-jobs" >
                 <div class="flex flex-col justify-between gap-7 ">
                     <h3 class="text-slate-400">Posted Jobs</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold">{{0}}</h3>
+                    <h3 class="text-slate-600 text-4xl font-semibold">{{commonservice.bookedJob}}</h3>
 
                 </div>
 
@@ -67,10 +25,10 @@
 
                 </div>
             </div>
-            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 ">
+            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 cursor-pointer" routerLink="/accepted-jobs">
                 <div class="flex flex-col justify-between gap-7 ">
                     <h3 class="text-slate-400">Accepted Jobs</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold">{{bookedcount ||0}}</h3>
+                    <h3 class="text-slate-600 text-4xl font-semibold">{{commonservice.AccepetedJob ||0}}</h3>
 
                 </div>
 
@@ -87,10 +45,11 @@
                 </div>
             </div>
 
-            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1">
+            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 cursor-pointer " routerLink="/inProcessJobs">
                 <div class="flex flex-col justify-between gap-7 ">
                     <h3 class="text-slate-400">In Process Jobs</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold">{{jobproc ||0}}</h3>
+              <h3 class="text-slate-600 text-4xl font-semibold">
+                {{commonservice.proc ||0}}</h3>
                 </div>
 
                 <div class="flex flex-col h-full justify-between  gap-7">
@@ -105,10 +64,10 @@
 
                 </div>
             </div>
-            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2 pt-2 pb-1 ">
+            <div class="bg-white w-2/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2 pt-2 pb-1 cursor-pointer" routerLink="/deliveed-jobs">
                 <div class="flex flex-col justify-between gap-7">
                     <h3 class="text-slate-400">Delivered Jobs</h3>
-                    <h3 class="text-slate-600 text-4xl font-semibold"> {{jobdelv || 0}}</h3>
+                    <h3 class="text-slate-600 text-4xl font-semibold"> {{commonservice.del || 0}}</h3>
                 </div>
 
                 <div class="flex flex-col h-full justify-between  gap-7">
@@ -126,7 +85,49 @@
 
 
         </div>
+        <div class="w-full  flex  justify-center gap-5">
 
+
+            <div class="bg-white w-4/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 cursor-pointer" routerLink="/manage-user">
+                <div class="flex flex-col justify-between gap-7 ">
+                    <h3 class="text-slate-400">Registerd Users</h3>
+                    <h3 class="text-slate-600 text-4xl font-semibold">{{commonservice.RegisteredUser ||0}} </h3>
+                </div>
+
+
+                <div class="flex flex-col h-full justify-between  gap-7">
+                    <div class="w-full text-right ">
+                        <i class="fa-solid fa-arrow-up-right-from-square   rounded-md shadow-sm text-orange-400 bg-[#FEF9EE] text-base "
+                            aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-users-line md:px-5 px-2 md:py-3 py-2 md:text-3xl text-lg rounded-md shadow-sm text-orange-400 bg-[#FEF9EE]  "
+                            aria-hidden="true"></i>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="bg-white w-4/12 h-full shadow-md rounded-md flex justify-between pl-5 pr-2  pt-2 pb-1 cursor-pointer" routerLink="/manage-Agency">
+                <div class="flex flex-col justify-between gap-7 ">
+                    <h3 class="text-slate-400">Registerd Cargo Agencies</h3>
+                    <h3 class="text-slate-600 text-4xl font-semibold"> {{commonservice.RegisteredAgency || 0}}</h3>
+                </div>
+
+                <div class="flex flex-col h-full justify-between  gap-7">
+                    <div class="w-full text-right ">
+                        <i class="fa-solid fa-arrow-up-right-from-square   rounded-md shadow-sm text-orange-400 bg-[#FEF9EE] text-base "
+                            aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-store md:px-5 px-2 md:py-3 py-2 md:text-3xl text-lg rounded-md shadow-sm text-orange-400 bg-[#FEF9EE]  "
+                            aria-hidden="true"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
     <div class="w-full flex ml-10 justify-center mt-10 ">
@@ -153,8 +154,7 @@
                             <div class="w-full  shadow-md rounded-md bg-white  h-fit  pb-10 ">
                                 <div class="w-full h-fit bg-white  pt-5 px-5 "
                                     style="border-bottom: 1px solid  rgb(196, 196, 196);">
-                                    <h3> <img class="w-6  mb-1 text-slate-400"
-                                            src="../../../../../assets/imges/package.svg"> Booked Jobs</h3>
+                                    <h3> <i class="fa-solid fa-truck"></i> Booked Jobs</h3>
                                 </div>
                                 <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
                                     <div class="md:w-6/12 w-full h-full flex flex-col pl-10 pt-5 gap-1"> <span
@@ -175,7 +175,7 @@
 
                                         <span> <i class="fa-solid fa-id-card mr-1"></i>
 
-                                            Refrance Id:{{item.id}}
+                                            Refrance Id:{{item._id}}
                                         </span>
                                         <span> <i class="fa-solid fa-list-check mr-1"></i>
 
@@ -196,7 +196,7 @@
                                 <div>
 
 
-                                    <button [routerLink]="['/user-job-tracking', item.id]" nz-button nzSize="default"
+                                    <button [routerLink]="['/user-job-tracking', item._id]" nz-button nzSize="default"
                                         nzType="primary"
                                         class="w-36 h-8  ml-10 mt-6 px-2 text-base rounded-md cursor-pointer  "> Track
                                         Job
@@ -228,14 +228,16 @@
                             <div class="w-full  shadow-md rounded-md bg-white  h-full ">
                                 <div class="w-full h-1/4 bg-white  pt-3 px-5 "
                                     style="border-bottom: 1px solid  rgb(196, 196, 196);">
-                                    
-                                        
+
+
                                 </div>
 
-                                <div class="w-full h-3/4 bg-[#FCFCFC]  flex justify-center flex-col gap-2 items-center pr-5">
+                                <div
+                                    class="w-full h-3/4 bg-[#FCFCFC]  flex justify-center flex-col gap-2 items-center pr-5">
 
                                     <h3 class="text-slate-600 text-2xl font-semibold">No record found</h3>
-                                    <span class="text-5xl text-slate-500" nz-icon nzType="inbox" nzTheme="outline"></span>
+                                    <span class="text-5xl text-slate-500" nz-icon nzType="inbox"
+                                        nzTheme="outline"></span>
                                 </div>
 
                             </div>
@@ -333,8 +335,7 @@
                             <div class="w-full  shadow-md rounded-md bg-white  h-fit  pb-10 ">
                                 <div class="w-full h-fit bg-white  pt-5 px-5 "
                                     style="border-bottom: 1px solid  rgb(196, 196, 196);">
-                                    <h3> <img class="w-6  mb-1 text-slate-400"
-                                            src="../../../../../assets/imges/package.svg"> Accepted
+                                    <h3> <i class="fa fa-shipping-fast" aria-hidden="true"></i> Accepted
                                         Jobs</h3>
                                 </div>
                                 <div class="w-full h-fit   flex md:flex-row flex-col justify-between items-center pr-5">
@@ -386,7 +387,7 @@
                             </div>
 
                         </div>
-                        <div *ngIf="agncySearchResultsFound "  class="w-full flex justify-end mt-10">
+                        <div *ngIf="agncySearchResultsFound " class="w-full flex justify-end mt-10">
                             <nz-pagination [nzPageIndex]="pageIndexTab2" [nzTotal]="totalItemsTab2"
                                 [nzPageSize]="pageSizeTab2" nzShowSizeChanger
                                 (nzPageIndexChange)="handlePageIndexChangeTab2($event)"
@@ -492,8 +493,7 @@
                             <div class="w-full  shadow-md rounded-md bg-white  h-fit  pb-10 ">
                                 <div class="w-full h-fit bg-white  flex justify-between items-center  px-5 "
                                     style="border-bottom: 1px solid  rgb(196, 196, 196);">
-                                    <h3 class="pt-5"> <img class="w-6  mb-1 text-slate-400"
-                                            src="../../../../../assets/imges/package.svg"> Canceled Job</h3> <i
+                                    <h3 class="pt-5"> <i class="fa-regular fa-rectangle-xmark"></i> Canceled Job</h3> <i
                                         (click)="showDeleteConfirm(item.id)"
                                         class="fa-solid fa-xmark hover:bg-red-700 hover:text-white px-2 shadow-sm hover:shadow-lg rounded-md font-semibold text-lg "></i>
                                 </div>

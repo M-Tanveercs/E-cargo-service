@@ -15,7 +15,7 @@ userBookingReacod: any[]=[];
   data: any[] = [];
   jobSuccessfull: any;
   jobAccepted: any;
-  
+  isCollapsed = false;
   private SignupUser = new BehaviorSubject({});
   signUpUserData$ = this.SignupUser.asObservable();
   private jobAcceptedCount = new BehaviorSubject<any>(null);
@@ -44,6 +44,12 @@ userBookingReacod: any[]=[];
   signupuserdetail: any;
 userdata: any;
   proc: any;
+  del: any;
+  ontheways: any;
+  allRegiteredUser: any[]=[];
+  allRegiteredAgency: any[]=[];
+  RegisteredUser: any;
+  RegisteredAgency: any;
 
 constructor(private coreservice:CoreService) { }
 
@@ -110,14 +116,14 @@ async getuserrecord() {
         this.proc = this.Processing.length
         this.jobProcessing.next(this.proc)
         this.Delivered = this.data.filter((data: { status: string }) => data.status === 'Delivered');
-        const del = this.Delivered.length
-        this.Jobdeliverd.next(del)
+        this.del = this.Delivered.length
+        this.Jobdeliverd.next(this.del)
         this.ontheWay = this.data.filter((data: { status: string }) => data.status === 'On the Way');
         // this.data.forEach((data) => {
         //   this.findDriverName(data);
         // })
-        const ontheways = this.ontheWay.length;
-        this.JobontheWayCount.next(ontheways)
+        this.ontheways = this.ontheWay.length;
+        this.JobontheWayCount.next(this.ontheways)
         this.jobSuccessfull = true;
         this.jobAccepted = response && Object.keys(response).length
         this.jobAcceptedCount.next(this.jobAccepted)
@@ -135,5 +141,29 @@ async getuserrecord() {
       this.jobSuccessfull = false;
     }
   
+}
+async getAllRegisteredUser(){
+  try {
+  const response = await this.coreservice.getsignupUserRecord().toPromise()
+if((response && Object.keys(response).length > 0)){
+  this.allRegiteredUser = response
+  this.RegisteredUser=response && Object.keys(response).length
+}  
+}catch(e){
+  console.log('error', e);
+  
+}
+}
+async getAllRegisteredAgency(){
+  try {
+  const response = await this.coreservice.getsignupAgencyRecord().toPromise()
+if((response && Object.keys(response).length > 0)){
+  this.allRegiteredAgency = response
+  this.RegisteredAgency=response && Object.keys(response).length
+}  
+}catch(e){
+  console.log('error', e);
+  
+}
 }
 }

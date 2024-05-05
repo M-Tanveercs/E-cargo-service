@@ -77,7 +77,7 @@ export class TrackJobComponent implements OnInit {
       })
       this.mangcargoData.forEach((element: {
         trackingId: any;
-        id: any;
+        _id: any;
       }) => {
         
         // this.cargoId=element.id; 
@@ -138,7 +138,7 @@ export class TrackJobComponent implements OnInit {
       this.pickuplocation = data.pickupLocation;
       this.dropoffLocation = data.dropoffLocation;
       // Wrap the liveLocation value in an Observable
-      const trackingdata=this.mangcargoData.find((filter:any)=>filter.trackingId ===data.id)
+      const trackingdata=this.mangcargoData.find((filter:any)=>filter.trackingId ===data._id)
       this.liveCoordinates$ = of(trackingdata.driverLocation);
       console.log("    this.liveCoordinates$", this.liveCoordinates$);
   this.liveCoordinates$.subscribe((driverData)=>{

@@ -15,9 +15,12 @@ import { ManageDriverComponent } from './manage-driver/manage-driver.component';
 
 const routes: Routes = [
   {path:'', component: AgencyMainDashBordComponent ,
+  canActivate: [agencyAuthGuardGuard], 
   children:[
     { path: '', redirectTo: 'agency-dashbord', pathMatch: 'full' },
-    {path:'agency-dashbord',component:AgencyDashBordComponent},
+    {path:'agency-dashbord',component:AgencyDashBordComponent,
+  
+    },
     {path:'reviews',component:ManageReviewsComponent},
     {path:'AcceptedJobs',component:AcceptedJobsComponent},
     {path:'onTheWay',component:OnTheWayComponent},

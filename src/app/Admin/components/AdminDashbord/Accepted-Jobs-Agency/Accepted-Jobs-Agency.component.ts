@@ -16,7 +16,6 @@ export class AcceptedJobsAgencyComponent implements OnInit {
   ngOnInit() {
     debugger
     
-    this.commonservice.getcargoRecordwithStatus('Pending')
-    
+this.commonservice.getAllAcceptedJobByAgency()    
   }
   }

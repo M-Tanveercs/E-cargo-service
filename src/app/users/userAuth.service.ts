@@ -18,7 +18,7 @@ export class AuthService {
   returnUrl: string;
   data: any
 
-    private authStatus = new BehaviorSubject<boolean>(false);
+    public authStatus = new BehaviorSubject<boolean>(false);
   authStatus$ = this.authStatus.asObservable();
 constructor(private router:Router,    private route: ActivatedRoute, private coreservice:CoreService,private message:NzMessageService) {
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

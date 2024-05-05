@@ -148,7 +148,7 @@
                   <nz-select formControlName="selectedDriver" nzAllowClear nzPlaceHolder="Select a Driver" nzSize="large" class="w-full rounded-lg">
                     <!-- <ng-container *ngIf="driverJobIds.includes(item.id)"> -->
                     <ng-container *ngFor="let driver of drivers">
-                        <nz-option nzLabel="{{ driver.fullName }}" [nzValue]="driver.id "></nz-option>
+                        <nz-option nzLabel="{{ driver.fullName }}" [nzValue]="driver._id "></nz-option>
                       </ng-container>
                     <!-- </ng-container -->
                   </nz-select>

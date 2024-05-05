@@ -41,9 +41,9 @@
           <td>{{ data.status }}</td>
          
           <td class="bg-slate-200" > <div class="flex gap-8 justify-center text-base ">
-            <i class="fa-regular fa-pen-to-square text-blue-700" (click)="EditDriveDetail(data.id)"></i> 
+            <i class="fa-regular fa-pen-to-square text-blue-700" (click)="EditDriveDetail(data._id)"></i> 
             
-            <i  nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteDriver(data.id)" class="fa-regular fa-trash-can text-red-700" ></i>
+            <i  nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteDriver(data._id)" class="fa-regular fa-trash-can text-red-700" ></i>
           </div>
       </td>
       

@@ -21,9 +21,9 @@ export class CancelJobsComponent implements OnInit {
    if(loginUser) {
    this.userLoginData=JSON.parse(loginUser)
    this.userLoginData.forEach((element: {
-     id: any; fullname: any; 
+     _id: any; fullname: any; 
 }) => {
- this.userid=element.id
+ this.userid=element._id
  
    });
    this.getCancelrecord()
@@ -57,6 +57,11 @@ this.cancelJob=data
     });
   }
   confirmDelete(id: string){
+    
 this.commonservice.deletedrecod(id)
+
+this.getCancelrecord()
+ 
+
   }
 }

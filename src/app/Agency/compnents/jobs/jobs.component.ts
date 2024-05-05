@@ -2,7 +2,7 @@ import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import { AgencyCommonService } from '../../agency-common.service';
 import { Router } from '@angular/router';
 import { CoreService } from 'src/app/core/core.service';
-
+import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-jobs',
   templateUrl: './jobs.component.html',
@@ -16,14 +16,14 @@ searchText: any;
   job: any[]=[]
   jobsids: any;
 
-  constructor(public commonService:AgencyCommonService,private router:Router , private coreService:CoreService) { }
+  constructor(public commonService:AgencyCommonService,private router:Router , private coreService:CoreService,private modal: NzModalService) { }
 
   ngOnInit() {
     debugger
     this.commonService.getAllAgencyJobs()
     this.commonService.getAllJobs()
     this.commonService.AllJobs.subscribe(jobs =>
-      this.job=jobs,
+      this.job=jobs
       
     )
   
@@ -78,7 +78,22 @@ this.router.navigate(['/more-info'])
     this.commonService.orderAccept(jobid)
 
    this.commonService.getAllAgencyJobs()
-    this.commonService.getAllJobs()
+   
+
+      this.commonService.getAllJobs()
+      this.commonService.AllJobs.subscribe(jobs =>
+        this.job=jobs
+        
+      )
+   
+    alert('job accepted')
    }
+   showConfirm(jobid:any): void {
+    this.modal.confirm({
+      nzTitle: '<i>Do you Want to delete these items?</i>',
+      nzContent: '<b>Some descriptions</b>',
+      nzOnOk: () => this.curentOrderAccept(jobid)
+    })
+}
 }
 

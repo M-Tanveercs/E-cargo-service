@@ -10,6 +10,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class AgencySignupComponent implements OnInit {
   signupForm!: FormGroup;
+  cnicfrontImg: any|'';
+  cnicbackImg: any|'';
 
   constructor(private fb: FormBuilder, private router: Router,private coreservice:CoreService,private message:NzMessageService) { }
 
@@ -39,7 +41,24 @@ export class AgencySignupComponent implements OnInit {
 //     // Form is valid, continue with form submission logic
 //     // ...
 //   }
-
+cnicFrontImage(event: any) {
+  const file: File = event.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+console.log( e.target.result);
+this.cnicfrontImg=e.target.result
+  };
+  reader.readAsDataURL(file);
+}
+cnicBackImage(event: any) {
+  const file: File = event.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+console.log( e.target.result);
+this.cnicbackImg=e.target.result
+  };
+  reader.readAsDataURL(file);
+}
   onSubmit() {
     debugger;
     // Check if the form is valid
@@ -59,10 +78,11 @@ export class AgencySignupComponent implements OnInit {
           
           return; // Stop further execution
         }
-        const uniqueId = this.generateUniqueId();
-    
+        // const uniqueId = this.generateUniqueId();
+
+
         // Push the new user data with the unique ID to the existing array
-        const newUser = { id: uniqueId, ...this.signupForm.value };
+        const newUser = { cnicFrontImg:this.cnicfrontImg,cnicBackImg:this.cnicbackImg, ...this.signupForm.value };
         existingSignUpData.push(newUser);
       this.AgencySignupRecord(newUser)
            // Store the updated data back to local storage
@@ -71,8 +91,8 @@ export class AgencySignupComponent implements OnInit {
       console.log(existingSignUpData);
       this.signupForm.reset();
       }else{
-        const uniqueId = this.generateUniqueId();
-        const newUser = { id: uniqueId,...this.signupForm.value };
+    
+        const newUser = { ...this.signupForm.value };
         const existingSignUpData: any[] = [];
         existingSignUpData.push(newUser);
         localStorage.setItem('AgencySignUp', JSON.stringify(existingSignUpData));
@@ -92,11 +112,7 @@ export class AgencySignupComponent implements OnInit {
     // Form is valid, continue with form submission logic
     // ...
   }
-  generateUniqueId() {
-    // This is a simple example; you may want to use a more robust method
-    // to generate unique IDs in a real-world application
-    return '_' + Math.random().toString(36).substr(2, 9);
-  }
+
   AgencySignupRecord(userData: any) {
     // Assuming users data is available and you want to send it to the server
     this.coreservice.signupAgencyRecord(userData).subscribe(data=>{

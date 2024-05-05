@@ -51,10 +51,10 @@ export class AgencyDashService {
     if (loginUser) {
       this.userLoginData = JSON.parse(loginUser)
       this.userLoginData.forEach((element: {
-        id: any; fullname: any;
+        _id: any; fullname: any;
       }) => {
 
-        this.getuserrecord(element.id)
+        this.getuserrecord(element._id)
 
       });
 
@@ -107,17 +107,40 @@ export class AgencyDashService {
       }
     );
   }
-  findDriverName(data: any) {
+  // findDriverName(data: any) {
+  //   debugger
+  //   try {
+  //     this.coreservice.getOrderAssignToDriverByJobId(data.jobid).subscribe(driver => {
+  //       if (driver) {
+  //         console.log("jobdata",data);
+          
+  //         data['driverName'] = driver ? driver?.length > 0 ? driver?.[0].driverName :  driver?.driverName || "---" : "---"
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error("Error fetching driver details:", error);
+  //   }
+  // }
+  async findDriverName(data: any) {
     try {
-      this.coreservice.getOrderAssignToDriverByJobId(data.jobid).subscribe(driver => {
-        if (driver) {
-          data['driverName'] = driver ? driver?.length > 0 ? driver?.[0].driverName :  driver?.driverName || "---" : "---"
+      const driver = await this.coreservice.getOrderAssignToDriverByJobId(data.jobid).toPromise();
+      if (driver) {
+        console.log("jobdata", data);
+        // Find the driver with matching jobid
+        const matchingDriver = driver.find((drv: any) => drv.jobid === data.jobid);
+        // Assign the driver name to the data object if found
+        if (matchingDriver) {
+          data['driverName'] = matchingDriver.driverName || "---";
+        } else {
+          data['driverName'] = "---"; // No matching driver found
         }
-      });
+      }
     } catch (error) {
       console.error("Error fetching driver details:", error);
+      // Handle the error appropriately
     }
   }
+  
   managecargoTracking(data: any) {
     this.coreservice.manageCargo(data).subscribe(data => {
       console.log(data);
