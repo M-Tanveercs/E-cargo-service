@@ -1,86 +1,96 @@
-<div class="lg:w-80 h-screen flex z-30 fixed bottom-0 top-0 left-0 transition-all duration-300" [ngClass]="{'w-0': isCollapsed, 'w-80': !isCollapsed}"  >
-  
- 
-  <ul nz-menu nzMode="inline"  [nzTheme]="theme ? 'dark' : 'light'" [nzInlineCollapsed]="isCollapsed  " class=" h-full  relative  mt-20  pt-5  " >
-
+<div
+  class="lg:w-80 h-screen flex z-30 fixed bottom-0 top-0 left-0 transition-all duration-300"
+  [ngClass]="{ 'w-0': isCollapsed, 'w-80': !isCollapsed }"
+>
+  <ul
+    nz-menu
+    nzMode="inline"
+    [nzTheme]="theme ? 'dark' : 'light'"
+    [nzInlineCollapsed]="isCollapsed"
+    class="h-full relative mt-20 pt-5"
+  >
     <li nz-submenu nzTitle="Home" nzIcon="home" class="mb-5">
       <ul>
-        <li nz-menu-item  routerLink="/agency-dashbord" ><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 5v2h-4V5zM9 5v6H5V5zm10 8v6h-4v-6zM9 17v2H5v-2zM21 3h-8v6h8zM11 3H3v10h8zm10 8h-8v10h8zm-10 4H3v6h8z"/></svg> Dashboard</li>
-        <li nz-menu-item  routerLink="/jobs"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
-          Get Job</li>
-       <li nz-menu-item routerLink="/reviews"  > <i class="fa fa-commenting-o" aria-hidden="true"></i>
-        Manage Reviews</li>
-        
+        <li nz-menu-item routerLink="/agency-dashbord">
+          <span nz-icon nzType="appstore"></span>Dashboard
+        </li>
+        <li nz-menu-item routerLink="/jobs">
+          <i class="fa fa-plus-square-o" aria-hidden="true"></i> Get Job
+        </li>
+        <li nz-menu-item routerLink="/reviews">
+          <i class="fa fa-commenting-o" aria-hidden="true"></i> Manage Reviews
+        </li>
       </ul>
     </li>
-  
-    <li nz-submenu nzTitle="Manage Jobs" nzIcon="appstore-add"  class="mb-5">
-      <ul>
-        <li nz-menu-item routerLink="/AcceptedJobs"><i class="fa fa-truck" aria-hidden="true"></i>
-          Accepted Jobs
-        <nz-badge [nzCount]="bookedcount">
-          <a class="head-example">
-         
-          </a>
-        </nz-badge>
-      </li>
-        
-      
-        <li nz-menu-item routerLink="/InProcessJobs"> <i class="fa-solid fa-bars-progress"></i>
-          In Process Jobs
-          <nz-badge [nzCount]="jobproc || 0 " nzShowZero>
-            <a class="head-example">
-           
-            </a>
-          </nz-badge>
-        </li>
-        <li nz-menu-item routerLink="/onTheWay"> <i class="fa fa-road" aria-hidden="true"></i>
 
-        On the Way
-          <nz-badge [nzCount]=" jobontheway || 0" nzShowZero>
-            <a class="head-example">
-           
-            </a>
+    <li nz-submenu nzTitle="Manage Jobs" nzIcon="appstore-add" class="mb-5">
+      <ul>
+        <li nz-menu-item routerLink="/AcceptedJobs">
+          <i class="fa fa-truck" aria-hidden="true"></i>
+          Accepted Jobs
+          <nz-badge [nzCount]="bookedcount">
+            <a class="head-example"> </a>
           </nz-badge>
         </li>
-        <li nz-menu-item routerLink="/CompletedJobs"> <i class="fa fa-check-square-o"></i>
+
+        <li nz-menu-item routerLink="/InProcessJobs">
+          <i class="fa-solid fa-bars-progress"></i>
+          In Process Jobs
+          <nz-badge [nzCount]="jobproc || 0" nzShowZero>
+            <a class="head-example"> </a>
+          </nz-badge>
+        </li>
+        <li nz-menu-item routerLink="/onTheWay">
+          <i class="fa fa-road" aria-hidden="true"></i>
+
+          On the Way
+          <nz-badge [nzCount]="jobontheway || 0" nzShowZero>
+            <a class="head-example"> </a>
+          </nz-badge>
+        </li>
+        <li nz-menu-item routerLink="/CompletedJobs">
+          <i class="fa fa-check-square-o"></i>
           Completed Jobs
           <nz-badge [nzCount]="jobdelv || 0" nzShowZero>
-            <a class="head-example">
-           
-            </a>
+            <a class="head-example"> </a>
           </nz-badge>
         </li>
-      
       </ul>
     </li>
-  
+
     <li nz-submenu nzTitle="Manage Driver" nzIcon="usergroup-add" class="mb-5">
       <ul>
         <li nz-menu-item routerLink="manage-driver">
-          <img src="../../../../../assets/imges/taxi-driver_10635967 (1).png" class="h-5 w-5" alt="">View Driver List</li>
-       
-       
-        
+          <img
+            src="../../../../../assets/imges/taxi-driver_10635967 (1).png"
+            class="h-5 w-5"
+            alt=""
+          />View Driver List
+        </li>
       </ul>
     </li>
     <li nz-submenu nzTitle="My Account" nzIcon="solution" class="mb-5">
       <ul>
-        <li nz-menu-item routerLink="agency-profile-edit"><span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit Profile</li>
-       
-        <li (click)="logout()" nz-menu-item><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
-        
+        <li nz-menu-item routerLink="agency-profile-edit">
+          <span nz-icon nzType="form" nzTheme="outline" class="mr-1"></span>Edit
+          Profile
+        </li>
+
+        <li (click)="logout()" nz-menu-item>
+          <span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span
+          >Logout
+        </li>
       </ul>
     </li>
 
     <li nz-submenu nzTitle="Others" nzIcon="question-circle">
       <ul>
-        <li routerLink="/contactUS" nz-menu-item > <i class="fa fa-phone mr-1" aria-hidden="true"></i>Contact Us</li>
-     
-        
+        <li routerLink="/contactUS" nz-menu-item>
+          <i class="fa fa-phone mr-1" aria-hidden="true"></i>Contact Us
+        </li>
       </ul>
     </li>
-    <li class="absolute bottom-28 w-full  flex justify-end pr-5 ">
+    <li class="absolute bottom-28 w-full flex justify-end pr-5">
       <nz-switch [(ngModel)]="theme">
         <span checked>Dark</span>
         <span unchecked>Light</span>
@@ -88,7 +98,14 @@
     </li>
   </ul>
 
-<div class="">  <button class="ml-2 mt-24" nz-button nzType="primary" (click)="toggleCollapsed()">
-  <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
-</button> </div>
+  <div class="">
+    <button
+      class="ml-2 mt-24"
+      nz-button
+      nzType="primary"
+      (click)="toggleCollapsed()"
+    >
+      <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+    </button>
+  </div>
 </div>

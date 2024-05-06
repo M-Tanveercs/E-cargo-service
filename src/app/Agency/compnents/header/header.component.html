@@ -1,94 +1,203 @@
+<nav
+  class="flex items-center justify-between flex-wrap py-4 fixed w-full z-50 top-0 bg-[#ECECEC]"
+  *ngIf="authstatus"
+>
+  <div class="flex items-center flex-shrink-0 text-white mr-0 sm:mr-6">
+    <a
+      class="text-white no-underline hover:text-white hover:no-underline"
+      routerLink="/agency"
+    >
+      <span class="text-2xl pl-2" style="color: #30445d"
+        ><i class="em em-grinning"></i>
+        <span
+          class="sm:text-3xl text-2xl font-extrabold"
+          style="color: rgb(68, 86, 106)"
+          >E Cargo</span
+        >
+        Services <i class="fa fa-shipping-fast" aria-hidden="true"></i
+      ></span>
+    </a>
+  </div>
 
+  <div class="block lg:hidden bg-blue-600">
+    <button
+      id="nav-toggle"
+      (click)="toggleNav()"
+      class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white"
+    >
+      <svg
+        class="fill-current h-3 w-3"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+      </svg>
+    </button>
+  </div>
 
-<nav class="flex items-center justify-between flex-wrap py-4 fixed w-full z-50 top-0  bg-[#ECECEC]  " *ngIf="authstatus">
-	<div class="flex items-center flex-shrink-0 text-white mr-0 sm:mr-6 ">
-		<a class="text-white no-underline hover:text-white hover:no-underline"  routerLink="/agency" >
-			<span class="text-2xl pl-2 " style="color: #30445D; " ><i class="em em-grinning"></i> <span class="sm:text-3xl  text-2xl font-extrabold" style="color: rgb(68, 86, 106);">E Cargo</span> Services <i class="fa fa-shipping-fast " aria-hidden="true"></i></span>
-		</a>
-	</div>
+  <div
+    class="w-full flex-grow lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"
+    [ngClass]="{ hidden: isNavHidden }"
+    id="nav-content"
+  >
+    <ul
+      class="list-reset lg:flex justify-end flex-1 items-center list-none font-bold md:gap-5"
+    >
+      <li class="mr-3 nav-li">
+        <a
+          class="inline-block py-2 px-4 no-underline hover:text-gray-400 text-gray-600"
+          routerLink="/agency"
+          >Home</a
+        >
+      </li>
+      <li class="mr-3 nav-li">
+        <a
+          class="inline-block py-2 px-4 no-underline hover:text-gray-400 text-gray-600"
+          routerLink="/jobs"
+          >Jobs</a
+        >
+      </li>
 
-	<div class="block lg:hidden bg-blue-600">
-		<button id="nav-toggle"  (click)="toggleNav()" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
-			<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-		</button>
-	</div>
+      <li class="mr-3 nav-li">
+        <a
+          class="inline-block text-gray-600 no-underline hover:text-gray-400 py-2 px-4"
+          routerLink="/agency-pricing-table"
+          >Pricing</a
+        >
+      </li>
+      <li class="mr-3 nav-li">
+        <a
+          class="inline-block text-gray-600 no-underline hover:text-gray-400 py-2 px-4"
+          routerLink="/agency-aboutUs"
+          >About Us</a
+        >
+      </li>
+      <li class="mr-3 nav-li">
+        <a
+          class="inline-block text-gray-600 no-underline hover:text-gray-400 py-2 px-4"
+          routerLink="/agency-contactUS"
+          >Contact Us</a
+        >
+      </li>
+      <li class="mr-3 nav-li" *ngIf="!userLoginData">
+        <a
+          class="inline-block text-gray-600 no-underline hover:text-gray-400 py-2 px-4"
+          routerLink="/agency-login"
+          >Login</a
+        >
+      </li>
+      <li class="mr-3">
+        <a
+          class="inline-block text-gray-600 no-underline hover:text-gray-400"
+          routerLink="/agency"
+        >
+          <nz-button-group>
+            <button
+              nz-button
+              class="font-bold px-0 text-gray-600 no-underline hover:text-gray-400"
+              style="
+                border: none;
+                background-color: #ececec;
+                outline: none;
+                box-shadow: none;
+              "
+            >
+              Modules
+            </button>
+            <button
+              style="
+                border: none;
+                background-color: #ececec;
+                outline: none;
+                box-shadow: none;
+              "
+              nz-button
+              nz-dropdown
+              [nzDropdownMenu]="menu2"
+              nzPlacement="bottomRight"
+            >
+              <!-- <span nz-icon nzType="login" nzTheme="outline"></span> -->
+              <span nz-icon nzType="caret-down" nzTheme="outline"></span>
+            </button>
+          </nz-button-group>
+          <nz-dropdown-menu #menu2="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item routerLink="">
+                <i class="fa fa-solid fa-user mr-1"></i>User Module
+              </li>
+              <li nz-menu-item routerLink="agency">
+                <i class="fa fas fa-building mr-1"></i>Agency Module
+              </li>
+              <li nz-menu-item routerLink="admin-dashbord">
+                <i class="fa fa-user-plus mr-1" aria-hidden="true"></i> Admin
+                Module
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </a>
+      </li>
+      <li class="mr-3" *ngIf="authstatus">
+        <button
+          nz-dropdown
+          [nzDropdownMenu]="menu1"
+          nzPlacement="bottomRight"
+          class="border-0 shadow-none pt-0"
+        >
+          <nz-avatar nzIcon="user" [nzSize]="45"></nz-avatar>
+        </button>
 
-	<div class="w-full flex-grow  lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"  [ngClass]="{'hidden': isNavHidden}" id="nav-content">
-		<ul class="list-reset lg:flex justify-end flex-1 items-center list-none font-bold md:gap-5     ">
-			<li class="mr-3 nav-li">
-				<a class="inline-block py-2 px-4 no-underline  hover:text-gray-400 text-gray-600  " routerLink="/agency">Home</a>
-			</li>
-			<li class="mr-3 nav-li">
-				<a class="inline-block py-2 px-4 no-underline  hover:text-gray-400 text-gray-600  " routerLink="/jobs">Jobs</a>
-			</li>
-			
-			<li class="mr-3 nav-li">
-				<a class="inline-block text-gray-600 no-underline  hover:text-gray-400  py-2 px-4 " routerLink="/agency-pricing-table">Pricing</a>
-			</li>
-			<li class="mr-3 nav-li">
-				<a class="inline-block text-gray-600 no-underline  hover:text-gray-400  py-2 px-4 " routerLink="/agency-aboutUs">About Us</a>
-			</li>
-			<li class="mr-3 nav-li">
-				<a     
-				class="inline-block text-gray-600 no-underline     hover:text-gray-400  py-2 px-4 " routerLink="/agency-contactUS">Contact Us</a>
-			</li>
-			<li class="mr-3 nav-li"  *ngIf="!userLoginData">
-				<a     
-				class="inline-block text-gray-600 no-underline     hover:text-gray-400  py-2 px-4 "routerLink="/agency-login" >Login</a>
-			</li>
-			<li class="mr-3 " >
-				<a class="inline-block  text-gray-600 no-underline     hover:text-gray-400  " routerLink="/agency">
-					<nz-button-group >
-						<button nz-button class="font-bold px-0 text-gray-600   no-underline     hover:text-gray-400   " style="border: none ; background-color: #ECECEC ; outline: none; box-shadow: none; "    >Modules</button>
-						<button style="border: none ; background-color: #ECECEC ; outline: none; box-shadow: none;"   nz-button nz-dropdown [nzDropdownMenu]="menu2" nzPlacement="bottomRight">
-							<!-- <span nz-icon nzType="login" nzTheme="outline"></span> -->
-							<span nz-icon nzType="caret-down" nzTheme="outline"></span>
-						</button>
+        <nz-dropdown-menu #menu1="nzDropdownMenu">
+          <ul nz-menu class="mt-5 w-64 rounded-md shadow-lg">
+            <li class="py-5 pl-4 px-3" routerLink="edit-profile">
+              <div class="flex cursor-pointer">
+                <nz-avatar nzIcon="user" [nzSize]="45"></nz-avatar>
+                <div class="flex flex-col ml-3">
+                  <span>{{ username }}</span> <span>ECS Agency</span>
+                </div>
+              </div>
+            </li>
+            <hr class="bg-slate-50 mb-3" />
 
-					  </nz-button-group>
-					  <nz-dropdown-menu #menu2="nzDropdownMenu">
-						<ul nz-menu >
-						  <li nz-menu-item routerLink="" > <i class="fa fa-solid fa-user mr-1"></i>User Module</li>
-						  <li nz-menu-item routerLink="agency"> <i class='fa fas fa-building mr-1' ></i>Agency Module</li>
-						  <li nz-menu-item routerLink="admin-dashbord"> <i class="fa fa-user-plus mr-1" aria-hidden="true"></i> Admin Module</li>
-						</ul>
-					  </nz-dropdown-menu>
-				</a>
-			  
-			</li>
-			<li class="mr-3" *ngIf="authstatus">	
-				<button  nz-dropdown [nzDropdownMenu]="menu1" nzPlacement="bottomRight" class="border-0 shadow-none pt-0">
-					<nz-avatar nzIcon="user" [nzSize]="45" ></nz-avatar>
-					  </button>
-				
-					<nz-dropdown-menu #menu1="nzDropdownMenu">
-					  <ul nz-menu class="mt-5 w-64 rounded-md shadow-lg">
-						<li class="py-5 pl-4 px-3" routerLink="edit-profile"><div class="flex  cursor-pointer">    <nz-avatar nzIcon="user" [nzSize]="45" ></nz-avatar> <div class="flex flex-col ml-3 "><span>{{username}}</span> <span>ECS Agency</span></div></div></li>
-						<hr class="bg-slate-50  mb-3">
-				
-						<li nz-menu-item  (click)="dashbord()"  class="py-2 pl-4 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 5v2h-4V5zM9 5v6H5V5zm10 8v6h-4v-6zM9 17v2H5v-2zM21 3h-8v6h8zM11 3H3v10h8zm10 8h-8v10h8zm-10 4H3v6h8z"/></svg> Dashboard</li> 
-		
-					 
-						<li nz-menu-item class="py-2 pl-4 cursor-pointer" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline" class="mr-1"></span>Logout</li>
-					<!-- header.component.html -->
+            <li
+              nz-menu-item
+              (click)="dashbord()"
+              class="py-2 pl-4 cursor-pointer"
+            >
+              <span nz-icon nzType="appstore"></span> Dashboard
+            </li>
 
-
-					  </ul>
-					</nz-dropdown-menu>
-			</li>
-		</ul>
-	</div>
-   
-   
+            <li
+              nz-menu-item
+              class="py-2 pl-4 cursor-pointer"
+              (click)="logout()"
+            >
+              <span
+                nz-icon
+                nzType="logout"
+                nzTheme="outline"
+                class="mr-1"
+              ></span
+              >Logout
+            </li>
+            <!-- header.component.html -->
+          </ul>
+        </nz-dropdown-menu>
+      </li>
+    </ul>
+  </div>
 </nav>
-<div class=" z-50 fixed top-1/2  right-2 "  *ngIf="authstatus">
-	<img class="w-7" src="../../../../assets/imges/output-onlinegiftools (1).gif" alt="">
-	<nz-switch  nzSize="small" [(ngModel)]="switchValue" (ngModelChange)="toggleDarkMode()"></nz-switch>
+<div class="z-50 fixed top-1/2 right-2" *ngIf="authstatus">
+  <img
+    class="w-7"
+    src="../../../../assets/imges/output-onlinegiftools (1).gif"
+    alt=""
+  />
+  <nz-switch
+    nzSize="small"
+    [(ngModel)]="switchValue"
+    (ngModelChange)="toggleDarkMode()"
+  ></nz-switch>
 </div>
 <!--Container-->
-<div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
-
-</div>
-
-
-
+<div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18"></div>

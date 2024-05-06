@@ -55,20 +55,12 @@ buttonStatus:boolean=true
           alert('Email already exists. Please use a different email.');
           return; // Stop further execution
         }
-        const uniqueId = this.generateUniqueId();
-    
-        // Push the new user data with the unique ID to the existing array
-        const newUser = { id: uniqueId, ...this.signupForm.value };
-        existingSignUpData.push(newUser);
-      this.signupRecord(newUser)
+
            // Store the updated data back to local storage
-      localStorage.setItem('SignUp', JSON.stringify(existingSignUpData));
-    
-      console.log(existingSignUpData);
-      this.signupForm.reset();
+  
       }else{
-        const uniqueId = this.generateUniqueId();
-        const newUser = { id: uniqueId,...this.signupForm.value };
+        const newUser = { ...this.signupForm.value };
+         this.signupRecord(newUser)
         const existingSignUpData: any[] = [];
         existingSignUpData.push(newUser);
         localStorage.setItem('SignUp', JSON.stringify(existingSignUpData));
@@ -91,11 +83,7 @@ this.buttonStatus=false
   }
  
  
-  generateUniqueId() {
-    // This is a simple example; you may want to use a more robust method
-    // to generate unique IDs in a real-world application
-    return '_' + Math.random().toString(36).substr(2, 9);
-  }
+  
   
   signupRecord(userData: any) {
     // Assuming users data is available and you want to send it to the server

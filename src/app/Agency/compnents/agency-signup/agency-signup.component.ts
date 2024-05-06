@@ -82,17 +82,17 @@ this.cnicbackImg=e.target.result
 
 
         // Push the new user data with the unique ID to the existing array
-        const newUser = { cnicFrontImg:this.cnicfrontImg,cnicBackImg:this.cnicbackImg, ...this.signupForm.value };
-        existingSignUpData.push(newUser);
-      this.AgencySignupRecord(newUser)
-           // Store the updated data back to local storage
-      localStorage.setItem('AgencySignUp', JSON.stringify(existingSignUpData));
-    
-      console.log(existingSignUpData);
-      this.signupForm.reset();
+      
+   
       }else{
     
-        const newUser = { ...this.signupForm.value };
+          const newUser = {
+            cnicFrontImg: this.cnicfrontImg,
+            cnicBackImg: this.cnicbackImg,
+            ...this.signupForm.value,
+          };
+         
+          this.AgencySignupRecord(newUser);
         const existingSignUpData: any[] = [];
         existingSignUpData.push(newUser);
         localStorage.setItem('AgencySignUp', JSON.stringify(existingSignUpData));
